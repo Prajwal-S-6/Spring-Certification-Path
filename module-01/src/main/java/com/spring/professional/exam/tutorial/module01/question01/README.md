@@ -3,14 +3,14 @@ dependencies on itself, instead objects declare dependencies that they need and 
 object or framework will provide concrete dependencies to objects.
 
 Types of DI:
- Constructor injection
- Setter injection
- Interface injection\
+* Constructor injection
+* Setter injection
+* Interface injection
 
 Advantages of using dependency injection is:
- Increases code reusability
- Increases code readability
- Increases code maintainability
- Increases code testability
- Reduces coupling
+* Increases code reusability
+* Increases code readability
+* Increases code maintainability
+* Increases code testability
+* Reduces coupling
 
