@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="springBean1" class="com.spring.professional.exam.tutorial.module01.nonweb.beans.SpringBean1" init-method="init" destroy-method="destroy" depends-on="springBean2, springBean3">
+<!--        <property name="springBean2" ref="springBean2"/>-->
+<!--        <property name="springBean3" ref="springBean3"/>-->
+    </bean>
+
+    <bean id="springBean2" class="com.spring.professional.exam.tutorial.module01.nonweb.beans.SpringBean2" init-method="init" destroy-method="destroy"/>
+
+    <bean id="springBean3" class="com.spring.professional.exam.tutorial.module01.nonweb.beans.SpringBean3" init-method="init" destroy-method="destroy"/>
+
+</beans>
