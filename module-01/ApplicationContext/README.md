@@ -18,3 +18,18 @@ ApplicationContext's job:
 * Is a resource loader
 * Push events to registered event listeners
 * Exposes environment which allows us to resolve properties
+
+Creating ApplicationContext:
+* Non-web
+  1. AnnotationConfigApplicationContext
+  2. ClassPathXMLApplicationContext
+  3. FileSystemApplicationContext
+  
+* Web
+  1. Servlet2- web.xml, DispatcherServlet, ContextLoaderListener
+  2. Servlet3 - AnnotationWebApplicationContext
+  3. Servlet3 - XMLWebApplicationContext
+  
+* SpringBoot
+  1. @SpringBootApplication
+  2. @SpringBootConsoleApplication
