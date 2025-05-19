@@ -13,11 +13,11 @@ public class SpringBean3 {
 
     @PostConstruct
     public void init() {
-        System.out.println(getClass().getSimpleName() + "::init");
+        System.out.println(getClass().getSimpleName() + "::postConstruct");
     }
 
     @PreDestroy
     public void destroy() {
-        System.out.println(getClass().getSimpleName() + "::destroy");
+        System.out.println(getClass().getSimpleName() + "::preDestroy");
     }
 }

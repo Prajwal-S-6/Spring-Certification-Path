@@ -1,4 +1,4 @@
-package com.spring.professional.exam.tutorial.module01.beans;
+package com.spring.professional.exam.tutorial.module01;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
