@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ConfigurationClassWithBeans {
-    @Bean()
+    @Bean(name = "springBean1")
     public SpringBean1 getSpringBean1() {
         return new SpringBean1();
     }

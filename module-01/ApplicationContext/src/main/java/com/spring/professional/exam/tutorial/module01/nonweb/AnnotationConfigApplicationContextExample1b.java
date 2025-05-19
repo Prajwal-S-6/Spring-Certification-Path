@@ -11,7 +11,7 @@ public class AnnotationConfigApplicationContextExample1b {
                 ConfigurationClassWithBeans.class
         );
 
-        SpringBean1 bean = context.getBean(SpringBean1.class);
+        SpringBean1 bean = (SpringBean1) context.getBean("springBean1");
 
         bean.sayHello();
 
