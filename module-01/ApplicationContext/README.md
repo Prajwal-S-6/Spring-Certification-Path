@@ -30,6 +30,6 @@ Creating ApplicationContext:
   2. Servlet3 - AnnotationWebApplicationContext
   3. Servlet3 - XMLWebApplicationContext
   
-* SpringBoot -  @SpringBootApplication
+* SpringBoot -  @SpringBootApplication--- With springboot we dont have to create ApplicationContext explicitly
   1. SpringBootWebApplication
   2. SpringBootConsoleApplication
