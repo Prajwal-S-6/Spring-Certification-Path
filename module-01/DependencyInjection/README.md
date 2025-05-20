@@ -21,3 +21,9 @@ Advantages of using dependency injection is:
 
 1. DI using Java configuration - @Configuration, @Bean
 2. DI using annotations - @Component, @ComponentScan, @Autowired
+3. Using spring stereotype annotations: Candidate for spring beans and also describes the role of the class
+    * @Component - root annotation, candidate for spring bean
+    * @Controller - web mvc controller
+    * @Service - handles business logic
+    * @Repository - handles dao and db persistence
+4. Meta annotations: @RestController = @Controller + @ResponseBody, @SpringBootApplication = @SpringBootConfiguration + @ComponentScan + @EnableAutoConfiguration
