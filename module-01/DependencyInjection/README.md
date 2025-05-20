@@ -15,6 +15,9 @@ Advantages of using dependency injection is:
 * Increases code testability
 * Reduces coupling
 
+* Advanced:  @ComponentScan(basePackages = "package1, package2",
+                        includeFilters = @ComponentScan.Filter(type, pattern),
+                        excludeFilters = @ComponentScan.Filter(type, pattern))
 
 1. DI using Java configuration - @Configuration, @Bean
 2. DI using annotations - @Component, @ComponentScan, @Autowired
