@@ -14,3 +14,7 @@ Advantages of using dependency injection is:
 * Increases code maintainability
 * Increases code testability
 * Reduces coupling
+
+
+1. DI using Java configuration - @Configuration, @Bean
+2. DI using annotations - @Component, @ComponentScan, @Autowired
