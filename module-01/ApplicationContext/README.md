@@ -33,3 +33,13 @@ Creating ApplicationContext:
 * SpringBoot -  @SpringBootApplication--- With springboot we dont have to create ApplicationContext explicitly
   1. SpringBootWebApplication
   2. SpringBootConsoleApplication
+  
+
+* Closing Application context
+Non web:
+  1. Using context.close() - but with this if any exception occurs before the context is closed then it fails
+  2. Using context.registerShutDownHook() - prefered way
+  3. Using try-with-resource to auto close the context as AnnotationConfigApplicationContext extends AutoClosable
+  
+Web & SpringBoot: Application context is auto closed when ContextLoadListener is closed ie when web container stops and also it
+auto registers to shutdownHook.
