@@ -14,7 +14,7 @@ public class SpringBean1 implements InitializingBean {
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        System.out.println(getClass().getSimpleName() + "InitializingBean::afterPropertiesSet");
+        System.out.println(getClass().getSimpleName() + " InitializingBean::afterPropertiesSet");
     }
 
     public void initMethod() {

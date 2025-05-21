@@ -13,7 +13,7 @@ public class SpringBean2 implements DisposableBean {
 
     @Override
     public void destroy() throws Exception {
-        System.out.println(getClass().getSimpleName() + "::destroy");
+        System.out.println(getClass().getSimpleName() + " DisposableBean::destroy");
     }
 
     public void destroyMethod() {

@@ -14,3 +14,9 @@ Flow:
 7. InitializingBean:: afterPropertiesSet method is called
 8. @Bean(initMethod = ) is called
 9. BeanPostProcessor:: postProcessAfterInitialization is called
+
+
+Destroy methods:\
+1. @PreDestroy annotated method is called
+2. DisposableBean:: destroy() method is called
+3. @Bean(destroyMethod = ) is called
