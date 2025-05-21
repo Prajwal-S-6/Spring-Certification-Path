@@ -1,11 +1,5 @@
 @Autowired\
 
-Is used to enable automatic spring bean dependency resolution.
-
-1. It can be used on fields
-2. Constructor
-3. Method
-
 * @Autowired(required = true) - default, meaning all the dependencies are required and has to be resolved
 
 
@@ -22,3 +16,7 @@ How the bean is identified?\
 4. If no @Qualifier is found then spring will try to match based on bean name.
 5. If no bean is found - NoBeanDefinitionFoundException
 6. If multiple beans are found  - NoUniqueBeanDefinitionException
+
+
+* Using @Autowired:
+1. On fields: Field injection will be resolved after the instance of bean is created, hence the dependencies won't be available in the dependent bean constructor, will be available in postProcessBeforeInitialization/@PostConstruct
