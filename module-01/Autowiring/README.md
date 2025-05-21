@@ -20,3 +20,5 @@ How the bean is identified?\
 
 * Using @Autowired:
 1. On fields: Field injection will be resolved after the instance of bean is created, hence the dependencies won't be available in the dependent bean constructor, will be available in postProcessBeforeInitialization/@PostConstruct
+2. On constructor: If there is only one constructor then no need to use @Autowired, but when there are multiple then we need to tell spring which constructor is providing dependency
+3. 

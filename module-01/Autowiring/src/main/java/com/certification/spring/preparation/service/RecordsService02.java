@@ -4,10 +4,12 @@ import com.certification.spring.preparation.backup.DbRecordsBackup;
 import com.certification.spring.preparation.bls.DbRecordsProcessor;
 import com.certification.spring.preparation.reader.DbRecordsReader;
 import com.certification.spring.preparation.writer.DbRecordsWriter;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
 public class RecordsService02 {
+    // @Autowired redundant
     public RecordsService02(DbRecordsReader recordsReader, DbRecordsBackup recordsBackup, DbRecordsProcessor recordsProcessor, DbRecordsWriter recordsWriter) {
         System.out.println(
                 getClass().getSimpleName() + " recordsReader = " + recordsReader + "\n" +
