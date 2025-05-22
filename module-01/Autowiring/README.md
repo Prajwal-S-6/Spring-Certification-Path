@@ -25,3 +25,5 @@ How the bean is identified?\
 
 * When @Autowired(required=false) is added on top of constructor then spring will not call that constructor, instead calls other @Autowired or default constructor
 * When @Autowired(required=false) is added on top of method then, spring will not call that method until all the parameters are resolved ie all the parameters bean definition is found
+* Similarly the method wont be called if @Autowired(required=false) is used along any parameter and spring cannot resolve that dependency
+* If any of the dependency cannot be resolved but still need to call that method then we can use @Option<T>, @Nullable, @Autowired(required=false) on the parameters
