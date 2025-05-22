@@ -35,3 +35,4 @@ How the bean is identified?\
 1. At injection point using class-name as bean name to resolve conflict
 2. At injection point using component name ---- @Component("component-name")
 3. At bean definition point & at injection point using @Qualifier("qualifier-name")
+4. At bean definition and injection point using @MyCustomQualifier annotation
