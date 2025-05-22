@@ -29,3 +29,4 @@ How the bean is identified?\
 * If any of the dependency cannot be resolved but still need to call that method then we can use @Option<T>, @Nullable, @Autowired(required=false) on the parameters
 
 * When @Autowired is used on a Collection then spring will inject all the beans of those types
+* Order of the beans can vary based on @Order -> Implementing Ordered interface -> @Priority

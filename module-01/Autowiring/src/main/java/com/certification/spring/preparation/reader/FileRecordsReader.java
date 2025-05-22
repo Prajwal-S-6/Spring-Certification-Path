@@ -14,6 +14,6 @@ public class FileRecordsReader implements RecordsReader, Ordered {
 
     @Override
     public int getOrder() {
-        return 3;
+        return 5;
     }
 }

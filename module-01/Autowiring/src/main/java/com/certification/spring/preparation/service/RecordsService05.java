@@ -10,21 +10,21 @@ import java.util.List;
 @Service
 public class RecordsService05 {
 
-    @Autowired
-    private List<RecordsReader> recordsReaders;
-
-    @PostConstruct
-    public void recordReadersList() {
-        System.out.println(getClass().getSimpleName() + " setRecordsReaders:");
-        recordsReaders.stream().map(recordsReader -> "\t" + recordsReader.getClass().getSimpleName())
-                .forEach(System.out::println);
-    }
-
 //    @Autowired
-//    public void setRecordsReaders(List<RecordsReader> recordsReaders) {
+//    private List<RecordsReader> recordsReaders;
+//
+//    @PostConstruct
+//    public void recordReadersList() {
 //        System.out.println(getClass().getSimpleName() + " setRecordsReaders:");
-//        recordsReaders.stream()
-//                .map(r -> "\t" + r.getClass().getSimpleName())
+//        recordsReaders.stream().map(recordsReader -> "\t" + recordsReader.getClass().getSimpleName())
 //                .forEach(System.out::println);
 //    }
+
+    @Autowired
+    public void setRecordsReaders(List<RecordsReader> recordsReaders) {
+        System.out.println(getClass().getSimpleName() + " setRecordsReaders:");
+        recordsReaders.stream()
+                .map(r -> "\t" + r.getClass().getSimpleName())
+                .forEach(System.out::println);
+    }
 }
