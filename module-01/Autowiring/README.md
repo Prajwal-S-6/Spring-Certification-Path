@@ -34,3 +34,4 @@ How the bean is identified?\
 * Resolving dependency using @Qualifier when multiple beans are found of same type
 1. At injection point using class-name as bean name to resolve conflict
 2. At injection point using component name ---- @Component("component-name")
+3. At bean definition point & at injection point using @Qualifier("qualifier-name")
