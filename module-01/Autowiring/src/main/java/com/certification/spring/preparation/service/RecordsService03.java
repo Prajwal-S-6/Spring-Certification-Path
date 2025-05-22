@@ -19,7 +19,7 @@ public class RecordsService03 {
     }
 
     // @Autowired(required = false)
-    @Autowired()
+    @Autowired
     private RecordsService03(DbRecordsReader recordsReader, DbRecordsProcessor recordsProcessor, Optional<RecordsUtil> recordsUtil, @Nullable RecordsHash recordsHash, @Autowired(required = false) RecordsValidator recordsValidator) {
         System.out.println(
                 getClass().getSimpleName() + " recordsReader = " + recordsReader + "\n" +
@@ -30,11 +30,12 @@ public class RecordsService03 {
         );
     }
 
-    // @Autowired
-    RecordsService03(DbRecordsReader recordsReader, DbRecordsProcessor recordsProcessor) {
+    //@Autowired(required = false)
+    RecordsService03(DbRecordsReader recordsReader, DbRecordsProcessor recordsProcessor, RecordsValidator recordsValidator) {
         System.out.println(
                 getClass().getSimpleName() + " recordsReader = " + recordsReader + "\n" +
-                        getClass().getSimpleName() + " recordsProcessor = " + recordsProcessor + "\n"
+                        getClass().getSimpleName() + " recordsProcessor = " + recordsProcessor + "\n" +
+                        getClass().getSimpleName() + " recordsValidator = " + recordsValidator + "\n"
         );
 
     }

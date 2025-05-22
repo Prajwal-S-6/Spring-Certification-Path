@@ -20,8 +20,8 @@ How the bean is identified?\
 
 * Using @Autowired:
 1. On fields: Field injection will be resolved after the instance of bean is created, hence the dependencies won't be available in the dependent bean constructor, will be available in postProcessBeforeInitialization/@PostConstruct
-2. On constructor: If there is only one constructor then no need to use @Autowired, but when there are multiple then we need to tell spring which constructor is providing dependency and only that constructor will be invoked
+2. On constructor: If there is only one constructor then no need to use @Autowired, but when there are multiple then we need to tell spring which constructor is providing dependency and only that constructor will be invoked. Constructor can have only one required @Autowired
 3. On methods(setter): When used on methods all the parameters dependency are required has to be resolved, else can throw NoBeanDefinitionFoundException/NoUniqueBeanDefinitionException
 
 * When @Autowired(required=false) is added on top of constructor then spring will not call that constructor, instead calls other @Autowired or default constructor
-* When 
+* When @Autowired(required=false) is added on top of method then, spring will not call that method until all the parameters are resolved ie all the parameters bean definition is found
