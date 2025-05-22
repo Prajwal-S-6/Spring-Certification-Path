@@ -30,3 +30,7 @@ How the bean is identified?\
 
 * When @Autowired is used on a Collection then spring will inject all the beans of those types
 * Order of the beans can vary based on @Order -> Implementing Ordered interface -> @Priority
+
+* Resolving dependency using @Qualifier when multiple beans are found of same type
+1. At injection point using class-name as bean name to resolve conflict
+2. 
