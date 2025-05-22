@@ -14,7 +14,12 @@ import java.util.Optional;
 @Service
 public class RecordsService03 {
 
-    @Autowired
+    public RecordsService03() {
+        System.out.println(getClass().getSimpleName() + "----------------------- this is normal constructor");
+    }
+
+    // @Autowired(required = false)
+    @Autowired()
     private RecordsService03(DbRecordsReader recordsReader, DbRecordsProcessor recordsProcessor, Optional<RecordsUtil> recordsUtil, @Nullable RecordsHash recordsHash, @Autowired(required = false) RecordsValidator recordsValidator) {
         System.out.println(
                 getClass().getSimpleName() + " recordsReader = " + recordsReader + "\n" +
@@ -34,7 +39,5 @@ public class RecordsService03 {
 
     }
 
-    public RecordsService03() {
-        System.out.println(getClass().getSimpleName() + "----------------------- constructor");
-    }
+
 }
