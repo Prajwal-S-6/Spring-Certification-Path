@@ -19,3 +19,6 @@
 1. Hard to debug the code
 2. Need to use unchecked exception if original method doesnt use any
 3. May cause performance issue if I/O is used in proxy invocation like in (invoke or intercept methods)
+
+
+* Spring under the hood uses CGLIB proxy to create proxy objects on singleton bean on ApplicationConfig class(ie bean created in @Configuration class)
