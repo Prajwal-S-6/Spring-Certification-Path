@@ -7,5 +7,8 @@ public class Runner {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
 
         context.registerShutdownHook();
+
+        context.getBean(SpringBean.class);
+        context.getBean(SpringBean.class);
     }
 }

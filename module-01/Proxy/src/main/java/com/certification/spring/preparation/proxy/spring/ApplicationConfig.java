@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Scope;
 
 @ComponentScan
 @Configuration
+
+// public final class ApplicationConfig {
 public class ApplicationConfig {
     @Bean
     SpringBean springBean() {

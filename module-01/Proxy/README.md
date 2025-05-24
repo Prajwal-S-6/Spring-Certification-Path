@@ -21,4 +21,5 @@
 3. May cause performance issue if I/O is used in proxy invocation like in (invoke or intercept methods)
 
 
-* Spring under the hood uses CGLIB proxy to create proxy objects on singleton bean on ApplicationConfig class(ie bean created in @Configuration class)
+* Spring under the hood uses CGLIB proxy to create proxy objects on singleton bean on ApplicationConfig class(ie bean created in @Configuration class), by creating a subclass on the original object
+* Hence @Configuration class cannot be final and methods also cannot be final
