@@ -5,7 +5,6 @@ import com.certification.spring.preparation.configuration.level.ds.FinancialMont
 import com.certification.spring.preparation.configuration.level.ds.FinancialQuarterSummary;
 import com.certification.spring.preparation.configuration.level.ds.FinancialYearSummary;
 
-
 public class DatabaseStoreFinancialReportWriter implements FinancialReportWriter {
     @Override
     public void appendFreeText(String title) {

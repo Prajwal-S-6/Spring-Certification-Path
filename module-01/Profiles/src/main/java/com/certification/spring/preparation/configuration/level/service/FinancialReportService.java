@@ -6,16 +6,18 @@ import com.certification.spring.preparation.configuration.level.ds.FinancialMont
 import com.certification.spring.preparation.configuration.level.ds.FinancialQuarterSummary;
 import com.certification.spring.preparation.configuration.level.ds.FinancialYearSummary;
 import com.certification.spring.preparation.configuration.level.writer.FinancialReportWriter;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FinancialReportService {
 
-    @Autowired
-    private FinancialDataDao financialDataDao;
-    @Autowired
-    private FinancialReportWriter financialReportWriter;
+    private final FinancialDataDao financialDataDao;
+    private final FinancialReportWriter financialReportWriter;
+
+    public FinancialReportService(FinancialDataDao financialDataDao, FinancialReportWriter financialReportWriter) {
+        this.financialDataDao = financialDataDao;
+        this.financialReportWriter = financialReportWriter;
+    }
 
     public void generateReport() {
         FinancialYearSummary financialYearSummary = financialDataDao.findFinancialYearSummary(2019);

@@ -4,8 +4,6 @@ package com.certification.spring.preparation.configuration.level.dao;
 import com.certification.spring.preparation.configuration.level.ds.FinancialMonthSummary;
 import com.certification.spring.preparation.configuration.level.ds.FinancialQuarterSummary;
 import com.certification.spring.preparation.configuration.level.ds.FinancialYearSummary;
-import org.springframework.context.annotation.Profile;
-import org.springframework.stereotype.Component;
 
 public class DatabaseStoreFinancialDataDao implements FinancialDataDao {
     @Override
