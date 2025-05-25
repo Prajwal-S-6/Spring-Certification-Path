@@ -1,7 +1,7 @@
-package com.certification.spring.preparation;
+package com.certification.spring.preparation.configuration.level;
 
-import com.certification.spring.preparation.component.level.ApplicationConfiguration;
-import com.certification.spring.preparation.component.level.service.FinancialReportService;
+
+import com.certification.spring.preparation.configuration.level.service.FinancialReportService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 public class Runner {

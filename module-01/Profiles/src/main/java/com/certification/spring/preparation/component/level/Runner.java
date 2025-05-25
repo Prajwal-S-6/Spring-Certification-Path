@@ -1,6 +1,5 @@
 package com.certification.spring.preparation.component.level;
 
-
 import com.certification.spring.preparation.component.level.service.FinancialReportService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 

@@ -7,7 +7,6 @@ import com.certification.spring.preparation.configuration.level.ds.FinancialYear
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
 
-@Component
 public class DatabaseStoreFinancialDataDao implements FinancialDataDao {
     @Override
     public FinancialYearSummary findFinancialYearSummary(int year) {
