@@ -9,7 +9,7 @@ public class Runner {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
         context.registerShutdownHook();
 
-        context.getEnvironment().setActiveProfiles("file");
+        context.getEnvironment().setActiveProfiles("database");
         context.register(ApplicationConfiguration.class);
         context.refresh();
 
