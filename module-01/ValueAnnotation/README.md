@@ -17,3 +17,9 @@
 * Injecting values from other spring beans
 * Injecting values into collection using ConversionService(DefaultConversionService) from property/environment, and other spring beans
 * Setting default values, when referenced value from property is missing.
+
+
+
+* SpEL is an expression language that allows to query and manipulate objects at runtime.
+* SpEL can be used independently using ExpressionParser(SpELExpressionParser) and EvaluationContext, or can be used with @Value
+* 
