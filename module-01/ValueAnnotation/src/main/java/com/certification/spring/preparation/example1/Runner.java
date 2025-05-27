@@ -1,6 +1,6 @@
-package com.certification.spring.preparation;
+package com.certification.spring.preparation.example1;
 
-import com.certification.spring.preparation.beans.SpringBean;
+import com.certification.spring.preparation.example1.beans.SpringBean;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import java.util.Arrays;
@@ -23,9 +23,9 @@ public class Runner {
         System.out.println("getSupportContactMail = " + springBean.getSupportContactMail());
         System.out.println("getSupportPhone = " + springBean.getSupportPhone());
         System.out.println("getSupportAddress = " + springBean.getSupportAddress());
-//        System.out.println("getDependentDepartments = " + Arrays.toString(springBean.getDependentDepartments()));
-//        System.out.println("getCasesIds = " + springBean.getCasesIds());
-//        System.out.println("getCasesSet = " + springBean.getCasesSet());
-//        System.out.println("getCasesMap = " + springBean.getCasesMap());
+        System.out.println("getDependentDepartments = " + Arrays.toString(springBean.getDependentDepartments()));
+        System.out.println("getCasesIds = " + springBean.getCasesIds());
+        System.out.println("getCasesSet = " + springBean.getCasesSet());
+        System.out.println("getCasesMap = " + springBean.getCasesMap());
     }
 }

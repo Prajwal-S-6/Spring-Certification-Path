@@ -1,4 +1,4 @@
-package com.certification.spring.preparation.beans;
+package com.certification.spring.preparation.example1.beans;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

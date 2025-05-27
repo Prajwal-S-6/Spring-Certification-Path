@@ -1,4 +1,4 @@
-package com.certification.spring.preparation;
+package com.certification.spring.preparation.example1;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
