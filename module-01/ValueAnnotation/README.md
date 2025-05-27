@@ -71,3 +71,15 @@
   6. System env variables
   7. @PropertySource configuration
   8. Default properties using SpringApplication.setDefaultProperties
+  
+
+* SpEL reference use cases:
+  1. Static fields from class - T(com.example.SomeClass).STATIC_FIELD
+  2. Static methods from class - T(com.example.SomeClass).staticMethod()
+  3. SpringBean field - @springBeanName.field
+  4. SpringBean method - @springBeanName.method()
+  5. SpEL variables - #someVariable
+  6. Referencing property and method from SpEL variable - #someVariable.property, #someVariable.method()
+  7. SpringApplication Env properties - environment['app.file.property']
+  8. System properties - systemProperties['app.file.property']
+  9. System env variables - systemEnvironment['JAVA_HOME']
