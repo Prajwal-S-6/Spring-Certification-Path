@@ -33,3 +33,19 @@
     * Immediate - compile upon first expression evaluation
     * Mixed - compiler dynamically switch between interpreted and compiled mode, if exception is thrown during compilation then switch to interpreted and viceversa
 * Compiler mode doesnt work where expressions are relying on conversion service
+
+
+
+
+* Environment Abstraction is part of spring container that mainly involves:
+1. Profiles
+2. Properties
+
+* Environment interface allows you to resolve properties and also list profiles
+* ApplicationContext implements Environment
+* Environment Abstraction role in context of profiles is to determine which profiles are currently active, and
+  which are activated by default.
+* Environment Abstraction role in context of properties is to provide convenient, standarized and generic service
+  that allows to resolve properties and also to configure property sources.
+* Properties can be from: properties file, JVM property, system property
+* Additional property files can be used using @PropertySource
