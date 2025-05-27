@@ -49,3 +49,25 @@
   that allows to resolve properties and also to configure property sources.
 * Properties can be from: properties file, JVM property, system property
 * Additional property files can be used using @PropertySource
+
+
+* For standalone applications:
+  1. properties can be from properties file
+  2. JVM system properties
+  3. System env variables
+  
+* For servlet container spring framework application
+  1. properties file
+  2. JVM system properties
+  3. System env variables
+  4. ServletConfig and Servlet context init params
+  
+* For springboot application
+  1. properties file - application.properties, application-{profile}.properties or yaml
+  2. @TestPropertySource on tests
+  3. Properties attribute in @SpringBootTest
+  4. Command line argument
+  5. JVM system properties
+  6. System env variables
+  7. @PropertySource configuration
+  8. Default properties using SpringApplication.setDefaultProperties
