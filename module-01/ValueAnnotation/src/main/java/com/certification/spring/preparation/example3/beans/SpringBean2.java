@@ -6,17 +6,11 @@ import org.springframework.stereotype.Component;
 @Component
 public class SpringBean2 {
 
-    @Value("6")
+    @Value("3")
     private int taxId;
 
     @Value("#{${app.tax.value}/100.0}")
     private float taxValue;
-
-    @Value("#{'${app.tax.department.name}'.toUpperCase()}")
-    private String taxDepartmentName;
-
-    @Value("${tax.department.alt.name:IS}")
-    private String taxDepartmentAltName;
 
     public int getTaxId() {
         return taxId;
@@ -24,13 +18,5 @@ public class SpringBean2 {
 
     public float getTaxValue() {
         return taxValue;
-    }
-
-    public String getTaxDepartmentName() {
-        return taxDepartmentName;
-    }
-
-    public String getTaxDepartmentAlternateName() {
-        return taxDepartmentAltName;
     }
 }

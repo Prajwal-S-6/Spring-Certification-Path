@@ -3,7 +3,7 @@ package com.certification.spring.preparation.example2.beans;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("SpringBean2")
 public class SpringBean2 {
 
     @Value("6")

@@ -56,7 +56,7 @@ public class SpringBean1 {
     @Value("#{${app.cases.map}}")
     private Map<String, Integer> casesMap;
 
-    @Value("#{springBean2.taxId}")
+    @Value("#{SpringBean2.taxId}")
     private String taxId;
 
     public SpringBean1(@Value("${app.support.phone}") String supportPhone, @Value("${app.support.address}") String supportAddress) {

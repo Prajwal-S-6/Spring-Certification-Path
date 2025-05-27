@@ -21,5 +21,5 @@
 
 
 * SpEL is an expression language that allows to query and manipulate objects at runtime.
-* SpEL can be used independently using ExpressionParser(SpELExpressionParser) and EvaluationContext, or can be used with @Value
+* SpEL can be used independently using ExpressionParser(SpELExpressionParser) and EvaluationContext(StandardEvaluationContext), or can be used with @Value
 * 
