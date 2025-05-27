@@ -83,3 +83,7 @@
   7. SpringApplication Env properties - environment['app.file.property']
   8. System properties - systemProperties['app.file.property']
   9. System env variables - systemEnvironment['JAVA_HOME']
+
+
+* Expressions starting with $ -> is used to reference property in spring environment abstraction
+* Expression starting with # -> is parsed as SpEL and evaluated
