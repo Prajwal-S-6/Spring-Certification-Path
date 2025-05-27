@@ -22,4 +22,14 @@
 
 * SpEL is an expression language that allows to query and manipulate objects at runtime.
 * SpEL can be used independently using ExpressionParser(SpELExpressionParser) and EvaluationContext(StandardEvaluationContext), or can be used with @Value
-* 
+* SpEL expressions are evaluated at runtime, and this may lead to performance concerns
+    * In spring 4.1 introduced a compiling of expression
+    * This results in much faster evaluation
+    * This is best useful when referenced types are not changing
+    * Compiler type is turned off by default
+    * Can be turned on by : **spring.expression.compiler.mode** or ParserConfiguration
+* Compiler options are in 3 modes:
+    * Default off
+    * Immediate - compile upon first expression evaluation
+    * Mixed - compiler dynamically switch between interpreted and compiled mode, if exception is thrown during compilation then switch to interpreted and viceversa
+* Compiler mode doesnt work where expressions are relying on conversion service
