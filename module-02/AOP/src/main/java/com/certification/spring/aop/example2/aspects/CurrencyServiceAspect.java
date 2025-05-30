@@ -62,6 +62,11 @@ public class CurrencyServiceAspect {
         System.out.println("Before - blsPackagePointcut");
     }
 
+    @After("blsPackagePointcut()")
+    public void afterBlsPackageAdvice() {
+        System.out.println("After - blsPackagePointcut");
+    }
+
     @Before("securedClassPointcut()")
     public void beforeSecuredClassAdvice() {
         System.out.println("Before - securedClassPointcut");
