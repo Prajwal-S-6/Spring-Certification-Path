@@ -40,3 +40,12 @@ Example:
 ---
 * Aspect brings together advice and a pointcut.
 * It represents a single behavior implemented by advice that will be added on join points matched by pointcut
+
+
+* Weaving is a process of applying aspects, which modifies code behavior at join points that have matching pointcuts and associated advices.
+* During weaving application code and the aspect is combined which enables cross cutting concerns.
+
+* Types of weaving:
+  1. Compile time: The byte code is modified during compilation the aspects are applied, the code is modified at join points matching the pointcut and associated advices are applied.
+  2. Class load time: The byte code is modified when the class loader loads the classes, then the aspects are applied.
+  3. Runtime: Spring AOP follows runtime weaving, where a proxy of original bean is created where aspects are applied. Aspects are applied onto proxy object instead of original one.
