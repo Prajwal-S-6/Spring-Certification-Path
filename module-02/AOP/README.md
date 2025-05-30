@@ -33,3 +33,10 @@ Example:
   * @annotation(com.spring.example.annotations.SomeAnnotation) -- match join point where join point has given annotation
 
 
+---
+* Advice is an additional behavior that is added on to the join point where pointcut matches
+* Separate pointcut and advice
+
+---
+* Aspect brings together advice and a pointcut.
+* It represents a single behavior implemented by advice that will be added on join points matched by pointcut
