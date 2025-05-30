@@ -11,4 +11,7 @@ Is a Programming paradigm that complements OOP, which separates out cross cuttin
 * It avoids mixing unrelated code - example mixing transaction logic code from actual business logic
 
 --- 
+* With AOP we create AOP class eg. PerformanceLoggerAspect and annotate the bean with @Aspect
+* And @EnableAspectJAutoProxy for aspects to be applied
+
 
