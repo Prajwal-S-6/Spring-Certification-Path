@@ -22,4 +22,14 @@ public class AlternativeCurrenciesRepositoryAspect {
     public void beforeTargetCurrenciesRepository() {
         System.out.println("Before - target(AlternativeCurrenciesRepository)");
     }
+
+    @Before("bean(alternate_currencies)")
+    public void beforeBeanCurrenciesRepository() {
+        System.out.println("Before - bean(AlternativeCurrenciesRepository)");
+    }
+
+    @After("bean(alternate_currencies)")
+    public void afterBeanCurrenciesRepository() {
+        System.out.println("After - bean(AlternativeCurrenciesRepository)");
+    }
 }
