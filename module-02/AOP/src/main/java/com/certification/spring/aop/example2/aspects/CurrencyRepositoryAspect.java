@@ -1,5 +1,6 @@
 package com.certification.spring.aop.example2.aspects;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -17,6 +18,11 @@ public class CurrencyRepositoryAspect {
     @Before("thisCurrencyRepositoryPointcut()")
     public void beforeThisCurrencyRepositoryPointcut() {
         System.out.println("Before - this(CurrenciesRepository)");
+    }
+
+    @After("thisCurrencyRepositoryPointcut()")
+    public void afterThisCurrencyRepositoryPointcut() {
+        System.out.println("After - this(CurrenciesRepository)");
     }
 
 
