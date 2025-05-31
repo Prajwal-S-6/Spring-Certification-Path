@@ -29,6 +29,11 @@ public class EmployeeRepositoryAspect {
         System.out.println("Service A - afterFindEmployeeById");
     }
 
+    @After("within(com.certification.spring.aop.example3.service.a.*)")
+    public void afterWithinServiceAPackage() {
+        System.out.println("Service A - afterWithinServiceAPackage");
+    }
+
 
 
 }
