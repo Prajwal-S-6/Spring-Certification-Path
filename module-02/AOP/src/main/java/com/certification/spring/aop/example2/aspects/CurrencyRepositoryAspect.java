@@ -31,6 +31,11 @@ public class CurrencyRepositoryAspect {
         System.out.println("Before - target(CurrenciesRepository)");
     }
 
+    @After("target(com.certification.spring.aop.example2.bls.CurrenciesRepository)")
+    public void afterTargetCurrencyRepositoryPointcut() {
+        System.out.println("After - target(CurrenciesRepository)");
+    }
+
 
 
 }
