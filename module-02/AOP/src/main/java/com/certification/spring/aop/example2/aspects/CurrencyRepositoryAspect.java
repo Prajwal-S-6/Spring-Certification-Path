@@ -26,5 +26,11 @@ public class CurrencyRepositoryAspect {
     }
 
 
+    @Before("target(com.certification.spring.aop.example2.bls.CurrenciesRepository)")
+    public void beforeTargetCurrencyRepositoryPointcut() {
+        System.out.println("Before - target(CurrenciesRepository)");
+    }
+
+
 
 }
