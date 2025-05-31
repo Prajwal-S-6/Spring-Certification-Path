@@ -11,8 +11,8 @@ public class Runner {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         context.registerShutdownHook();
 
-        // EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
-        AlternateEmployeeRepository employeeRepository = context.getBean(AlternateEmployeeRepository.class);
+        EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
+        //AlternateEmployeeRepository employeeRepository = context.getBean(AlternateEmployeeRepository.class);
 
         Employee employee = employeeRepository.findEmployeeById(1);
         employeeRepository.saveEmployee(employee);

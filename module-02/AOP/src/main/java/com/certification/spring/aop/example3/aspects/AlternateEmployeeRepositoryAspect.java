@@ -1,5 +1,6 @@
 package com.certification.spring.aop.example3.aspects;
 
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
@@ -11,5 +12,10 @@ public class AlternateEmployeeRepositoryAspect {
     @Before("execution(* com.certification.spring.aop.example3.service.b.AlternateEmployeeRepository.findEmployeeById(..))")
     public void beforeServiceBFindByEmployee() {
         System.out.println("Service B - beforeServiceBFindByEmployee");
+    }
+
+    @After("within(com.certification.spring.aop.example3.service.b.*)")
+    public void afterWithinServiceBPackage() {
+        System.out.println("Service B - afterWithinServiceBPackage");
     }
 }
