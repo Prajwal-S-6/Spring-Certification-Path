@@ -49,3 +49,15 @@ Example:
   1. Compile time: The byte code is modified during compilation the aspects are applied, the code is modified at join points matching the pointcut and associated advices are applied.
   2. Class load time: The byte code is modified when the class loader loads the classes, then the aspects are applied.
   3. Runtime: Spring AOP follows runtime weaving, where a proxy of original bean is created where aspects are applied. Aspects are applied onto proxy object instead of original one.
+  
+---
+Spring implements cross cutting concerns with usage of Spring AOP module(spring-aspects) which uses AspectJ expression syntax
+for Pointcut expression which matches the join point where the code is altered to add additional logic called Advice.\
+In Spring AOP join point is always method invocation.
+
+* Spring AOP uses runtime weaving which creates proxy objects where the aspects are applied.
+* Spring creates the type of proxy:
+  * JDK proxy if the bean implements any interface.
+  * CGLIB proxy if bean doesnt implement any interface.
+  
+* However we can force the spring to create CGLIB proxy by using @EnableAspectJAutoProxy(proxyTargetClass=true)
