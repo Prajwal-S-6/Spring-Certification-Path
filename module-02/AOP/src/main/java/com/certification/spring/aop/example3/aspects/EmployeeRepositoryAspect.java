@@ -13,5 +13,9 @@ public class EmployeeRepositoryAspect {
         System.out.println("Before - this(EmployeeRepository)");
     }
 
+    @Before("execution(* com.certification.spring.aop.example3.service.a.EmployeeRepository.findEmployeeById(..))")
+    public void beforeFindEmployeeById() {
+        System.out.println("Service A - beforeFindEmployeeById");
+    }
 
 }
