@@ -14,14 +14,21 @@ public class EmployeeRepositoryAspect {
         System.out.println("Before - this(EmployeeRepository)");
     }
 
+    @After("this(com.certification.spring.aop.example3.service.a.EmployeeRepository)")
+    public void afterThisEmployeeRepository() {
+        System.out.println("After - this(EmployeeRepository)");
+    }
+
     @Before("execution(* com.certification.spring.aop.example3.service.a.EmployeeRepository.findEmployeeById(..))")
     public void beforeFindEmployeeById() {
         System.out.println("Service A - beforeFindEmployeeById");
     }
 
-    @After("this(com.certification.spring.aop.example3.service.a.EmployeeRepository)")
-    public void afterThisEmployeeRepository() {
-        System.out.println("After - this(EmployeeRepository)");
+    @After("execution(* com.certification.spring.aop.example3.service.a.EmployeeRepository.findEmployeeById(..))")
+    public void afterFindEmployeeById() {
+        System.out.println("Service A - afterFindEmployeeById");
     }
+
+
 
 }
