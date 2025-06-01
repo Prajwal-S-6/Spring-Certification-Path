@@ -1,6 +1,7 @@
 package com.certification.spring.aop.example4.aspects;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
@@ -16,5 +17,10 @@ public class EmployeeRepositoryAspect {
     @Before("withinServicesOrSamePackagePointcut()")
     public void before(JoinPoint joinPoint){
         System.out.println("Before - " + joinPoint.getSignature());
+    }
+
+    @After("withinServicesOrSamePackagePointcut()")
+    public void after(JoinPoint joinPoint){
+        System.out.println("After - " + joinPoint.getSignature());
     }
 }
