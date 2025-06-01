@@ -71,4 +71,4 @@ In Spring AOP join point is always method invocation.
 Limitations of CGLIB proxy
 * Doesnt support self invocation. Meaning Aspects are not applied when one method invokes another method in the class. Aspects are applied when methods are invoked externally.
 * Class for which proxy should be created cannot be final - throws Exception - Cannot subclass final class. Similarly, the methods also cannot be final. As CGLIB proxy BTS creates subclass for the class and overrides the original methods.
-* Private methods are not proxied, hence aspects are not applied. public, package, protected methods are proxied
+* Private methods are not proxied, hence aspects are not applied. public, package, protected methods are proxied and aspects are applied on pointcut matching join point
