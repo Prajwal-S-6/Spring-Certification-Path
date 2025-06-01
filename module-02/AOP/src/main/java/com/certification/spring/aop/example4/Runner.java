@@ -29,13 +29,22 @@ public class Runner {
 //        deleteEmployee.setAccessible(true);
 //        deleteEmployee.invoke(samePackageEmployeeRepository, "testuser@gamil.com");
 
-        Employee employee = alternateEmployeeRepository.findEmployeeById(1);
-        alternateEmployeeRepository.saveEmployee(employee);
+//        Employee employee = alternateEmployeeRepository.findEmployeeById(1);
+//        alternateEmployeeRepository.saveEmployee(employee);
 
         ///  deleteEmployee() is not proxied as it is final method, hence aspect is also not applied
-        alternateEmployeeRepository.deleteEmployee(employee);
+        // alternateEmployeeRepository.deleteEmployee(employee);
         /// CGLIB proxy self-invocation is not supported -  doesn't apply aspects for internal method(saveEmployee()) called from findAndUpdateEmployeeById()
         // alternateEmployeeRepository.findAndUpdateEmployeeById(2, new Employee());
+
+//        samePackageEmployeeRepository.saveEmployee(new Employee());
+//        samePackageEmployeeRepository.deleteEmployee(4);
+//        samePackageEmployeeRepository.deleteEmployeeByEmail("test@test.com");
+
+        /// private methods are called from original class(SuperClass) but not proxied, hence aspects are not applied
+        Method deleteEmployeeByPhone = samePackageEmployeeRepository.getClass().getSuperclass().getDeclaredMethod("deleteEmployeeByPhone", String.class);
+        deleteEmployeeByPhone.setAccessible(true);
+        deleteEmployeeByPhone.invoke(samePackageEmployeeRepository, "123-456-789");
 
     }
 }
