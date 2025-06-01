@@ -13,7 +13,7 @@ public /*final*/ class AlternateEmployeeRepository {
     public void saveEmployee(Employee employee) {
     }
 
-    public /*final*/ void deleteEmployee(Employee employee) {
+    public final void deleteEmployee(Employee employee) {
     }
 
     public void findAndUpdateEmployeeById(long id, Employee employeeToMerge) {
