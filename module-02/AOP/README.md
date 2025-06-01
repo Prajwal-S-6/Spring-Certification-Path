@@ -61,3 +61,8 @@ In Spring AOP join point is always method invocation.
   * CGLIB proxy if bean doesnt implement any interface.
   
 * However we can force the spring to create CGLIB proxy by using @EnableAspectJAutoProxy(proxyTargetClass=true)
+
+---
+ Limitations of JDK dynamic proxy
+* Doesnt support self invocation. Meaning Aspects are not applied when one method invokes another method in the class. Aspects are applied when methods are invoked externally
+* 
