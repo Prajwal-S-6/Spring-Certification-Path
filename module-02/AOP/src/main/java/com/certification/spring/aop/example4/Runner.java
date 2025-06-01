@@ -1,5 +1,6 @@
 package com.certification.spring.aop.example4;
 
+import com.certification.spring.aop.example4.service.b.AlternateEmployeeRepository;
 import com.certification.spring.aop.example4.ds.Employee;
 import com.certification.spring.aop.example4.service.a.EmployeeRepository;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -15,16 +16,24 @@ public class Runner {
 
         EmployeeRepository employeeRepository = context.getBean(EmployeeRepository.class);
         SamePackageEmployeeRepository samePackageEmployeeRepository = context.getBean(SamePackageEmployeeRepository.class);
+        AlternateEmployeeRepository alternateEmployeeRepository = context.getBean(AlternateEmployeeRepository.class);
+
 //        Employee employee = employeeRepository.findEmployeeById(1);
 //        employeeRepository.deleteEmployee(employee);
 //        employeeRepository.saveEmployee(employee);
-        /// doesn't apply aspects for internal method(saveEmployee()) called from findAndUpdateEmployeeById()
-        employeeRepository.findAndUpdateEmployeeById(2, new Employee());
+        /// JDK dynamic proxy self-invocation is not supported - doesn't apply aspects for internal method(saveEmployee()) called from findAndUpdateEmployeeById()
+        // employeeRepository.findAndUpdateEmployeeById(2, new Employee());
 
         /// deleteByEmail is not an interface method, hence JDK proxy will only proxy the methods implementing interface, hence it fails
 //        Method deleteEmployee = employeeRepository.getClass().getDeclaredMethod("deleteByEmail", Employee.class);
 //        deleteEmployee.setAccessible(true);
 //        deleteEmployee.invoke(samePackageEmployeeRepository, "testuser@gamil.com");
+
+//        Employee employee = alternateEmployeeRepository.findEmployeeById(1);
+//        alternateEmployeeRepository.saveEmployee(employee);
+//        alternateEmployeeRepository.deleteEmployee(employee);
+        /// CGLIB proxy self-invocation is not supported -  doesn't apply aspects for internal method(saveEmployee()) called from findAndUpdateEmployeeById()
+        alternateEmployeeRepository.findAndUpdateEmployeeById(2, new Employee());
 
     }
 }
