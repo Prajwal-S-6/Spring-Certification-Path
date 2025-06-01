@@ -65,4 +65,5 @@ In Spring AOP join point is always method invocation.
 ---
  Limitations of JDK dynamic proxy
 * Doesnt support self invocation. Meaning Aspects are not applied when one method invokes another method in the class. Aspects are applied when methods are invoked externally
+* Requires the bean to implement interface and only implemented method are proxied, in turn only methods implementing interface will get the aspects applied on pointcut matching the joinpoint.
 * 
