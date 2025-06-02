@@ -1,6 +1,7 @@
 package com.certification.spring.aop.example5.repository;
 
-import com.spring.professional.exam.tutorial.module02.question05.ds.Employee;
+
+import com.certification.spring.aop.example5.ds.Employee;
 import org.springframework.stereotype.Component;
 
 @Component
