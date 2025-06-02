@@ -26,5 +26,10 @@ public class EmployeeRepositoryAspect {
         System.out.println(String.format("After throwing exception %s from %s", exception, joinPoint.getSignature()));
     }
 
+    @AfterReturning(value = "methodsExecutionPointcut()", returning = "returnValue")
+    public void afterReturningValue(JoinPoint joinPoint, Object returnValue) {
+        System.out.println(String.format("After successful execution of method %s and returning value %s", joinPoint.getSignature(), returnValue));
+    }
+
 
 }
