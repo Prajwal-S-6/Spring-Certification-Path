@@ -72,3 +72,12 @@ Limitations of CGLIB proxy
 * Doesnt support self invocation. Meaning Aspects are not applied when one method invokes another method in the class. Aspects are applied when methods are invoked externally.
 * Class for which proxy should be created cannot be final - throws Exception - Cannot subclass final class. Similarly, the methods also cannot be final. As CGLIB proxy BTS creates subclass for the class and overrides the original methods.
 * Private methods are not proxied, hence aspects are not applied. public, package, protected methods are proxied and aspects are applied on pointcut matching join point
+
+---
+Types of Advices supported by Spring:
+1. @Before - executed before the join point matched by pointcut is executed.
+2. @After - executed after the join point matched by pointcut is executed.
+3. @AfterThrowing - executed when join point matched by pointcut throws the exception
+4. @AfterReturning - executed when join point matched by pointcut executes successfully without any exception.
+5. @Around - Allows to take full control of join point matched by pointcut. We can change the method args of the join point method execution. Can implement all the above advice using @Around.
+              Need to use ProceedingJoinPoint::proceed() to execute the join point method.
