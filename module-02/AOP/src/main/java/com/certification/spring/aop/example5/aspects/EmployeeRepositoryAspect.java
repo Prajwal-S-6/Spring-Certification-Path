@@ -1,10 +1,7 @@
 package com.certification.spring.aop.example5.aspects;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -24,7 +21,10 @@ public class EmployeeRepositoryAspect {
         System.out.println("After - " + joinPoint.getSignature());
     }
 
-
+    @AfterThrowing(value = "methodsExecutionPointcut()", throwing = "exception")
+    public void afterThrowingException(JoinPoint joinPoint, Exception exception) {
+        System.out.println(String.format("After throwing exception %s from %s", exception, joinPoint.getSignature()));
+    }
 
 
 }

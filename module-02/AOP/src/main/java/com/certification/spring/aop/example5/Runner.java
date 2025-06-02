@@ -14,5 +14,13 @@ public class Runner {
         employeeRepository.findEmployeeById(1);
         employeeRepository.saveEmployee(new Employee(2));
         employeeRepository.deleteEmployee(new Employee(3));
+
+        // throwing exception
+        try {
+            employeeRepository.findEmployeeById(-1);
+        } catch(IllegalArgumentException illegalArgumentException) {
+
+        }
+
     }
 }
