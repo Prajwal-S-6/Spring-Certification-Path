@@ -27,7 +27,7 @@ Is a Programming paradigm that complements OOP, which separates out cross cuttin
   * Spring uses AspectJ pointcut expression language by default.
   
 Example:
-  * execution(com.spring.example.SomeClass.someMethod(...)) -- On matching method execution
+  * execution(com.spring.example.SomeClass.someMethod(..)) -- On matching method execution
   * within(com.spring.example.*) -- On match of given types in a given package
   * @within(com.spring.example.annotations.SomeAnnotation) -- match execution of type annotated with given annotation
   * @annotation(com.spring.example.annotations.SomeAnnotation) -- match join point where join point has given annotation
