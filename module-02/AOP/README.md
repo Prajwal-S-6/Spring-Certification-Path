@@ -88,3 +88,6 @@ To enable aspect in Spring
 2. Have a bean with @Aspect annotation. Use @Component and @ComponentScan on class annotated with @Aspect. Or create a bean manually using @Bean
 3. Have a @Configuration class with @EnableAspectJAutoProxy. Without @EnableAspectJAutoProxy spring will not be able to detect @Aspect class.
 
+* @EnableAspectJAutoProxy will enable the detection of class annotated with @Aspect. Internally @AnnotationAwareAspectJAutoProxyCreator creates the proxy for the classes which are subjected to aspect.
+* By creating a proxy, spring intercepts the calls and implements @Before/@After/@AfterThrowing/@AfterReturning/@Around advices.
+* @Aspect will not create spring bean on its own, we have to create spring bean using @Component and @ComponentScan or manually using @Bean
