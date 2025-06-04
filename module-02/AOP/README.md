@@ -81,3 +81,10 @@ Types of Advices supported by Spring:
 4. @AfterReturning - executed when join point matched by pointcut executes successfully without any exception.
 5. @Around - Allows to take full control of join point matched by pointcut. We can change the method args of the join point method execution. Can implement all the above advice using @Around.
               Need to use ProceedingJoinPoint::proceed() to execute the join point method.
+
+---
+To enable aspect in Spring
+1. Have spring-aspects dependency(aspectjweaver/spring-aop on classpath)
+2. Have a bean with @Aspect annotation. Use @Component and @ComponentScan on class annotated with @Aspect. Or create a bean manually using @Bean
+3. Have a @Configuration class with @EnableAspectJAutoProxy. Without @EnableAspectJAutoProxy spring will not be able to detect @Aspect class.
+
