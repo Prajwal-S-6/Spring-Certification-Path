@@ -24,5 +24,10 @@ public class HelloBeanAspect {
         System.out.println("After - execution example 3");
     }
 
+    @After("execution(void *..HelloChildBean.*(com.certification.spring.aop.example7.ds.Person))")
+    public void executionExample4() {
+        System.out.println("After - execution example 4");
+    }
+
 
 }
