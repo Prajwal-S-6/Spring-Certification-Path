@@ -15,6 +15,7 @@ public class HelloChildBean extends HelloBean {
     }
 
     public void validateName(String name) throws IOException {
+        System.out.println("Validating name, which throws IO exception");
     }
 
     @CustomTransaction
