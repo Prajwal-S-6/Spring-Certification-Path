@@ -19,8 +19,10 @@ public class HelloBeanAspect {
         System.out.println("Before - execution example 2");
     }
 
-    @After("execution(void com..HelloChildBean.*(..))")
+    @After("execution(void com..HelloChildBean.*(.., !com.certification.spring.aop.example7.ds.Person))")
     public void executionExample3() {
         System.out.println("After - execution example 3");
     }
+
+
 }

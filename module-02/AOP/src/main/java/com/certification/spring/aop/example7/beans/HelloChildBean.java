@@ -20,8 +20,10 @@ public class HelloChildBean extends HelloBean {
 
     @CustomTransaction
     public void saveCounterValue(int counterValue) {
+        System.out.println("Save Counter value");
     }
 
     public void savePerson(Person person) {
+        System.out.println("Save person");
     }
 }
