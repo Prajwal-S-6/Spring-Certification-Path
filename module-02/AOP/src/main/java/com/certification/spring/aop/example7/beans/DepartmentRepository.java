@@ -1,7 +1,7 @@
 package com.certification.spring.aop.example7.beans;
 
-import com.spring.professional.exam.tutorial.module02.question07.annotation.MonitoredRepository;
-import com.spring.professional.exam.tutorial.module02.question07.ds.Department;
+import com.certification.spring.aop.example7.annotations.MonitoredRepository;
+import com.certification.spring.aop.example7.ds.Department;
 import org.springframework.stereotype.Component;
 
 @Component
