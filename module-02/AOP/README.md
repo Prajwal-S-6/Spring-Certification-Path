@@ -91,3 +91,14 @@ To enable aspect in Spring
 * @EnableAspectJAutoProxy will enable the detection of class annotated with @Aspect. Internally @AnnotationAwareAspectJAutoProxyCreator creates the proxy for the classes which are subjected to aspect.
 * By creating a proxy, spring intercepts the calls and implements @Before/@After/@AfterThrowing/@AfterReturning/@Around advices.
 * @Aspect will not create spring bean on its own, we have to create spring bean using @Component and @ComponentScan or manually using @Bean
+
+---
+Pointcut expressions types:
+1. execution - matches method execution
+    * "execution([visibility modifiers] [return type] [package].[class].method(arguments) [throws exceptions])"
+    * [return type] is required
+    * package in class is located, can be omitted if aspect and class in same package. (*) matches all packages, (..)matches all sub packages.
+    * class name to match, * for all classes, and also matches subclasses.
+    * name of the method to be matched, * for all methods
+    * arguments maybe empty for no arguments method, * to match all types of specific argument, (..) to match zero or more arguments
+    * matches method that throws specific exception from given list
