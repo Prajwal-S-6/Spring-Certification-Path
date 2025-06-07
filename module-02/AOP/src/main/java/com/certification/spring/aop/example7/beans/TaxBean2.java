@@ -3,7 +3,7 @@ package com.certification.spring.aop.example7.beans;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TaxBean2 {
+public class TaxBean2 implements ITaxBean {
     public float calculateTax(float value) {
         return 5f;
     }
