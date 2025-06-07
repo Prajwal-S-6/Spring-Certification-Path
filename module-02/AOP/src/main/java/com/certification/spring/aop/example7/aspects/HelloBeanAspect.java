@@ -96,11 +96,15 @@ public class HelloBeanAspect {
     }
 
 
-    @Before("@args(com.certification.spring.aop.example7.annotations.CustomTransaction)")
+    @Before("@args(com.certification.spring.aop.example7.annotations.MonitoredRepository)")
     public void annotationArgsExample1() {
         System.out.println("Before - annotation args example 1");
     }
 
+    @Before("@args(com.certification.spring.aop.example7.annotations.CustomValidation)")
+    public void annotationArgsExample2() {
+        System.out.println("Before - annotation args example 2");
+    }
 
 
 
