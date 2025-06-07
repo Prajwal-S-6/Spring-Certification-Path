@@ -96,6 +96,14 @@ public class HelloBeanAspect {
     }
 
 
+    @Before("@args(com.certification.spring.aop.example7.annotations.CustomTransaction)")
+    public void annotationArgsExample1() {
+        System.out.println("Before - annotation args example 1");
+    }
+
+
+
+
 
 
 }

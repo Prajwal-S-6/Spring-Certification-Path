@@ -27,4 +27,8 @@ public class HelloChildBean extends HelloBean {
     public void savePerson(Person person) {
         System.out.println("Save person");
     }
+
+    public void deletePerson(Person person) {
+        System.out.println("Delete person");
+    }
 }

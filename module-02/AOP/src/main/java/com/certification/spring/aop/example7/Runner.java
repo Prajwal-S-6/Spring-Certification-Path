@@ -13,11 +13,12 @@ public class Runner {
         context.registerShutdownHook();
 
 
-        HelloChildBean springBean = context.getBean(HelloChildBean.class);
-        springBean.sayHello("John", 5);
-        springBean.validateName("Jane");
-        springBean.saveCounterValue(7);
-        springBean.savePerson(new Person());
+        HelloChildBean helloChildBean = context.getBean(HelloChildBean.class);
+        helloChildBean.sayHello("John", 5);
+        helloChildBean.validateName("Jane");
+        helloChildBean.saveCounterValue(7);
+        helloChildBean.savePerson(new Person());
+        helloChildBean.deletePerson(new Person());
 
         ITaxBean taxBean1 = (ITaxBean) context.getBean("taxBean1");
         taxBean1.calculateTax(1.2f);
