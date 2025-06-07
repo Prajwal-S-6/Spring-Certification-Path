@@ -29,5 +29,21 @@ public class HelloBeanAspect {
         System.out.println("After - execution example 4");
     }
 
+    @Before("within(com.certification.spring.aop.example7.beans.HelloChildBean)")
+    public void withinExample1() {
+        System.out.println("Before - within example 1");
+    }
+
+    @Before("within(com..*)")
+    public void withinExample2() {
+        System.out.println("Before - within example 2");
+    }
+
+    @Before("within(com..Hello*)")
+    public void withinExample3() {
+        System.out.println("Before - within example 3");
+    }
+
+
 
 }

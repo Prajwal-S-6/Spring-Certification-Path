@@ -96,9 +96,14 @@ To enable aspect in Spring
 Pointcut expressions types:
 1. execution - matches method execution
     * "execution([visibility modifiers] [return type] [package].[class].method(arguments) [throws exceptions])"
-    * [return type] is required
+    * [return type] is required, matches the return type returned by matching method.
     * package in class is located, can be omitted if aspect and class in same package. (*) matches all packages, (..)matches all sub packages.
     * class name to match, * for all classes, and also matches subclasses.
     * name of the method to be matched, * for all methods
     * arguments maybe empty for no arguments method, * to match all types of specific argument, (..) to match zero or more arguments
     * matches method that throws specific exception from given list
+   
+2. within - matches the execution within specified class/classes, can also specify package.
+    * "within([package].[class])"
+    * package where class is located, * for all package, (..) includes all subpackages
+    * class against which match happens, * for all class

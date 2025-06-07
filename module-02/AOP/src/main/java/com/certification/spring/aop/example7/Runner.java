@@ -13,6 +13,7 @@ public class Runner {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         context.registerShutdownHook();
 
+
         HelloChildBean springBean = context.getBean(HelloChildBean.class);
         springBean.sayHello("John", 5);
         springBean.validateName("Jane");
