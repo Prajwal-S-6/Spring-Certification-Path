@@ -1,9 +1,6 @@
 package com.certification.spring.aop.example7;
 
-import com.certification.spring.aop.example7.beans.HelloBean;
-import com.certification.spring.aop.example7.beans.HelloChildBean;
-import com.certification.spring.aop.example7.beans.ITaxBean;
-import com.certification.spring.aop.example7.beans.TaxBean1;
+import com.certification.spring.aop.example7.beans.*;
 import com.certification.spring.aop.example7.ds.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -22,7 +19,10 @@ public class Runner {
         springBean.saveCounterValue(7);
         springBean.savePerson(new Person());
 
-        ITaxBean taxBean1 = (ITaxBean) context.getBean("taxBean2");
+        ITaxBean taxBean1 = (ITaxBean) context.getBean("taxBean1");
         taxBean1.calculateTax(1.2f);
+
+        TaxBean2 taxBean2 = context.getBean(TaxBean2.class);
+        taxBean2.calculateTax(5.5f);
     }
 }

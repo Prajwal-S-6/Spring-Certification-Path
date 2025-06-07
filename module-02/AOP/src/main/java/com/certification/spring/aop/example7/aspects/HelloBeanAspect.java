@@ -85,7 +85,7 @@ public class HelloBeanAspect {
         System.out.println("Before - bean example 3");
     }
 
-    @Before("bean(taxBean2)")
+    @Before("bean(taxBean1)")
     public void beanExample4() {
         System.out.println("Before - bean example 4");
     }
