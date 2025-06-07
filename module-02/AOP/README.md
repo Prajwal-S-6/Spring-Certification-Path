@@ -107,3 +107,8 @@ Pointcut expressions types:
     * "within([package].[class])"
     * package where class is located, * for all package, (..) includes all subpackages
     * class against which match happens, * for all class
+   
+3. args - matches the execution of methods with the matching arguments
+    * args([parameter_type_1, parameter_type_2, ......... parameter_type_n])
+    * wildcard * matches all arguments of any type
+    * (..) matches zero or more arguments.
