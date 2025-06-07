@@ -23,5 +23,20 @@ public class TaxBeanAspect {
         System.out.println("Before - this example 3");
     }
 
+    @Before("target(com.certification.spring.aop.example7.beans.ITaxBean)")
+    public void targetExample1() {
+        System.out.println("Before - target example 1");
+    }
+
+    @Before("target(com.certification.spring.aop.example7.beans.TaxBean1)")
+    public void targetExample2() {
+        System.out.println("Before - target example 2");
+    }
+
+    @Before("target(com.certification.spring.aop.example7.beans.TaxBean2)")
+    public void targetExample3() {
+        System.out.println("Before - target example 3");
+    }
+
 
 }
