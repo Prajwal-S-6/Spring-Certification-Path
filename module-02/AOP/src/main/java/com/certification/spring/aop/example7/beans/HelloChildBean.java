@@ -23,6 +23,7 @@ public class HelloChildBean extends HelloBean {
         System.out.println("Save Counter value");
     }
 
+    @CustomTransaction
     public void savePerson(Person person) {
         System.out.println("Save person");
     }

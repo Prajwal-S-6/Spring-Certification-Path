@@ -90,6 +90,11 @@ public class HelloBeanAspect {
         System.out.println("Before - bean example 4");
     }
 
+    @Before("@annotation(com.certification.spring.aop.example7.annotations.CustomTransaction)")
+    public void annotationExample1() {
+        System.out.println("Before - annotation example 1");
+    }
+
 
 
 
