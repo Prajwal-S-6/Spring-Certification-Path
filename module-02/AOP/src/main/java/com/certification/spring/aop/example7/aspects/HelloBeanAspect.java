@@ -45,5 +45,30 @@ public class HelloBeanAspect {
     }
 
 
+    @Before("args(*)")
+    public void argsExample1() {
+        System.out.println("Before - args example 1");
+    }
+
+    @Before("args(String)")
+    public void argsExample2() {
+        System.out.println("Before - args example 2");
+    }
+
+    @Before("args(com.certification.spring.aop.example7.ds.Person)")
+    public void argsExample3() {
+        System.out.println("Before - args example 3");
+    }
+
+    @Before("args(String, *)")
+    public void argsExample4() {
+        System.out.println("Before - args example 4");
+    }
+
+    @Before("args(String, ..)")
+    public void argsExample5() {
+        System.out.println("Before - args example 5");
+    }
+
 
 }
