@@ -124,3 +124,7 @@ Pointcut expressions types:
 6. target - matches the execution against the type of target object invoked by the spring generated proxy
     * target([type])
     * type of the target object invoked by the proxy
+   
+7. @annotation - matches the execution of method annotated with specified annotation type
+    * @annotation([annotation_type])
+    * type of annotation added on the method against which  pointcut expression is matched
