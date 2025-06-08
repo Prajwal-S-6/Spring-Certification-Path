@@ -136,3 +136,7 @@ Pointcut expressions types:
 9. @within - matches the method execution within class/classes annotated with specified annotation type
     * @within([annotation_type])
     * annotation type added on class within which the methods are matched
+   
+10. @target - matches the method execution inside the proxied target class annotated with specified annotation.
+    * @target([annotation_type])
+    * annotation type specified on target class which will be proxied, methods declared in superclass or interface

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @MonitoredRepository
-public class DepartmentRepository {
+public class DepartmentRepository extends EmployeeBean {
 
     public Department findDepartment(String pattern) {
         return new Department();

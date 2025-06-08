@@ -13,7 +13,12 @@ public class DepartmentRepositoryAspect {
     public void annotationWithinPointcut() {}
 
     @Before("annotationWithinPointcut()")
-    public void annotationWithinExample1() {
+    public void beforeAnnotationWithinExample1() {
         System.out.println("Before - annotation within example 1");
+    }
+
+    @Before("@target(com.certification.spring.aop.example7.annotations.MonitoredRepository)")
+    public void beforeAnnotationTargetExample1() {
+        System.out.println("Before - annotation target example 1");
     }
 }

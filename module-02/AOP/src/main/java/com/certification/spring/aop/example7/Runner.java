@@ -30,5 +30,7 @@ public class Runner {
         DepartmentRepository departmentRepository = context.getBean(DepartmentRepository.class);
         departmentRepository.findDepartment("IT");
         departmentRepository.updateDepartment(1, new Department());
+        departmentRepository.getName();
+        departmentRepository.getWorkPhone();
     }
 }
