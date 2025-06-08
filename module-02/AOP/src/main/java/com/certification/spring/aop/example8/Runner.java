@@ -11,5 +11,12 @@ public class Runner {
 
         HelloBean helloBean = context.getBean(HelloBean.class);
         helloBean.formatData("Praj", "S");
+
+        try {
+            helloBean.saveData(null);
+        } catch (Exception ignored) {
+
+        }
+
     }
 }
