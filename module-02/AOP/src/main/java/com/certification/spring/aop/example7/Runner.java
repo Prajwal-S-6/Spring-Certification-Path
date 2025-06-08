@@ -1,6 +1,7 @@
 package com.certification.spring.aop.example7;
 
 import com.certification.spring.aop.example7.beans.*;
+import com.certification.spring.aop.example7.ds.Department;
 import com.certification.spring.aop.example7.ds.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
@@ -25,5 +26,9 @@ public class Runner {
 
         TaxBean2 taxBean2 = context.getBean(TaxBean2.class);
         taxBean2.calculateTax(5.5f);
+
+        DepartmentRepository departmentRepository = context.getBean(DepartmentRepository.class);
+        departmentRepository.findDepartment("IT");
+        departmentRepository.updateDepartment(1, new Department());
     }
 }
