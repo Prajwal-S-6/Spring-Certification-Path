@@ -140,3 +140,11 @@ Pointcut expressions types:
 10. @target - matches the method execution inside the proxied target class annotated with specified annotation.
     * @target([annotation_type])
     * annotation type specified on target class which will be proxied, methods declared in superclass or interface
+
+* Difference between this and target is:
+    * this - matches against type of proxy created by spring aop, with jdk proxy type of proxy will be interface type, with cglib type of proxy will be the original class type.
+    * target - matches against the type of target object invoked by proxy class, with jdk proxy type of target will be interface type, original class type, with cglib type of target will be original class type.
+  
+* Difference between @within and @target is:
+    * @within - matches against the methods only present in the class annotated with specified annotation.
+    * @target - matches against the methods present in the target class methods invoked by proxied class. so matches methods present in base class, even though child class is annotated with specified annotation type
