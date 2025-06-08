@@ -148,3 +148,5 @@ Pointcut expressions types:
 * Difference between @within and @target is:
     * @within - matches against the methods only present in the class annotated with specified annotation.
     * @target - matches against the methods present in the target class methods invoked by proxied class. so matches methods present in base class, even though child class is annotated with specified annotation type
+  
+* Pointcut expressions can be combined using logical operators like -> ||, &&, !
