@@ -32,5 +32,15 @@ public class Runner {
         departmentRepository.updateDepartment(1, new Department());
         departmentRepository.getName();
         departmentRepository.getWorkPhone();
+
+        EmployeeBean employeeBean = context.getBean(EmployeeBean.class);
+        employeeBean.setId(1);
+        employeeBean.setName("Praj");
+        employeeBean.setCubicId("ABC");
+        employeeBean.setWorkPhone("1234-56677");
+        employeeBean.getId();
+        employeeBean.getName();
+        employeeBean.getCubicId();
+        employeeBean.getWorkPhone();
     }
 }

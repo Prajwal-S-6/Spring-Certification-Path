@@ -5,8 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-@Component
-@Qualifier("taxBean1")
+@Component("taxBean1")
 @MonitoredRepository
 public class TaxBean1 implements ITaxBean {
     @Override

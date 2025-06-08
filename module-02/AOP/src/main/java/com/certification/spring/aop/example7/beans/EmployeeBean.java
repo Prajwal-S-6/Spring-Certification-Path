@@ -1,8 +1,11 @@
 package com.certification.spring.aop.example7.beans;
 
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+@Primary
 public class EmployeeBean {
     private int id;
     private String name;
