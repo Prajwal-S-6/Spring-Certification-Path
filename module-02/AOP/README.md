@@ -150,3 +150,13 @@ Pointcut expressions types:
     * @target - matches against the methods present in the target class methods invoked by proxied class. so matches methods present in base class, even though child class is annotated with specified annotation type
   
 * Pointcut expressions can be combined using logical operators like -> ||, &&, !
+
+---
+* JoinPoint argument is an object that is used to retrieve additional information about the joinpoint during execution. JoinPoint needs to be the first argument in the Aspect advice method only then spring injects the joinpoint into advice method.
+* JoinPoint argument can be used with following advices: @Before, @After, @AfterReturning, @AfterThrowing.
+* Is used to retrieve following information:
+    * method signature ie join point signature
+    * arguments of join point
+    * String representation of join point
+    * type of join point
+    * target / this of join point
