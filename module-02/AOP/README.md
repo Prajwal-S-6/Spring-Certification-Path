@@ -158,5 +158,14 @@ Pointcut expressions types:
     * method signature ie join point signature
     * arguments of join point
     * String representation of join point
-    * type of join point
+    * kind eof join point
     * target / this of join point
+
+---
+* ProceedingJoinPoint is an object that is used on @Around advice as first argument, this is used to change method arguments, stop method execution entirely during runtime.
+* This is used on @Around advice, contains all methods of JoinPoint and additionally:
+    * proceed() - executes original method
+    * proceed(args) - executes original method with provided args
+* Used to conditionally block method execution
+* To inject additional arguments
+* To remove arguments
