@@ -9,8 +9,8 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class EmployeeBeanAspect {
 
-    // @Before("execution(* com..EmployeeBean.get*(..)) || execution(* com..EmployeeBean.set*(..))")
-    @Before("within(com..EmployeeBean) && (execution(* com..EmployeeBean.get*(..)) || execution(* com..EmployeeBean.set*(..)))")
+    // @Before("execution(* com..EmployeeBean.get*()) || execution(* com..EmployeeBean.set*(*))")
+    @Before("within(com..EmployeeBean) && (execution(* com..EmployeeBean.get*()) || execution(* com..EmployeeBean.set*(*)))")
     public void beforeAllGetterSetters(JoinPoint joinPoint) {
         System.out.println("Before - all getter, setter from EmployeeBean " + joinPoint.getSignature());
     }
