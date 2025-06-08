@@ -127,8 +127,12 @@ Pointcut expressions types:
    
 7. @annotation - matches the execution of method annotated with specified annotation type
     * @annotation([annotation_type])
-    * type of annotation added on the method against which  pointcut expression is matched
+    * annotation type added on the method against which  pointcut expression is matched
    
 8. @args - matches the method execution with arguments which types are annotated with specified annotation type
     * @args([annotation_type])
     * annotation type specified on the class which is used as a type in some method argument.
+   
+9. @within - matches the method execution within class/classes annotated with specified annotation type
+    * @within([annotation_type])
+    * annotation type added on class within which the methods are matched
