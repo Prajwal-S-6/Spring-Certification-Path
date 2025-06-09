@@ -7,3 +7,10 @@ JDBC Template callback
                 processRow method from this doesnt return any value, hence the result needs to be stored into some Stateful object
 * ResultSetExtractor - interface for processing entire resultset data, all rows needs to be processed and implementation should call ResultSet.next() to move between rows.
                         Closing of resultset is handled by jdbc template
+
+
+* Some of the other jdbc template callback
+  * PreparedStatementCreator - to create PreparedStatement based on the connection provided by JdbcTemplate, implementation should provide SQL and parameters
+  * PreparedStatementSetter - to set the values on PreparedStatement, implementation should only set the parameters
+  * CallableStatementCreator - to create callable statement based on connection provided by JdbcTemplate, implementation should provide SQL and parameters
+  * PreparedStatementCallback and CallableStatementCallback - used internally by JdbcTemplate

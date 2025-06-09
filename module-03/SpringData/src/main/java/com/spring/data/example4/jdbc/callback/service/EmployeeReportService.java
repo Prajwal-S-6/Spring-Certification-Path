@@ -26,8 +26,8 @@ public class EmployeeReportService {
         System.out.println("Employees Average Salary with streams");
         System.out.println(employeeDao.findAverageSalaryCalculatedOnEntireResultSetUsingStream());
 //
-//        System.out.println("Employees Average Salary sql level");
-//        System.out.println(employeeDao.findAverageSalarySqlLevel());
+        System.out.println("Employees Average Salary sql level");
+        System.out.println(employeeDao.findAverageSalarySqlLevel());
 //
 //        System.out.println("Employee found based on email");
 //        System.out.println(employeeDao.findEmployeeIdFromEmail("Jayvon.Grant@corp.com"));

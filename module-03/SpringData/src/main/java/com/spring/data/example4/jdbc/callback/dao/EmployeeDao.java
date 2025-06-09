@@ -74,4 +74,8 @@ public class EmployeeDao {
                 .average()
                 .orElse(0f);
     }
+
+    public float findAverageSalarySqlLevel() {
+        return jdbcTemplate.queryForObject("select avg(salary) from employee", Float.class);
+    }
 }
