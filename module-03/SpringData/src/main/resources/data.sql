@@ -1,13 +1,4 @@
-create table employee
-(
-    employee_id  int,
-    first_name   varchar(32),
-    last_name    varchar(32),
-    email        varchar(32),
-    phone_number varchar(32),
-    hire_date    date,
-    salary       int
-);
+
 
 insert into employee(employee_id, first_name, last_name, email, phone_number, hire_date, salary)
 values (1, 'John', 'Doe', 'John.Doe@corp.com', '555-55-55', '2019-06-05', 70000),
