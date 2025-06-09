@@ -7,7 +7,7 @@ import org.springframework.jdbc.core.ResultSetExtractor;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class CustomResultSetExtractor implements ResultSetExtractor {
+public class CustomResultSetExtractor implements ResultSetExtractor<Float> {
     @Override
     public Float extractData(ResultSet rs) throws SQLException, DataAccessException {
         float salarySum = 0;

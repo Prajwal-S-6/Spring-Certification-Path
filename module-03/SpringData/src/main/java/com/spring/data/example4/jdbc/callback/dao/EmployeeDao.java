@@ -5,6 +5,7 @@ import com.spring.data.example4.jdbc.callback.impl.CustomResultSetExtractor;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowCallBackHandler;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowMapper;
 import org.springframework.dao.DataAccessException;
+import org.springframework.data.relational.core.sql.In;
 import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 
@@ -77,11 +78,11 @@ public class EmployeeDao {
                 .orElse(0f);
     }
 
-    public float findAverageSalarySqlLevel() {
+    public Float findAverageSalarySqlLevel() {
         return jdbcTemplate.queryForObject("select avg(salary) from employee", Float.class);
     }
 
-    public int findEmployeeIdFromEmail(String mail) {
+    public Integer findEmployeeIdFromEmail(String mail) {
 
         return jdbcTemplate.query(new PreparedStatementCreator() {
                                       @Override
