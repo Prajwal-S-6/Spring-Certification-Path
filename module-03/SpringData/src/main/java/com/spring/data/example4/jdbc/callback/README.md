@@ -6,7 +6,7 @@ JDBC Template callback
                 Difference between RowMapper and RowCallbackHandler is RowCallbackHandler doesnt return anything. Implementation is stateful as it doesnt return anything.
                 processRow method from this doesnt return any value, hence the result needs to be stored into some Stateful object
 * ResultSetExtractor - interface for processing entire resultset data, all rows needs to be processed and implementation should call ResultSet.next() to move between rows.
-                        Closing of resultset is handled by jdbc template
+                        Closing of resultset is handled by jdbc template, so no need to close the resultset
 
 
 * Some of the other jdbc template callback
