@@ -4,11 +4,13 @@ import com.spring.data.example4.jdbc.callback.ds.Employee;
 import com.spring.data.example4.jdbc.callback.impl.CustomResultSetExtractor;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowCallBackHandler;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.*;
 import org.springframework.stereotype.Repository;
 
 import javax.sql.DataSource;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
@@ -77,5 +79,33 @@ public class EmployeeDao {
 
     public float findAverageSalarySqlLevel() {
         return jdbcTemplate.queryForObject("select avg(salary) from employee", Float.class);
+    }
+
+    public int findEmployeeIdFromEmail(String mail) {
+
+        return jdbcTemplate.query(new PreparedStatementCreator() {
+                                      @Override
+                                      public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+                                          return con.prepareStatement("select employee_id from employee where email = ?");
+                                      }
+                                  },
+                new PreparedStatementSetter() {
+
+                    @Override
+                    public void setValues(PreparedStatement ps) throws SQLException {
+                        ps.setString(1, mail);
+                    }
+                },
+                new ResultSetExtractor<Integer>() {
+                    @Override
+                    public Integer extractData(ResultSet rs) throws SQLException, DataAccessException {
+                        if(rs.next()) {
+                            return rs.getInt("employee_id");
+                        } else {
+                            throw new SQLException("No Employee found with the email " + mail);
+                        }
+                    }
+                }
+                );
     }
 }
