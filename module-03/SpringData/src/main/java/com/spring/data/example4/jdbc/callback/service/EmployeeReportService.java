@@ -20,11 +20,11 @@ public class EmployeeReportService {
         System.out.println("Employees Average Salary Calculated Row by Row");
         System.out.println(employeeDao.findAverageSalaryRowByRow());
 //
-//        System.out.println("Employees Average Salary Calculated on Entire Result Set");
-//        System.out.println(employeeDao.findAverageSalaryCalculatedOnEntireResultSet());
+        System.out.println("Employees Average Salary Calculated on Entire Result Set");
+        System.out.println(employeeDao.findAverageSalaryCalculatedOnEntireResultSet());
 //
-//        System.out.println("Employees Average Salary with streams");
-//        System.out.println(employeeDao.findAverageSalaryModernImplementation());
+        System.out.println("Employees Average Salary with streams");
+        System.out.println(employeeDao.findAverageSalaryCalculatedOnEntireResultSetUsingStream());
 //
 //        System.out.println("Employees Average Salary sql level");
 //        System.out.println(employeeDao.findAverageSalarySqlLevel());

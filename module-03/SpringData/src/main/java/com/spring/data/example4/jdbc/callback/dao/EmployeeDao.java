@@ -1,6 +1,7 @@
 package com.spring.data.example4.jdbc.callback.dao;
 
 import com.spring.data.example4.jdbc.callback.ds.Employee;
+import com.spring.data.example4.jdbc.callback.impl.CustomResultSetExtractor;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowCallBackHandler;
 import com.spring.data.example4.jdbc.callback.impl.CustomRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -58,5 +59,19 @@ public class EmployeeDao {
         CustomRowCallBackHandler customRowCallBackHandler = new CustomRowCallBackHandler();
         jdbcTemplate.query("select salary from employee", customRowCallBackHandler);
         return customRowCallBackHandler.getAverageSalary();
+    }
+
+    public Float findAverageSalaryCalculatedOnEntireResultSet() {
+        CustomResultSetExtractor customResultSetExtractor = new CustomResultSetExtractor();
+        return (Float) jdbcTemplate.query("SELECT SALARY FROM EMPLOYEE", customResultSetExtractor);
+    }
+
+    /// using stream
+    public double findAverageSalaryCalculatedOnEntireResultSetUsingStream() {
+        return jdbcTemplate.queryForList("select salary from employee", Double.class)
+                .stream()
+                .mapToDouble(Double::valueOf)
+                .average()
+                .orElse(0f);
     }
 }
