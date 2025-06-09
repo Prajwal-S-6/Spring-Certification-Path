@@ -1,4 +1,4 @@
-package com.spring.data.example2.datasource.standalone.dao;
+package com.spring.data.example2.datasource.springboot.dao;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -9,7 +9,6 @@ import java.util.List;
 
 @Repository
 public class EmployeeDao {
-
     private JdbcTemplate jdbcTemplate;
 
     @Autowired
@@ -18,6 +17,9 @@ public class EmployeeDao {
     }
 
     public List<String> findEmployeeEmails() {
-        return jdbcTemplate.queryForList("SELECT EMAIL FROM EMPLOYEE", String.class);
+        return jdbcTemplate.queryForList(
+                "select email from employee",
+                String.class
+        );
     }
 }

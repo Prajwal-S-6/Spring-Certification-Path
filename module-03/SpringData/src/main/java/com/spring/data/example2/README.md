@@ -11,3 +11,4 @@
   
 * Configuring datasource is based on type of application
 1. Standalone application: DataSource is configured in @Configuration and is created as a bean of one of the supported types
+2. SpringBoot application: DataSource is configured in application.properties with spring.datasource.url, spring.datasource.driver-class-name
