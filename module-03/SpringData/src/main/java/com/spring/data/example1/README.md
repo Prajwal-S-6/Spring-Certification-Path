@@ -13,3 +13,8 @@
 * We have the freedom of choice whether to handle exception or not.
 * Adv: Less cluttered code, No coupling between caller and callee.
 * Dis: Lack of compile time feedback, hence some errors handling might be missing
+
+---
+* Spring prefers Unchecked exceptions because of less coupling between caller and callee. And less cluttered code.
+* Example: DataAccessException is a Runtime Exception(unchecked). To avoid coupling with concrete implementation of DataAccessException 
+* Examples of concrete DataAccessException are: CannotAcquireLockException, CannotCreateRecordException, DataIntegrityViolationException

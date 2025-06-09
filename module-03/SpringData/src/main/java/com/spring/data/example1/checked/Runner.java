@@ -14,7 +14,7 @@ public class Runner {
         try {
             personDao.save(new Person());
         } catch (PersonInvalidException e) {
-            throw new RuntimeException(e);
+            System.out.println("Person data is invalid");
         } catch (DaoFilesystemException e) {
             throw new RuntimeException(e);
         } catch (PersonStoreException e) {
