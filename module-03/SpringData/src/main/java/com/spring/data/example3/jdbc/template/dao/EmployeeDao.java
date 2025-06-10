@@ -40,7 +40,7 @@ public class EmployeeDao {
         );
     }
 
-    public int findEmployeesCount() {
+    public Integer findEmployeesCount() {
         return jdbcTemplate.queryForObject(
                 "select count(*) from employee",
                 Integer.class
