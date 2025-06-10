@@ -18,6 +18,18 @@ public class EmployeeDao {
     }
 
     public void saveEmployee(Employee employee) {
+        int numOfRecordsInserted = jdbcTemplate.update("insert into employee values(?,?,?,?,?,?,?)",
+                employee.id(),
+                employee.firstName(),
+                employee.lastName(),
+                employee.email(),
+                employee.phoneNumber(),
+                employee.hireDate(),
+                employee.salary());
 
+        if (numOfRecordsInserted == 1)
+            System.out.println(String.format("Saved employee [%d]", employee.id()));
+        else
+            throw new IllegalStateException(String.format("Expected 1 record to be inserted, instead retrieved [%d] number of records inserted", numOfRecordsInserted));
     }
 }
