@@ -14,3 +14,7 @@ ACID - Transactions should follow ACID principles
 Global Transaction:
 * Is a type of transaction that spans across multiple transaction resources. Those resources can be multiple database transactions or database transactions and queues.
 * JTA is used for managing global transactions
+
+Local Transaction:
+* Are resource specific transaction, they dont span across multiple transactions, they dont treat series of tasks like multiple database transactions or database transaction and queues as single unit of work
+* Hence any exception in one of the resource/transaction will not rollback other transaction
