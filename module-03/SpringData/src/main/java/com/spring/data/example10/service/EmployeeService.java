@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
+import java.sql.SQLException;
 
 @Service
 public class EmployeeService {
@@ -30,7 +31,8 @@ public class EmployeeService {
         saveEmployees();
     }
 
-    @Transactional
+    // @Transactional(noRollbackFor = {IllegalArgumentException.class})
+    @Transactional(rollbackFor = {RuntimeException.class})
     public void saveEmployeesInTransaction() {
         System.out.println("Saving employees with transaction...");
         saveEmployees();
