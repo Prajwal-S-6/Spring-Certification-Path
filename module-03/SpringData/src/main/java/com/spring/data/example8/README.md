@@ -9,3 +9,8 @@ ACID - Transactions should follow ACID principles
 * Consistency - System should go from one valid state to another, any constraint on data should never leave system in invalid state
 * Isolation - One transaction should not affect another. Concurrent execution of transaction should leave system in same state as if it was executed sequentially
 * Durability - Once transaction is committed, then data should be preserved even in case of system or power failure
+
+---
+Global Transaction:
+* Is a type of transaction that spans across multiple transaction resources. Those resources can be multiple database transactions or database transactions and queues.
+* JTA is used for managing global transactions
