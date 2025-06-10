@@ -41,6 +41,9 @@ public class EmployeeDao {
     }
 
     public void saveEmployee(Employee employee) {
+        if(employee.id() < 0) {
+            throw new IllegalArgumentException("EmployeeId cannot be less than 0");
+        }
         int numOfRecordsInserted = jdbcTemplate.update("insert into employee values(?, ?, ?, ?, ?, ?, ?)", employee.id(), employee.firstName(), employee.lastName(), employee.email(), employee.phoneNumber(), employee.hireDate(), employee.salary());
         if (numOfRecordsInserted == 1)
             System.out.println(String.format("Saved employee [%d]", employee.id()));
