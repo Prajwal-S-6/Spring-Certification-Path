@@ -8,7 +8,7 @@ public class EmployeeServiceE {
 
     @Transactional
     protected void operationEProtected() {
-        System.out.println("Invoked operationEProtected");
+
     }
 
     @Transactional
@@ -18,6 +18,6 @@ public class EmployeeServiceE {
 
     @Transactional
     void operationEPackage() {
-        System.out.println("Invoked operationEPackage");
+
     }
 }
