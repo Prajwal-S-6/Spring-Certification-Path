@@ -1,4 +1,4 @@
-package com.spring.data.example15.spring.proxy.configuration;
+package com.spring.data.example15.aspectj.configuration;
 
 import org.springframework.context.annotation.AdviceMode;
 import org.springframework.context.annotation.Bean;
@@ -11,17 +11,19 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
+import static com.spring.data.example15.aspectj.aspects.DataSourceProxyFactory.createDataSourceProxy;
+
 @Configuration
 @EnableAspectJAutoProxy
-@EnableTransactionManagement
+@EnableTransactionManagement(mode = AdviceMode.ASPECTJ)
 public class DataSourceConfiguration {
 
     @Bean
     public DataSource dataSource() {
-        return new EmbeddedDatabaseBuilder()
+        return createDataSourceProxy(new EmbeddedDatabaseBuilder()
                 .generateUniqueName(true)
                 .setScriptEncoding("UTF-8")
-                .build();
+                .build());
     }
 
     @Bean

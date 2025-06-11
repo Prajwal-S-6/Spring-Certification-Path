@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class CallTracer {
-    @Pointcut("execution(* com..service.EmployeeService.transaction*(..))")
+    @Pointcut("within(com..service.*)")
     public void callTraceComponentsPointcut() {
     }
 
