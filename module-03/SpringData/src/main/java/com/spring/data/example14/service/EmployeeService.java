@@ -22,19 +22,18 @@ public class EmployeeService {
     }
 
     public void manualTransaction() throws SQLException {
-        Connection connection = dataSource.getConnection();
+       Connection connection = dataSource.getConnection();
 
-        connection.setAutoCommit(false);
-        connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
+       connection.setAutoCommit(false);
+       connection.setTransactionIsolation(Connection.TRANSACTION_READ_COMMITTED);
 
-        try {
-            // business logic
-
-            connection.commit();
-        } catch (SQLException e) {
-            connection.rollback();
-        } finally {
-            connection.close();
-        }
+       try {
+           // business logic
+           connection.commit();
+       } catch (Exception e) {
+           connection.rollback();
+       } finally {
+           connection.close();
+       }
     }
 }
