@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class CallTracerAspect {
 
-    @Pointcut("within(com.spring.data.example13.service)")
+    @Pointcut("within(com.spring.data.example13.service.*)")
     public void callTracePointcut() {}
 
     @Around("callTracePointcut()")
