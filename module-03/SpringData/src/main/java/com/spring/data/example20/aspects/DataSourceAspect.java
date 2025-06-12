@@ -38,8 +38,7 @@ public class DataSourceAspect {
                 new InvocationHandler() {
                     @Override
                     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-                        if (shouldLogInvocation(method))
-                            System.out.println("Connection Trace: " + method.toGenericString());
+                        System.out.println("Connection Trace: " + method.toGenericString());
 
                         return method.invoke(connection, args);
                     }
