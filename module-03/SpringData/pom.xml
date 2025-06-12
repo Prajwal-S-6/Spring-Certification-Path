@@ -38,6 +38,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-aop</artifactId>
 		</dependency>
+
 		<dependency>
 			<groupId>javax.annotation</groupId>
 			<artifactId>javax.annotation-api</artifactId>
@@ -94,6 +95,35 @@
 			<artifactId>junit</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-orm</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.persistence</groupId>
+			<artifactId>javax.persistence-api</artifactId>
+			<version>2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>7.0.0.Alpha2</version>
+			<scope>runtime</scope>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.persistence</groupId>
+			<artifactId>jakarta.persistence-api</artifactId>
+			<version>3.1.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -131,18 +161,6 @@
 						<artifactId>aspectjtools</artifactId>
 					</dependency>
 					<dependency>
-						<groupId>org.springframework</groupId>
-						<artifactId>spring-orm</artifactId>
-					</dependency>
-					<dependency>
-						<groupId>org.springframework.data</groupId>
-						<artifactId>spring-data-jpa</artifactId>
-					</dependency>
-					<dependency>
-						<groupId>org.projectlombok</groupId>
-						<artifactId>lombok</artifactId>
-					</dependency>
-					<dependency>
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter</artifactId>
 					</dependency>
@@ -150,13 +168,6 @@
 						<groupId>org.springframework.boot</groupId>
 						<artifactId>spring-boot-starter-data-jpa</artifactId>
 					</dependency>
-
-					<dependency>
-						<groupId>org.hibernate.orm</groupId>
-						<artifactId>hibernate-core</artifactId>
-						<scope>runtime</scope>
-					</dependency>
-
 					<dependency>
 						<groupId>junit</groupId>
 						<artifactId>junit</artifactId>
