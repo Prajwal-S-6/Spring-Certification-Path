@@ -9,15 +9,15 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 
-
-import javax.persistence.EntityManagerFactory;
+import jakarta.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
+import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.spring.data.example21.dao"})
 public class JpaConfiguration {
 
-    @Bean
+    @Bean(name = "entityManagerFactory")
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
@@ -26,13 +26,17 @@ public class JpaConfiguration {
         JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
 
+        Properties props = new Properties();
+        props.put("hibernate.hbm2ddl.auto", "create"); // or "update"
+        props.put("hibernate.dialect", "org.hibernate.dialect.HSQLDialect");
+        props.put("hibernate.show_sql", "true");
+        localContainerEntityManagerFactoryBean.setJpaProperties(props);
+
         return localContainerEntityManagerFactoryBean;
     }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory();
-//        return transactionManager;
-//    }
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
+        return  new JpaTransactionManager(emf);
+    }
 }

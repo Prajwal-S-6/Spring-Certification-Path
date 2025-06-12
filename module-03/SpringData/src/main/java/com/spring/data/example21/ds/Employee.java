@@ -1,7 +1,9 @@
 package com.spring.data.example21.ds;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+
 import java.util.Date;
 
 @Entity
@@ -16,6 +18,7 @@ public class Employee {
     private String phoneNumber;
     private Date hireDate;
     private float salary;
+
 
     public Employee() {
     }
@@ -84,5 +87,18 @@ public class Employee {
 
     public void setSalary(float salary) {
         this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", hireDate=" + hireDate +
+                ", salary=" + salary +
+                '}';
     }
 }
