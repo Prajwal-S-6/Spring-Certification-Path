@@ -14,6 +14,7 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
+/// CrudRepository/JpaRepository
 @EnableJpaRepositories(basePackages = {"com.spring.data.example21.dao"})
 public class JpaConfiguration {
 
@@ -21,10 +22,10 @@ public class JpaConfiguration {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         localContainerEntityManagerFactoryBean.setDataSource(dataSource);
+        /// @Entity package
         localContainerEntityManagerFactoryBean.setPackagesToScan("com.spring.data.example21.ds");
 
-        JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        localContainerEntityManagerFactoryBean.setJpaVendorAdapter(jpaVendorAdapter);
+        localContainerEntityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
 
         Properties props = new Properties();
         props.put("hibernate.hbm2ddl.auto", "create"); // or "update"

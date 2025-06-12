@@ -9,7 +9,7 @@
      * Additionally Spring data JPA - org.springframework.data: spring-data-jpa
   2. Define DataSource bean in @Configuration class
   3. Define PlatformTransactionManager bean in @Configuration --- JtaTransactionManager
-  4. Define EntityManagerFactoryBean
+  4. Define EntityManagerFactoryBean(interface)
      * LocalContainerEntityManagerFactoryBean - for standalone app
      * EntityManagerFactory - from JNDI
      * LocalEntityManagerFactoryBean - for tests
