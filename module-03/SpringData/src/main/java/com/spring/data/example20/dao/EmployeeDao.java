@@ -41,7 +41,7 @@ public class EmployeeDao {
             throw  new IllegalArgumentException("Employee id cannot be less than or equal to zero");
         }
 
-        int numOfRecordsInserted = jdbcTemplate.update("insert into employee values(?,?,?,?,?,?)",
+        int numOfRecordsInserted = jdbcTemplate.update("insert into employee values(?,?,?,?,?,?,?)",
                 employee.id(),
                 employee.firstName(),
                 employee.lastName(),
@@ -53,5 +53,10 @@ public class EmployeeDao {
             System.out.println(String.format("Saved employee [%d]", employee.id()));
         else
             throw new IllegalStateException(String.format("Expected 1 record to be inserted, instead retrieved [%d] number of records inserted", numOfRecordsInserted));
+    }
+
+    public void deleteAllEmployees() {
+        int numOfRowsDeleted = jdbcTemplate.update("delete from employee");
+        System.out.println(String.format("Employees deleted, number of deleted rows = [%d]", numOfRowsDeleted));
     }
 }

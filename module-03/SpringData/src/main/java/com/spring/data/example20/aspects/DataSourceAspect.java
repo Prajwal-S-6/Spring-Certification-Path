@@ -17,7 +17,7 @@ import java.util.Set;
 @Aspect
 public class DataSourceAspect {
     private static Set<String> LOGGABLE_METHODS = new HashSet<>(Arrays.asList(
-            "commit", "rollback", "close"
+            "commit", "rollback", "close", "autoCommit"
     ));
 
     @Around("target(javax.sql.DataSource)")
