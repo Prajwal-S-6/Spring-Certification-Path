@@ -11,5 +11,5 @@ public interface EmployeeDao extends CrudRepository<Employee, Integer> {
 
     List<Employee> findBySalaryBetween(float maxSalary, float minSalary);
 
-    Employee findByLastName(String lastName);
+    List<Employee> findByLastName(String lastName);
 }
