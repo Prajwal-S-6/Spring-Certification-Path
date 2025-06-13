@@ -25,5 +25,8 @@ public class EmployeeService {
     public void listEmployee() {
         System.out.println("Searching for John Doe employee...");
         employeeDao.findById(new EmployeeKey("John", "Doe")).ifPresent(System.out::println);
+
+        System.out.println(employeeDao.findByEmail("John.Doe@corp.com").toString());
+
     }
 }
