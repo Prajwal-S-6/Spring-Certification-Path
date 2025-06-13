@@ -66,7 +66,7 @@ public class Employee {
     @Override
     public String toString() {
         return "Employee{" +
-                ", firstName='" + employeeKey.getFirstName() + '\'' +
+                "firstName='" + employeeKey.getFirstName() + '\'' +
                 ", lastName='" + employeeKey.getLastName() + '\'' +
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
