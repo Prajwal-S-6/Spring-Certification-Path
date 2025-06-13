@@ -16,11 +16,11 @@ public class EmployeeService {
     public void saveAllEmployees() {
         System.out.println("Saving all employees...");
 
-        employeeDao.save(new Employee(1, "John1", "Doe", "John.Doe@corp.com", "555-55-55", Date.valueOf("2019-06-05"), 70000));
-        employeeDao.save(new Employee(2, "Willow1", "Zhang", "Willow.Zhang@corp.com", "555-55-56", Date.valueOf("2019-07-12"), 80000));
-        employeeDao.save(new Employee(3, "Jayvon1", "Grant", "Jayvon.Grant@corp.com", "555-55-57", Date.valueOf("2019-07-17"), 90000));
-        employeeDao.save(new Employee(4, "Shaylee1", "Mcclure", "Shaylee.Mcclure@corp.com", "555-55-58", Date.valueOf("2019-07-19"), 120000));
-        employeeDao.save(new Employee(5, "Miley1", "Krueger", "Miley.Krueger@corp.com", "555-55-59", Date.valueOf("2019-07-20"), 110000));
+        employeeDao.save(new Employee(1, "John2", "Doe", "John.Doe@corp.com", "555-55-55", Date.valueOf("2019-06-05"), 70000));
+        employeeDao.save(new Employee(2, "Willow2", "Zhang", "Willow.Zhang@corp.com", "555-55-56", Date.valueOf("2019-07-12"), 80000));
+        employeeDao.save(new Employee(3, "Jayvon2", "Grant", "Jayvon.Grant@corp.com", "555-55-57", Date.valueOf("2019-07-17"), 90000));
+        employeeDao.save(new Employee(4, "Shaylee2", "Mcclure", "Shaylee.Mcclure@corp.com", "555-55-58", Date.valueOf("2019-07-19"), 120000));
+        employeeDao.save(new Employee(5, "Miley2", "Krueger", "Miley.Krueger@corp.com", "555-55-59", Date.valueOf("2019-07-20"), 110000));
 
         System.out.println("Saved all employees");
     }
