@@ -1,5 +1,6 @@
 package com.spring.data.example28.configurations;
 
+import com.spring.data.example28.dao.custom.base.CustomBaseJpaRepository;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -17,6 +18,7 @@ import java.util.Properties;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.spring.data.example28.dao.regular",
+repositoryBaseClass = CustomBaseJpaRepository.class,
 entityManagerFactoryRef = "entityManagerFactoryBean",
 transactionManagerRef = "platformTransactionManager")
 public class JpaConfiguration {
