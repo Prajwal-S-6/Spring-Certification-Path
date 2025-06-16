@@ -8,4 +8,4 @@ Implementation of SpringData Repositories
 
 However, we can override this default implementation by 2 ways:
 1. Global level - By creating custom base repository implementation by extending SimpleJpaRepository and enabling it in
-                    @EnableJpaRepository()
+                    @EnableJpaRepository(repositoryBaseClass = )
