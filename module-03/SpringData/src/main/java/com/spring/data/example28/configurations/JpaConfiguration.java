@@ -17,7 +17,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.spring.data.example28.dao.regular",
+@EnableJpaRepositories(basePackages = "com.spring.data.example28.dao",
 repositoryBaseClass = CustomBaseJpaRepository.class,
 entityManagerFactoryRef = "entityManagerFactoryBean",
 transactionManagerRef = "platformTransactionManager")

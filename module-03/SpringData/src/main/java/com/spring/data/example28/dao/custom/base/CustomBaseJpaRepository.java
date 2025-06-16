@@ -20,7 +20,7 @@ public class CustomBaseJpaRepository<T, ID extends Serializable> extends SimpleJ
     }
 
     public Employee findByFirstNameAndLastName(String firstName, String lastName) {
-        System.out.println("Starting custom implementation of findByFirstNameAndLastName from CustomBaseJpaRepository...");
+        System.out.println("Starting custom implementation of findByFirstNameAndLastName from CustomBaseJpaRepository - global level...");
 
         CriteriaBuilder criteriaBuilder = entityManager.getCriteriaBuilder();
 

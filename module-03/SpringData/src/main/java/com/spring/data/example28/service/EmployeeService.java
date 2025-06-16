@@ -1,5 +1,6 @@
 package com.spring.data.example28.service;
 
+import com.spring.data.example28.dao.custom.respository.CustomEmployeeDao;
 import com.spring.data.example28.ds.Employee;
 import com.spring.data.example28.dao.regular.EmployeeDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import java.sql.Date;
 public class EmployeeService {
     @Autowired
     private EmployeeDao employeeDao;
-//    @Autowired
-//    private CustomEmployeeDao customEmployeeDao;
+    @Autowired
+    private CustomEmployeeDao customEmployeeDao;
 
     public void saveAllEmployees() {
         System.out.println("Saving all employees...");
@@ -33,8 +34,8 @@ public class EmployeeService {
         );
 
         System.out.println("Searching for John Doe employee with custom dao implementation...");
-//        System.out.println(
-//                customEmployeeDao.findByFirstNameAndLastName("John", "Doe")
-//        );
+        System.out.println(
+                customEmployeeDao.findByFirstNameAndLastName("John", "Doe")
+        );
     }
 }

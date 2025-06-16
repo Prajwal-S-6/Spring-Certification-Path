@@ -9,3 +9,5 @@ Implementation of SpringData Repositories
 However, we can override this default implementation by 2 ways:
 1. Global level - By creating custom base repository implementation by extending SimpleJpaRepository and enabling it in
                     @EnableJpaRepository(repositoryBaseClass = )
+2. Dao/Repository level - We can provide custom implementation at single Dao or Repository level
+                            By creating custom repository interface with custom methods, provide impl for that and use that interface in repository Dao
