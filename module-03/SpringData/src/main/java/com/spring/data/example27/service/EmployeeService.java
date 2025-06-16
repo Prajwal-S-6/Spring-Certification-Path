@@ -40,5 +40,8 @@ public class EmployeeService {
 
         System.out.println("Employees order by hire date");
         employeeDao.findByOrderByHireDateDesc().forEach(System.out::println);
+
+        System.out.println("Employee salary less than 80000");
+        System.out.println(employeeDao.findFirstBySalaryLessThan(80000f));
     }
 }
