@@ -16,3 +16,10 @@
 * Model - Spring data JPA, Spring JDBC, Spring mongodb etc
 * View - Thymeleaf, Groovy markup, JSP, JSTL, Velocity etc
 * Controller classes - @Controller, @RestController
+
+
+
+* Advantages of MVC pattern:
+* Separation of concerns
+* Code reusability
+* Reduced coupling between Data logic and representation.
