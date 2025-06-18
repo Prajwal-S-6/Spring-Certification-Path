@@ -17,3 +17,8 @@
 /Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
 /.idea/vcs.xml
 /Servers/Tomcat v9.0 Server at localhost-config/web.xml
+/target/
+/.classpath
+/.project
+/.settings/org.eclipse.core.resources.prefs
+/.settings/org.eclipse.jdt.core.prefs
