@@ -1,0 +1,19 @@
+/.metadata/
+/.gitattributes
+/Servers/.project
+/Servers/Tomcat v9.0 Server at localhost-config/catalina.policy
+/Servers/Tomcat v9.0 Server at localhost-config/catalina.properties
+/Servers/Tomcat v9.0 Server at localhost-config/context.xml
+/HELP.md
+/.mvn/wrapper/maven-wrapper.properties
+/.idea/misc.xml
+/.idea/module-04.iml
+/.idea/modules.xml
+/mvnw
+/mvnw.cmd
+/Servers/.settings/org.eclipse.core.resources.prefs
+/Servers/.settings/org.eclipse.wst.server.core.prefs
+/Servers/Tomcat v9.0 Server at localhost-config/server.xml
+/Servers/Tomcat v9.0 Server at localhost-config/tomcat-users.xml
+/.idea/vcs.xml
+/Servers/Tomcat v9.0 Server at localhost-config/web.xml
