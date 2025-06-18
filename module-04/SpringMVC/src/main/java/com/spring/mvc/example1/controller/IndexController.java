@@ -5,8 +5,7 @@ import com.spring.mvc.example1.ds.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/mvc")
@@ -18,7 +17,13 @@ public class IndexController {
     @GetMapping
     public String getArticles(Model model) {
         model.addAttribute("articles", articleDao.findAll());
-        model.addAttribute("newArticle", new Article());
+        model.addAttribute("newArticleForm", new Article());
         return "index";
+    }
+
+    @PostMapping("/save-article")
+    public String addArticle(@ModelAttribute Article article) {
+        articleDao.save(article);
+        return "redirect:/mvc";
     }
 }
