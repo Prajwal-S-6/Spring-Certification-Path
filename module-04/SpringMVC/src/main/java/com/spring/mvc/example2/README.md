@@ -23,3 +23,6 @@ Servlet technology
 * Servlet registration requires url patterns which informs application server which requests should be mapped to which servlet
     /app-a/*  ----> servlet1
     /app-b/*  ----> servlet2
+
+
+**In Spring MVC DispatcherServlet is a front Controller**
