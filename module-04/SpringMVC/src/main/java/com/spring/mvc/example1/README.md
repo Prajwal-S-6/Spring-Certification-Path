@@ -8,4 +8,4 @@
 * Controller handles:
   * Requests from the user
   * Issues commands and modifies the model
-  * Decides which view to be returned to the user
+  * Decides which view to be returned to the user.
