@@ -6,9 +6,7 @@ import com.spring.mvc.example3.beans.SessionScopeBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.WebApplicationContext;
 
 @Controller
@@ -32,6 +30,24 @@ public class IndexController {
         model.addAttribute("applicationScopeValue", applicationScopeBean.getValue());
 
         return "index3";
+    }
+
+    @PostMapping("saveRequestScopeValue")
+    public String saveRequestScopeValue(@RequestParam("requestScopeValue") int value) {
+        requestScopeBean.setValue(value);
+        return "forward:/mvc";
+    }
+
+    @PostMapping("saveSessionScopeValue")
+    public String saveSessionScopeValue(@RequestParam("sessionScopeValue") int value) {
+        sessionScopeBean.setValue(value);
+        return "forward:/mvc";
+    }
+
+    @PostMapping("saveApplicationScopeValue")
+    public String saveApplicationScopeValue(@RequestParam("applicationScopeValue") int value) {
+        applicationScopeBean.setValue(value);
+        return "forward:/mvc";
     }
 
 }

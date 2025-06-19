@@ -10,7 +10,7 @@
                 <p class="card-text">Current value in request scope is: [<span th:text="${requestScopeValue}"></span>]
                 </p>
 
-                <form action="#" th:action="@{/saveRequestScopeValue}" method="post">
+                <form action="#" th:action="@{/mvc/saveRequestScopeValue}" method="post">
                     <div class="form-group">
                         <label for="requestScopeValue">Value to be set on request level</label>
                         <input required id="requestScopeValue" name="requestScopeValue" class="form-control" type="text"

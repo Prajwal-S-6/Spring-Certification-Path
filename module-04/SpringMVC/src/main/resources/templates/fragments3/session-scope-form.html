@@ -10,7 +10,7 @@
                 <p class="card-text">Current value in session scope is: [<span th:text="${sessionScopeValue}"></span>]
                 </p>
 
-                <form action="#" th:action="@{/saveSessionScopeValue}" method="post">
+                <form action="#" th:action="@{/mvc/saveSessionScopeValue}" method="post">
                     <div class="form-group">
                         <label for="sessionScopeValue">Value to be set on session level</label>
                         <input required id="sessionScopeValue" name="sessionScopeValue" class="form-control" type="text"

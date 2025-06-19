@@ -10,7 +10,7 @@
                 <p class="card-text">Current value in application scope is: [<span
                         th:text="${applicationScopeValue}"></span>]</p>
 
-                <form action="#" th:action="@{/saveApplicationScopeValue}" method="post">
+                <form action="#" th:action="@{/mvc/saveApplicationScopeValue}" method="post">
                     <div class="form-group">
                         <label for="applicationScopeValue">Value to be set on application level</label>
                         <input required id="applicationScopeValue" name="applicationScopeValue" class="form-control"
