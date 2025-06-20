@@ -11,3 +11,6 @@
   * defaultValue - to specify default value when param is optional and no value is specified
 
 * We can also use Java 8 Optional to mark the parameter as optional
+
+* @RequestParam also supports mapping all request to a map -- localhost:8080/home?country=US&city=NY {country: US; city: NY}
+* Also supports mapping multiple values into a Collection -- localhost:8080/home?country=US,IN  [US, IN]
