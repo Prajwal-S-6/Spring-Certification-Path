@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Optional;
+
 @Controller
 public class ApiController {
 
@@ -17,6 +19,18 @@ public class ApiController {
     @GetMapping("/actionB")
     @ResponseBody
     public String actionB(@RequestParam("name") String name, @RequestParam(name = "city", required = false) String city) {
-        return String.format("RequestParam name: %s; city: %s", name, city);
+        return String.format("RequestParam name city not required. name: %s; city: %s", name, city);
+    }
+
+    @GetMapping("/actionC")
+    @ResponseBody
+    public String actionC(@RequestParam("name") String name, @RequestParam(value = "city") Optional<String> city) {
+        return String.format("RequestParam name city optional. name: %s; city: %s", name, city.orElse(null));
+    }
+
+    @GetMapping("/actionD")
+    @ResponseBody
+    public String actionD(@RequestParam("name") String name, @RequestParam(name = "city", defaultValue = "NY") String city) {
+        return String.format("RequestParam name city with default value. name: %s; city: %s", name, city);
     }
 }
