@@ -21,5 +21,16 @@ public class ApiController {
         return "Handled with @RequestMapping";
     }
 
+    @RequestMapping(value = "/actionC", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public String actionC() {
+        return "Handled with @RequestMapping for GET AND POST";
+    }
+
+    @RequestMapping(path = "/actionD")
+    @ResponseBody
+    public String actionD() {
+        return "Handled with @RequestMapping for all Http methods";
+    }
 
 }
