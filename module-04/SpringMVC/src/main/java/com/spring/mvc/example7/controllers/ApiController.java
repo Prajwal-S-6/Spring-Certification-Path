@@ -33,4 +33,18 @@ public class ApiController {
     public String actionD(@RequestParam("name") String name, @RequestParam(name = "city", defaultValue = "NY") String city) {
         return String.format("RequestParam name city with default value. name: %s; city: %s", name, city);
     }
+
+    @GetMapping("/actionE")
+    @ResponseBody
+    public String actionE(@RequestParam("name") String name, @RequestParam(name = "city") Optional<String> city) {
+        return String.format("RequestParam name city with optional value. name: %s; city: %s", name, city.orElse("NY"));
+    }
+
+    @GetMapping("/actionF")
+    @ResponseBody
+    public String actionF(@RequestParam("name") String name, @RequestParam(name = "city") String city, @RequestParam(value = "zip") String zip) {
+        return String.format("RequestParam. name: %s, city: %s, zip: %s", name, city, zip);
+    }
+
+
 }
