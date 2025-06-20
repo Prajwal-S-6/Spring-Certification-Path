@@ -1,7 +1,7 @@
 **@RequestParam**
 
 * Is used to bind web request params to @Controller method parameters
-* It is used on method arguments
+* It is used on method parameters only
 * It can be used to map query params, form data, parts in multipart requests
 
 ---
