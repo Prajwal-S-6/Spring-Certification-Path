@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -44,6 +46,19 @@ public class ApiController {
     @ResponseBody
     public String actionF(@RequestParam("name") String name, @RequestParam(name = "city") String city, @RequestParam(value = "zip") String zip) {
         return String.format("RequestParam. name: %s, city: %s, zip: %s", name, city, zip);
+    }
+
+    @GetMapping("/actionG")
+    @ResponseBody
+    public String actionG(@RequestParam Map<String, String> paramsMap) {
+        return String.format("RequestParam map. name: %s, city: %s, zip: %s", paramsMap.get("name"), paramsMap.get("city"), paramsMap.get("zip"));
+    }
+
+
+    @GetMapping("/actionH")
+    @ResponseBody
+    public String actionH(@RequestParam("country") List<String> countries) {
+        return String.format("RequestParam list/collection: %s", String.join(",", countries));
     }
 
 
