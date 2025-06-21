@@ -7,3 +7,5 @@ Method parameter types hat can be used on @Controller methods
 * HttpMethod - provides access to http methods like GET, PUSH, PUT ...
 * Locale - provides request's locale
 * TimeZone, ZoneId - provides timezone associated with Request
+* InputStream, Reader - provides access to raw request body
+* OutputStream, Writer - allows to create raw response
