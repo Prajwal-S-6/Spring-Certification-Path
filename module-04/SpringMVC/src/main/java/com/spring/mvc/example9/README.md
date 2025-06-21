@@ -10,3 +10,4 @@ Method parameter types hat can be used on @Controller methods
 * InputStream, Reader - provides access to raw request body
 * OutputStream, Writer - allows to create raw response
 * HttpEntity - a container that provides access to request headers and body
+* Map, Model, Model - to add data to templates as part of view rendering
