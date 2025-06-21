@@ -19,3 +19,4 @@ Method parameter types hat can be used on @Controller methods
                         Error and BindingResult method parameter have to be immediately after @Valid annotated parameter in method
 * @SessionAttributes, SessionStatus - Allows to keep @ModelAttributes object between requests\
                                         SessionStatus allows to clear session variables once request is processed
+* UriComponentBuilder - used to build URLs relative to the current URL, change scheme from http to https, change query param etc
