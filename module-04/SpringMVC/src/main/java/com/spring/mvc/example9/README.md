@@ -9,3 +9,4 @@ Method parameter types hat can be used on @Controller methods
 * TimeZone, ZoneId - provides timezone associated with Request
 * InputStream, Reader - provides access to raw request body
 * OutputStream, Writer - allows to create raw response
+* HttpEntity - a container that provides access to request headers and body
