@@ -20,3 +20,7 @@ Method parameter types hat can be used on @Controller methods
 * @SessionAttributes, SessionStatus - Allows to keep @ModelAttributes object between requests\
                                         SessionStatus allows to clear session variables once request is processed
 * UriComponentBuilder - used to build URLs relative to the current URL, change scheme from http to https, change query param etc
+
+* Any other parameter type - if method parameter type is not matched against any of the above\
+                            then it will be treated as @RequestParam for simple types\
+                            If it is a complex Object type then it will be treated as @ModelAttribute
