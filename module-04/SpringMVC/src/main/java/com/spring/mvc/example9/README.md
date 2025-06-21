@@ -6,3 +6,4 @@ Method parameter types hat can be used on @Controller methods
 * Principal - provides currently authenticated user
 * HttpMethod - provides access to http methods like GET, PUSH, PUT ...
 * Locale - provides request's locale
+* TimeZone, ZoneId - provides timezone associated with Request
