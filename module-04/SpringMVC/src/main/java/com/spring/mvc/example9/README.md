@@ -17,3 +17,5 @@ Method parameter types hat can be used on @Controller methods
 * Error, BindingResult - provides access to form validation and binding results\
                         can be used with @ModelAttribute, @RequestBody, @RequestPart\
                         Error and BindingResult method parameter have to be immediately after @Valid annotated parameter in method
+* @SessionAttributes, SessionStatus - Allows to keep @ModelAttributes object between requests\
+                                        SessionStatus allows to clear session variables once request is processed
