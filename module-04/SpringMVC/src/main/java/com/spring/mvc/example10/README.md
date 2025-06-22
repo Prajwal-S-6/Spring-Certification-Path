@@ -9,3 +9,7 @@ Annotations that can be used on Controller method arguments
 * @MatrixVariable - provides access to the name-value pair from the URI segments\
                     eg: /actionA/name=Praj;country=IN\
                     required, Optional<>
+
+* @CookieValue - provides access to the session cookie value. Cookie can be set using HttpServletResponse and Cookie class\
+                    required, Optional<>\
+                    defaultValue
