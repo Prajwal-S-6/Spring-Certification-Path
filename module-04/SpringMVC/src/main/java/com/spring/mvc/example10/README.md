@@ -25,3 +25,5 @@ Annotations that can be used on Controller method arguments
 
 * @RequestAttribute - provides access to the request attribute that is set before the request hits the controller method. These are set from server side using Filters or Interceptors\
                         required, Optional<>
+
+* @ModelAttribute - provides access to the existing attribute in the model, we can apply @Valid and data binding.
