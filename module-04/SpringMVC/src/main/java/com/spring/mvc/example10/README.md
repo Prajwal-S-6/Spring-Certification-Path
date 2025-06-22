@@ -13,3 +13,6 @@ Annotations that can be used on Controller method arguments
 * @CookieValue - provides access to the session cookie value. Cookie can be set using HttpServletResponse and Cookie class\
                     required, Optional<>\
                     defaultValue
+
+* @RequestHeader - provides access to the Http Request headers. When we bind against map then we get all headers key-value pairs\
+                    required, Optional<>, defaultValue
