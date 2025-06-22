@@ -5,3 +5,7 @@ Annotations that can be used on Controller method arguments
 
 * @PathVariable - provides access to the URI template variable\
                     required, Java8 Optional<>
+
+* @MatrixVariable - provides access to the name-value pair from the URI segments\
+                    eg: /actionA/name=Praj;country=IN\
+                    required, Optional<>
