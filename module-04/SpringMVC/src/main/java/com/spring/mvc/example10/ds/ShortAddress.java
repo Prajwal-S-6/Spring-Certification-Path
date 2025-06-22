@@ -21,6 +21,13 @@ public class ShortAddress {
     public ShortAddress() {
     }
 
+    public ShortAddress(String streetAddress, String city, String stateCode, String zipCode) {
+        this.streetAddress = streetAddress;
+        this.city = city;
+        this.stateCode = stateCode;
+        this.zipCode = zipCode;
+    }
+
     public String getStreetAddress() {
         return streetAddress;
     }

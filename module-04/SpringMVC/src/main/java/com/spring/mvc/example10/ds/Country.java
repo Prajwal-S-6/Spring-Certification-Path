@@ -14,6 +14,10 @@ public class Country {
     public Country() {
     }
 
+    public Country(String country) {
+        this.country = country;
+    }
+
     public String getCountry() {
         return country;
     }
