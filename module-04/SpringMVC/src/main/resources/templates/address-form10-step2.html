@@ -6,7 +6,7 @@
 
     <div class="album py-5 bg-light">
         <div class="container">
-            <form method="post" action="#" th:object="${shortAddress}" th:action="@{/example11/address/step2}">
+            <form method="post" action="#" th:object="${shortAddress}" th:action="@{/actionK3}">
                 <div class="form-group">
                     <label for="streetAddress">Street Address</label>
                     <input type="text" class="form-control" id="streetAddress" th:field="*{streetAddress}"
@@ -34,7 +34,7 @@
                     </div>
                 </div>
 
-                <a th:href="@{/example11/address/step1}">Go back</a>
+                <a th:href="@{/actionK2}">Go back</a>
 
                 <button type="submit" class="btn btn-primary">Next</button>
             </form>

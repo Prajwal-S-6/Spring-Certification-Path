@@ -30,3 +30,5 @@ Annotations that can be used on Controller method arguments
 
 * @SessionAttribute - provides access to the existing attributes in the session. Session attributes are set using HttpServletRequest.getSession().setAttribute\
                         required, Optional<>
+
+* @SessionAttributes - stores model attributes in the session between request, used for multistep form/request processing - (class level annotation)
