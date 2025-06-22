@@ -21,4 +21,7 @@ Annotations that can be used on Controller method arguments
                     required, Optional<>, Can be used with @Valid
 
 * @RequestPart - provides access to the http request multi parts\
-                    required, Optiona<>, Can be used with @Valid
+                    required, Optional<>, Can be used with @Valid
+
+* @RequestAttribute - provides access to the request attribute that is set before the request hits the controller method. These are set from server side using Filters or Interceptors\
+                        required, Optional<>
