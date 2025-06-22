@@ -16,3 +16,6 @@ Annotations that can be used on Controller method arguments
 
 * @RequestHeader - provides access to the Http Request headers. When we bind against map then we get all headers key-value pairs\
                     required, Optional<>, defaultValue
+
+* @RequestBody - provides access to the Http Request body, the request body will be converted to the method argument type automatically by HttpMessageConverter\
+                    required, Optional<>, Can be used with @Valid
