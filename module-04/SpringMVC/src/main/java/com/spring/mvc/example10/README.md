@@ -27,3 +27,6 @@ Annotations that can be used on Controller method arguments
                         required, Optional<>
 
 * @ModelAttribute - provides access to the existing attribute in the model, we can apply @Valid and data binding.
+
+* @SessionAttribute - provides access to the existing attributes in the session. Session attributes are set using HttpServletRequest.getSession().setAttribute\
+                        required, Optional<>
