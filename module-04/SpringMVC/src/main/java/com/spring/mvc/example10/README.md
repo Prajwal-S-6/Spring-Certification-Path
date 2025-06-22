@@ -19,3 +19,6 @@ Annotations that can be used on Controller method arguments
 
 * @RequestBody - provides access to the Http Request body, the request body will be converted to the method argument type automatically by HttpMessageConverter\
                     required, Optional<>, Can be used with @Valid
+
+* @RequestPart - provides access to the http request multi parts\
+                    required, Optiona<>, Can be used with @Valid
