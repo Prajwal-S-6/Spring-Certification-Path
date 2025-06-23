@@ -14,3 +14,4 @@ ReturnType of @Controller methods
 * Callable<> - to return value asynchronously in spring mvc managed threads
 * ResponseBodyEmitter, SseEmitter - allows to send object in stream asynchronously
 * StreamingResponseBody - to write to the response OutputStream asynchronously
+* Some of the Reactive types - allows to use some of reactive types for streaming scenarios like Observable<>
