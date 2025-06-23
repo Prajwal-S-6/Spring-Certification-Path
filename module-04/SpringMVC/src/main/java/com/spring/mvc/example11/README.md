@@ -7,3 +7,4 @@ ReturnType of @Controller methods
 * View - returns the instance of view like JSTLView, ThymeLeafView etc. Used with @ModelAttribute, Model for mapping of attributes to the view
 * Model, Map - used to specify the attributes in the model. View name will be automatically resolved using **RequestToViewNameTranslator**
 * @ModelAttribute - used on top of method, used to specify attributes to be added o the model. View name will be auo resolved by **RequestToViewNameTranslator**
+* ModelAndView - to specify view and model attributes, also can specify response status. View can be specified as logical view name or view instance. Model can be model object or Map
