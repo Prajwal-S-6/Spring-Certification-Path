@@ -8,3 +8,5 @@ ReturnType of @Controller methods
 * Model, Map - used to specify the attributes in the model. View name will be automatically resolved using **RequestToViewNameTranslator**
 * @ModelAttribute - used on top of method, used to specify attributes to be added o the model. View name will be auo resolved by **RequestToViewNameTranslator**
 * ModelAndView - to specify view and model attributes, also can specify response status. View can be specified as logical view name or view instance. Model can be model object or Map
+* void - methods returning void can be handled using ServletResponse or OutputStream or @ResponseStatus. If none of this is handling the method, then he view name is auto resolved using **RequestToViewNameTranslator**
+            in rest controller it means response with no body.
