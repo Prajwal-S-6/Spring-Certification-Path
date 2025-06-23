@@ -12,3 +12,4 @@ ReturnType of @Controller methods
             in rest controller it means response with no body.
 * DeferredResult<> - allows to specify return value in controller asynchronously from different thread or some event callback
 * Callable<> - to return value asynchronously in spring mvc managed threads
+* ResponseBodyEmitter, SseEmitter - allows to send object in stream asynchronously
