@@ -13,3 +13,4 @@ ReturnType of @Controller methods
 * DeferredResult<> - allows to specify return value in controller asynchronously from different thread or some event callback
 * Callable<> - to return value asynchronously in spring mvc managed threads
 * ResponseBodyEmitter, SseEmitter - allows to send object in stream asynchronously
+* StreamingResponseBody - to write to the response OutputStream asynchronously
