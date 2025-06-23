@@ -4,3 +4,4 @@ ReturnType of @Controller methods
 * HttpEntity<>, ResponseEntity<> - allows to return full response body along with headers, ResponseEntity also allows to specify HttpStatus code
 * HttpHeaders - returns only http headers without body
 * String - to return the logical name of view, used when rendering response. view will be resolved using ViewResolver. Used with @ModelAttribute or Model to set the attributes in the view
+* View - returns the instance of view like JSTLView, ThymeLeafView etc. Used with @ModelAttribute, Model for mapping of attributes to the view
