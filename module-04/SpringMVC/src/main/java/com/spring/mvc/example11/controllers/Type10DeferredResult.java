@@ -13,9 +13,9 @@ import org.springframework.web.context.request.async.DeferredResult;
 import static com.spring.mvc.example11.utils.SleepUtil.sleep;
 
 @Controller
-public class Type11DeferredResult {
+public class Type10DeferredResult {
 
-    private Logger logger = LoggerFactory.getLogger(Type11DeferredResult.class);
+    private Logger logger = LoggerFactory.getLogger(Type10DeferredResult.class);
 
     @Autowired
     private TaskExecutor taskExecutor;
