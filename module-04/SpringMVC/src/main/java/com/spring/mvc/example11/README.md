@@ -11,3 +11,4 @@ ReturnType of @Controller methods
 * void - methods returning void can be handled using ServletResponse or OutputStream or @ResponseStatus. If none of this is handling the method, then he view name is auto resolved using **RequestToViewNameTranslator**
             in rest controller it means response with no body.
 * DeferredResult<> - allows to specify return value in controller asynchronously from different thread or some event callback
+* Callable<> - to return value asynchronously in spring mvc managed threads
