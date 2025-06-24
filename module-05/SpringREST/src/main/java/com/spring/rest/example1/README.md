@@ -20,3 +20,32 @@ REST - Representational State Transfer
   * DELETE - deletes resource at the specified URI
   
 * Other Http methods are: HEAD, OPTIONS, CONNECT, TRACE
+
+
+---
+* In case of error during processing of request.REST service should respond with:
+  * HTTP status code
+  * Code ID
+  * Clear error message that explains the error
+  
+
+Http Status Code
+  
+* 1xx - Informational
+
+* 2xx - Success
+  * 200 - OK
+  * 201 - Created
+  * 203 - No Content
+  
+* 3xx - Redirection
+
+* 4xx - Client Error
+  * 400 - Bad Request
+  * 401 - Unauthorized
+  * 403 - Forbidden
+  * 404 - Resource Not found
+  
+* 5xx - Server Error
+  * 500 - Internal server error
+  * 501 - Not implemented
