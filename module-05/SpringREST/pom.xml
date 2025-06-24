@@ -11,7 +11,6 @@
 	<groupId>com.certification.spring</groupId>
 	<artifactId>preparation</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>pom</packaging>
 	<name>preparation</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
@@ -21,9 +20,6 @@
 	<developers>
 		<developer/>
 	</developers>
-	<modules>
-		<module>SpringREST</module>
-	</modules>
 	<scm>
 		<connection/>
 		<developerConnection/>
@@ -59,16 +55,15 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<optional>true</optional>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
 		<dependency>
 			<groupId>jakarta.validation</groupId>
 			<artifactId>jakarta.validation-api</artifactId>
 			<version>3.0.2</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 	</dependencies>
 
