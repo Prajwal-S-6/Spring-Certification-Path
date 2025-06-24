@@ -12,7 +12,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.net.URI;
 import java.util.List;
 
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class CustomerApiController {
@@ -40,5 +40,31 @@ public class CustomerApiController {
         return ResponseEntity.created(URI.create("/customers" + savedCustomer.getId())).body(savedCustomer);
     }
 
+
+    @PutMapping("/customers/{id}")
+    public ResponseEntity<Customer> updateCustomer(@RequestBody @Valid Customer customer, BindingResult bindingResult, @PathVariable Integer id) {
+        if(!bindingResult.hasErrors()) {
+            if(customerDao.existsById(id)) {
+                customer.setId(id);
+                Customer savedCustomer = customerDao.save(customer);
+
+                return ResponseEntity.ok(savedCustomer);
+            } else {
+                throw  new ResponseStatusException(NOT_FOUND, "No customer exists with id: "+id);
+            }
+
+        }
+        throw  new ResponseStatusException(BAD_REQUEST, "Bad Request data");
+    }
+
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Integer id) {
+        if(customerDao.existsById(id)) {
+            customerDao.deleteById(id);
+            return ResponseEntity.status(NO_CONTENT).build();
+        } else {
+            throw new ResponseStatusException(NOT_FOUND, "Customer no found with id: " + id);
+        }
+    }
 
 }
