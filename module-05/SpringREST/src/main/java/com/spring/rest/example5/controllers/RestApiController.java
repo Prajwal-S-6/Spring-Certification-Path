@@ -4,13 +4,14 @@ import com.spring.rest.example5.dao.AddressDao;
 import com.spring.rest.example5.dao.CustomerDao;
 import com.spring.rest.example5.ds.Address;
 import com.spring.rest.example5.ds.Customer;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,6 +19,7 @@ import java.util.stream.StreamSupport;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 
 @RestController
@@ -75,6 +77,35 @@ public class RestApiController {
                 linkTo(methodOn(RestApiController.class).listAllAddresses(customerId)).withRel("addresses"),
                 linkTo(methodOn(RestApiController.class).getCustomer(customerId)).withRel("customers")
                 );
+    }
+
+
+    @PostMapping("/customers")
+    public EntityModel<Customer> addCustomer(@RequestBody @Valid Customer customer, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()) {
+            throw new ResponseStatusException(BAD_REQUEST);
+        }
+        Customer savedCustomer = customerDao.save(customer);
+        return EntityModel.of(savedCustomer,
+                linkTo(methodOn(RestApiController.class).getCustomer(savedCustomer.getId())).withSelfRel());
+    }
+
+    @PostMapping("/customers/{id}/addresses")
+    public EntityModel<Address> addAddress(@PathVariable("id") int id, @RequestBody @Valid Address address, BindingResult bindingResult) {
+        Customer customer = customerDao.findById(id).orElseThrow(ResourceNotFoundException::new);
+        if(bindingResult.hasErrors()) {
+            throw new ResponseStatusException(BAD_REQUEST);
+        }
+
+        address.setCustomer(customer);
+        address = addressDao.save(address);
+
+        customer.getAddresses().add(address);
+        customerDao.save(customer);
+
+        return EntityModel.of(address,
+                linkTo(methodOn(RestApiController.class).getAddress(customer.getId(), address.getId())).withSelfRel());
+
     }
 
 }
