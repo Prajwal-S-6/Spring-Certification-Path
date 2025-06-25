@@ -18,6 +18,6 @@
 --insert into address(id, address_name, street_number, street_name, apt_number, city, state, zip_code, customer_id) values(6, 'Business Address', 1758, 'Ritter Avenue', 5, 'Roseville', 'MI', '48066', 3);
 
 
-insert into customer(id, code, first_name, last_name) values(1, 'CC', 'Caitlin', 'Chen');
-insert into customer(id, code, first_name, last_name) values(2, 'KT', 'Kamila', 'Terry');
-insert into customer(id, code, first_name, last_name) values(3, 'EH', 'Eve', 'Harrell');
+--insert into customer(id, code, first_name, last_name) values(1, 'CC', 'Caitlin', 'Chen');
+--insert into customer(id, code, first_name, last_name) values(2, 'KT', 'Kamila', 'Terry');
+--insert into customer(id, code, first_name, last_name) values(3, 'EH', 'Eve', 'Harrell');
