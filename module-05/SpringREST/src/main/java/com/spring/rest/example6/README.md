@@ -16,7 +16,14 @@ HttpMessageConverter:
 
 * It has the following methods:
   * canRead, canWrite, getSupportedMediaTypes, read, write
-  
+
+* CustomHttpMessageConverter can be created by implementing GenericHttpMessageConverter
 * Customer HttpMessageConverter can be registered by implementing WebMvcConfigurer interface
 * In Springboot most HttpMessageConverter are registered automatically using HttpMessageConverterAutoConfiguration, we just include required dependencies
 * Default list of converters are created inside WebMvcConfigurationSupport.addDefaultHttpMessageConverters
+
+
+* Commonly used:
+  * MappingJackson2HttpMessageConverter
+  * StringHttpMessageConverter
+  * ByteArrayHttpMessageConverter
