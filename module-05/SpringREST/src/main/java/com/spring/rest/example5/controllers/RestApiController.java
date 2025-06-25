@@ -108,4 +108,40 @@ public class RestApiController {
 
     }
 
+    @PutMapping("/customers")
+    public CollectionModel<EntityModel<Customer>> bulkUpdateCustomers(@RequestBody List<Customer> customerList) {
+        customerDao.deleteAll();
+
+        Iterable<Customer> savedCustomers = customerDao.saveAll(customerList);
+
+        List<EntityModel<Customer>> customers = StreamSupport.stream(savedCustomers.spliterator(), false)
+                .map(customer -> EntityModel.of(customer, linkTo(methodOn(RestApiController.class).getCustomer(customer.getId())).withSelfRel()))
+                .toList();
+
+        return CollectionModel.of(customers,
+                linkTo(methodOn(RestApiController.class).listAllCustomers()).withRel("customers"));
+    }
+
+    @PutMapping("/customers/{id}/addresses")
+    public CollectionModel<EntityModel<Address>> bulkUpdateAddress(@PathVariable("id") int id, @RequestBody List<Address> addressList) {
+        Customer customer = customerDao.findById(id).orElseThrow(ResourceNotFoundException::new);
+
+        List<Address> addresses = customer.getAddresses();
+        addresses.forEach(address -> address.setCustomer(null));
+        addressDao.deleteAll();
+
+        addressList.forEach(address -> address.setCustomer(customer));
+        Iterable<Address> savedAddress = addressDao.saveAll(addressList);
+
+        List<EntityModel<Address>> addressModel = StreamSupport.stream(savedAddress.spliterator(), false)
+                .map(address -> EntityModel.of(address, linkTo(methodOn(RestApiController.class).getAddress(customer.getId(), address.getId())).withSelfRel()))
+                .toList();
+
+        return CollectionModel.of(addressModel,
+                linkTo(methodOn(RestApiController.class).getCustomer(id)).withRel("customers"));
+
+    }
+
+
+
 }
