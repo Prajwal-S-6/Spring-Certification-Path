@@ -9,18 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
+import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 public class RestApiController {
@@ -164,6 +165,59 @@ public class RestApiController {
         return EntityModel.of(savedAddress,
                 linkTo(methodOn(RestApiController.class).getAddress(customerId, savedAddress.getId())).withSelfRel(),
                 linkTo(methodOn(RestApiController.class).getCustomer(customerId)).withRel("customers"));
+    }
+
+    @DeleteMapping("/customers")
+    public ResponseEntity deleteAllCustomers() {
+        if(customerDao.count() > 0) {
+            customerDao.deleteAll();
+            return new ResponseEntity<>(NO_CONTENT);
+        } else {
+            return new ResponseEntity(NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/customers/{id}/addresses")
+    public ResponseEntity deleteAllCustomerAddresses(@PathVariable int id) {
+        Customer customer = customerDao.findById(id).orElseThrow(ResourceNotFoundException::new);
+        List<Address> addressList = customer.getAddresses();
+
+        if(addressList.isEmpty()) {
+            return new ResponseEntity(NOT_FOUND);
+        }
+
+        addressList.forEach(address -> customer.setAddresses(null));
+        addressDao.deleteAll(addressList);
+        return new ResponseEntity(NO_CONTENT);
+    }
+
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity deleteCustomer(@PathVariable int id) {
+        if(customerDao.existsById(id)) {
+            customerDao.deleteById(id);
+            return new ResponseEntity(NO_CONTENT);
+        }
+        return new ResponseEntity(NOT_FOUND);
+    }
+
+    @DeleteMapping("/customers/{customerId}/addresses/{addressId}")
+    public ResponseEntity deleteCustomerAddress(@PathVariable("customerId") int customerId, @PathVariable("addressId") int addressId) {
+        if(!customerDao.existsById(customerId)) {
+            return new ResponseEntity(NOT_FOUND);
+        }
+
+        if(!addressDao.existsById(addressId)) {
+            return new ResponseEntity(NOT_FOUND);
+        }
+
+        Optional<Address> address = addressDao.findById(addressId);
+        if(address.isPresent()) {
+            address.get().setCustomer(null);
+            addressDao.delete(address.get());
+            return new ResponseEntity(NO_CONTENT);
+        }
+
+        return new ResponseEntity(NOT_FOUND);
     }
 
 }
