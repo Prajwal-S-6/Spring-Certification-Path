@@ -142,6 +142,28 @@ public class RestApiController {
 
     }
 
+    @PutMapping("/customers/{id}")
+    public EntityModel<Customer> updateCustomer(@PathVariable("id") int id, @RequestBody @Valid Customer customer) {
+        customer.setId(id);
+        Customer savedCustomer = customerDao.save(customer);
 
+        return EntityModel.of(savedCustomer,
+                linkTo(methodOn(RestApiController.class).getCustomer(savedCustomer.getId())).withSelfRel(),
+                linkTo(methodOn(RestApiController.class).listAllCustomers()).withRel("customers"));
+    }
+
+    @PutMapping("/customers/{customerId}/addresses/{addressId}")
+    public EntityModel<Address> updateAddress(@PathVariable("customerId") int customerId, @PathVariable("addressId") int addressId, @RequestBody @Valid Address address) {
+        Customer customer = customerDao.findById(customerId).orElseThrow(ResourceNotFoundException::new);
+
+        address.setId(addressId);
+        address.setCustomer(customer);
+
+        Address savedAddress = addressDao.save(address);
+
+        return EntityModel.of(savedAddress,
+                linkTo(methodOn(RestApiController.class).getAddress(customerId, savedAddress.getId())).withSelfRel(),
+                linkTo(methodOn(RestApiController.class).getCustomer(customerId)).withRel("customers"));
+    }
 
 }
