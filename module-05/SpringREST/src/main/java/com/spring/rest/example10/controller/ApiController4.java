@@ -1,5 +1,6 @@
 package com.spring.rest.example10.controller;
 
+import com.spring.rest.example10.annotations.CustomRestControllerApi;
 import com.spring.rest.example10.dao.AddressDao;
 import com.spring.rest.example10.dao.CustomerDao;
 import com.spring.rest.example10.ds.Address;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 @Controller
-@ResponseBody
+@CustomRestControllerApi
 @RequestMapping("api/v4")
 public class ApiController4 {
 
