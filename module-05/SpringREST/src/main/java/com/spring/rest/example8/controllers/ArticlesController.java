@@ -57,5 +57,33 @@ public class ArticlesController {
         return ResponseEntity.ok().body(articlesDao.save(article));
     }
 
+    @RequestMapping(method = RequestMethod.PUT, produces = APPLICATION_JSON_VALUE)
+    public ResponseEntity<List<Article>> bulkUpdateArticles(@RequestBody List<Article> articles) {
+        articlesDao.deleteAll();
+        return  ResponseEntity.ok().body(articlesDao.saveAll(articles));
+    }
+
+    @RequestMapping(path = "{id}", method = RequestMethod.PATCH, produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    public ResponseEntity<Article> updateArticle(@PathVariable("id") int id, @RequestBody Article article) {
+        if(articlesDao.existsById(id)) {
+            article.setId(id);
+            Article article1 = articlesDao.save(article);
+            return ResponseEntity.ok().body(article1);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @RequestMapping(method = RequestMethod.DELETE, path = "{id}")
+    public ResponseEntity<Void> deleteArticle(@PathVariable int id) {
+        if(articlesDao.existsById(id)) {
+            articlesDao.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+        else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
 
 }
