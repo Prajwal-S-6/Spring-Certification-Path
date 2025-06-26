@@ -1,7 +1,6 @@
 package com.spring.rest.example8.ds;
 
 
-
 public class ArticleCriteria {
     private String bodyLike;
 
