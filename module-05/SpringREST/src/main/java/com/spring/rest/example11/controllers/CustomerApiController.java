@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -68,6 +69,35 @@ public class CustomerApiController {
     @PostMapping("/customers/count")
     public ResponseEntity customersCount() {
         return ResponseEntity.noContent().header("Customers-Count", String.valueOf(customersDao.count())).build();
+    }
+
+    @PutMapping("customers/{id}")
+    public ResponseEntity<EntityModel<Customer>> updateCustomer(@PathVariable int id, @RequestBody @Valid Customer customer) {
+        WebMvcLinkBuilder linkBuilder = linkTo(methodOn(CustomerApiController.class).getCustomer(id));
+        ResponseEntity.BodyBuilder bodyBuilder;
+        if(customersDao.existsById(id)) {
+            bodyBuilder = ResponseEntity.ok();
+        }
+        else {
+            bodyBuilder = ResponseEntity.created(linkBuilder.toUri());
+        }
+
+        customer.setId(id);
+        Customer savedCustomer = customersDao.save(customer);
+
+        return bodyBuilder.body(EntityModel.of(savedCustomer,
+                linkBuilder.withSelfRel(),
+                linkTo(methodOn(CustomerApiController.class).listAllCustomers()).withRel("customers")));
+
+    }
+
+    @PutMapping("/customers")
+    public ResponseEntity bulkUpdateCustomers(@RequestBody Collection<Customer> customerCollection) {
+        customersDao.deleteAll();
+
+        customersDao.saveAll(customerCollection);
+
+        return ResponseEntity.noContent().build();
     }
 
 }
