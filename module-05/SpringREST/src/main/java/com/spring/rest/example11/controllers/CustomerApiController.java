@@ -2,12 +2,15 @@ package com.spring.rest.example11.controllers;
 
 import com.spring.rest.example11.dao.CustomersDao;
 import com.spring.rest.example11.ds.Customer;
+import com.spring.rest.example11.ds.CustomerCriteria;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.hateoas.server.mvc.ControllerLinkRelationProvider;
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.Collections;
@@ -18,6 +21,7 @@ import java.util.stream.StreamSupport;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.ResponseEntity.created;
 
 @RestController
 public class CustomerApiController {
@@ -45,5 +49,25 @@ public class CustomerApiController {
                 linkTo(methodOn(CustomerApiController.class).listAllCustomers()).withRel("customers"));
     }
 
+
+    @PostMapping("/customers")
+    public ResponseEntity<EntityModel<Customer>> createCustomer(@RequestBody @Valid Customer customer) {
+        Customer savedCustomer = customersDao.save(customer);
+
+        WebMvcLinkBuilder linkRelationProvider = linkTo(methodOn(CustomerApiController.class).getCustomer(savedCustomer.getId()));
+
+        return created(linkRelationProvider.toUri()).body(EntityModel.of(savedCustomer, linkTo(methodOn(CustomerApiController.class).listAllCustomers()).withRel("customers")));
+    }
+
+    @PostMapping("/customers/search")
+    public ResponseEntity<List<Customer>> searchCustomerByCriteria(@RequestBody CustomerCriteria customerCriteria) {
+        List<Customer> customer = customersDao.findByFirstNameLike(customerCriteria.getFirstNameLike());
+        return ResponseEntity.ok().body(customer);
+    }
+
+    @PostMapping("/customers/count")
+    public ResponseEntity customersCount() {
+        return ResponseEntity.noContent().header("Customers-Count", String.valueOf(customersDao.count())).build();
+    }
 
 }
