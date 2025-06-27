@@ -4,6 +4,7 @@ package com.spring.rest.example11.ds;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -15,6 +16,7 @@ public class Customer {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Integer id;
+
     @NotBlank
     @Size(min = 2, max = 5, message = "Code must have length of 2 - 5 characters")
     @Pattern(regexp = "[A-Za-z]*", message = "Code contains illegal characters")
