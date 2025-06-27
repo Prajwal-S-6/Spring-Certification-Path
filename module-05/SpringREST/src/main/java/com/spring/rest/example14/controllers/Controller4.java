@@ -1,5 +1,6 @@
 package com.spring.rest.example14.controllers;
 
+import com.spring.rest.example12.exceptions.CustomBadRequestException;
 import com.spring.rest.example14.ds.Customer;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,5 +22,10 @@ public class Controller4 {
     @ResponseStatus(HttpStatus.PARTIAL_CONTENT)
     public Customer method2() {
         return new Customer("PS", "Praj", "S");
+    }
+
+    @GetMapping("/method3")
+    public Customer method3() {
+        throw  new CustomBadRequestException();
     }
 }
