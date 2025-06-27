@@ -100,4 +100,13 @@ public class CustomerApiController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/customers/{id}")
+    public ResponseEntity deleteCustomer(@PathVariable int id) {
+        Customer customer = customersDao.findById(id).orElseThrow(() -> new ResponseStatusException(NOT_FOUND));
+
+        customersDao.deleteById(id);
+
+        return ResponseEntity.noContent().build();
+    }
+
 }
