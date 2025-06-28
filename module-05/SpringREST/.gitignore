@@ -34,3 +34,6 @@ build/
 /.mvn/wrapper/maven-wrapper.properties
 /mvnw.cmd
 /mvnw
+/SpringREST-01/.mvn/wrapper/maven-wrapper.properties
+/SpringREST-01/mvnw
+/SpringREST-01/mvnw.cmd
