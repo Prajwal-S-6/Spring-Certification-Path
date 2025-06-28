@@ -43,3 +43,6 @@ build/
 /SpringREST-02/WebUI/mvnw
 /SpringREST-02/Backend/mvnw.cmd
 /SpringREST-02/WebUI/mvnw.cmd
+/out/
+/SpringREST-03/mvnw
+/SpringREST-03/.mvn/wrapper/maven-wrapper.properties

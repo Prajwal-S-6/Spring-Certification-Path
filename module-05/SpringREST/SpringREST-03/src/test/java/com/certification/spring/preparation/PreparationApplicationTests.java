@@ -1,4 +1,4 @@
-package java.com.certification.spring.preparation;
+package com.certification.spring.preparation;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
