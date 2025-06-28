@@ -14,6 +14,7 @@ import java.net.URI;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -145,5 +146,12 @@ public class CustomerApiControllerTest {
 
         assertEquals(NOT_FOUND, customers.getStatusCode());
         assertNull(customers.getBody());
+    }
+
+    @Test
+    public void shouldGetAllowedHttpMethods() {
+        Set<HttpMethod> httpMethodSet = testRestTemplate.optionsForAllow("/options");
+
+        assertThat(httpMethodSet).containsExactlyInAnyOrder(HttpMethod.GET, HttpMethod.DELETE, HttpMethod.POST, HttpMethod.PUT);
     }
 }

@@ -6,6 +6,7 @@ import com.spring.rest.ds.CustomerCriteria;
 import com.spring.rest.ds.Customers;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
@@ -17,13 +18,18 @@ import java.util.List;
 import static java.lang.String.valueOf;
 import static org.springframework.http.HttpStatus.NOT_FOUND;
 import static org.springframework.http.HttpStatus.NO_CONTENT;
-import static org.springframework.web.bind.annotation.RequestMethod.HEAD;
+import static org.springframework.web.bind.annotation.RequestMethod.*;
 
 @RestController
 public class CustomerApiController {
 
     @Autowired
     private CustomersDao customersDao;
+
+    @RequestMapping(method = OPTIONS, value = "/options")
+    public ResponseEntity options() {
+        return ResponseEntity.ok().allow(HttpMethod.GET, HttpMethod.PUT, HttpMethod.POST, HttpMethod.DELETE).build();
+    }
 
     @GetMapping("/customers")
     public Customers listCustomers() {
