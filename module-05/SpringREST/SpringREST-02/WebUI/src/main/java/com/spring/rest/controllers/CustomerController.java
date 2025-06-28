@@ -30,7 +30,7 @@ public class CustomerController {
         ResponseEntity<Customers> customersResponseEntity = restTemplate.getForEntity(backendURI + "/customers", Customers.class);
 
         if(customersResponseEntity.getStatusCode() == HttpStatus.OK) {
-            return new ModelAndView("customers", "customersTable", Objects.requireNonNull(customersResponseEntity.getBody()).getCustomers());
+            return new ModelAndView("customers", "customers", Objects.requireNonNull(customersResponseEntity.getBody()).getCustomers());
         }
 
         else {
@@ -39,7 +39,8 @@ public class CustomerController {
     }
 
     @GetMapping("/customers/create")
-    public String createCustomer(@ModelAttribute("customerForm") Customer customer) {
+    public String createCustomer(Model model) {
+        model.addAttribute("customer", new Customer());
         return "customer-create";
     }
 
@@ -48,9 +49,9 @@ public class CustomerController {
         if(bindingResult.hasErrors()) {
             return "customer-create";
         } else {
-            ResponseEntity<Customer> responseEntity = restTemplate.postForEntity(backendURI+"/customers/create",customer, Customer.class);
+            ResponseEntity<Customer> responseEntity = restTemplate.postForEntity(backendURI+"/customers",customer, Customer.class);
 
-            if(responseEntity.getStatusCode() != HttpStatus.CREATED) {
+            if(responseEntity.getStatusCode() != HttpStatus.OK) {
                 throw new IllegalStateException("Unable to create customer");
             }
 
@@ -60,7 +61,7 @@ public class CustomerController {
 
     @GetMapping("/customers/delete/{id}")
     public String deleteCustomer(@PathVariable int id) {
-        restTemplate.delete(backendURI+"/{id}", id);
+        restTemplate.delete(backendURI+"/customers/{id}", id);
 
         return "redirect:/customers";
     }
