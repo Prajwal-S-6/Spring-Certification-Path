@@ -6,8 +6,11 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+import java.net.URI;
 
 import static org.assertj.core.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -35,9 +38,27 @@ public class CustomerApiControllerTest {
     @Test
     public void shouldListCustomersAsEntity() {
         ResponseEntity<Customers> customersResponseEntity = testRestTemplate.getForEntity("/customers", Customers.class);
-        assertEquals(customersResponseEntity.getStatusCode(), HttpStatus.OK);
+        assertEquals(HttpStatus.OK, customersResponseEntity.getStatusCode());
         assertThat(customersResponseEntity.getBody().getCustomers()).containsExactly(CUSTOMER_1, CUSTOMER_2, CUSTOMER_3);
     }
 
+    @Test
+    public void shouldGetCustomerAsObject() {
+        Customer customer = testRestTemplate.getForObject("/customers/{id}", Customer.class, 1);
+        assertEquals(CUSTOMER_1,customer);
+    }
 
+    @Test
+    public void shouldGetCustomerCountInHeader() {
+        HttpHeaders httpHeaders = testRestTemplate.headForHeaders("/customers");
+        assertTrue(httpHeaders.containsKey("Customers-Count"));
+        assertEquals("3", httpHeaders.getFirst("Customers-Count"));
+    }
+
+    @Test
+    public void shouldCreateCustomerAndReturnLocation() {
+        URI uri = testRestTemplate.postForLocation("/customers", CUSTOMER_4);
+
+        assertEquals(URI.create("/customers/4"), uri);
+    }
 }

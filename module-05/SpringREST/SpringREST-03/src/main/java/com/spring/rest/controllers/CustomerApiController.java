@@ -52,7 +52,7 @@ public class CustomerApiController {
     public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
         Customer savedCustomer = customersDao.save(customer);
         return ResponseEntity.ok()
-                .location(URI.create("/api/customers/" + savedCustomer.getId()))
+                .location(URI.create("/customers/" + savedCustomer.getId()))
                 .body(savedCustomer);
     }
 
