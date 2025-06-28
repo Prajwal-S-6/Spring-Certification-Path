@@ -23,6 +23,11 @@
 	</developers>
 	<modules>
 		<module>SpringREST-01</module>
+		<module>SpringREST-02</module>
+		<module>SpringREST-02/WebUI</module>
+		<module>SpringREST-02</module>
+		<module>SpringREST-02/WebUI</module>
+		<module>SpringREST-02/Backend</module>
 	</modules>
 	<scm>
 		<connection/>
