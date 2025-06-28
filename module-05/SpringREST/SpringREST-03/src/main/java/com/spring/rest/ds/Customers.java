@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -24,5 +25,18 @@ public class Customers {
 
     public void setCustomers(List<Customer> customers) {
         this.customers = customers;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Customers that = (Customers) o;
+        return Objects.equals(customers, that.customers);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(customers);
     }
 }

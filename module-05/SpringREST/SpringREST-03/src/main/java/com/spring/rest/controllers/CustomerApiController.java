@@ -51,8 +51,7 @@ public class CustomerApiController {
     @PostMapping("/customers")
     public ResponseEntity<Customer> createCustomer(@RequestBody @Valid Customer customer) {
         Customer savedCustomer = customersDao.save(customer);
-        return ResponseEntity.ok()
-                .location(URI.create("/customers/" + savedCustomer.getId()))
+        return ResponseEntity.created(URI.create("/customers/" + savedCustomer.getId()))
                 .body(savedCustomer);
     }
 
