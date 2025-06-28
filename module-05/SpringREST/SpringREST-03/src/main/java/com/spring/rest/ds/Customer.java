@@ -9,6 +9,8 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 
+import java.util.Objects;
+
 @Entity
 public class Customer {
     @Id
@@ -75,5 +77,21 @@ public class Customer {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 '}';
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, code, firstName, lastName);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Customer)) return false;
+        Customer customer = (Customer) o;
+        return id == customer.id &&
+                Objects.equals(code, customer.code) &&
+                Objects.equals(firstName, customer.firstName) &&
+                Objects.equals(lastName, customer.lastName);
     }
 }
