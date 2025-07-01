@@ -57,7 +57,8 @@ public class WebSecurityConfig {
 
         UserDetails john = User.withUsername("john")
                 .password(encoder.encode("john"))
-                .roles("SUPER_ADMIN")
+                // .roles("SUPER_ADMIN")
+                .authorities("ROLE_SUPER_ADMIN", "CUSTOMERS_READ", "CUSTOMERS_PAG_VIEW")
                 .build();
 
         UserDetails emma = User.withUsername("emma")
