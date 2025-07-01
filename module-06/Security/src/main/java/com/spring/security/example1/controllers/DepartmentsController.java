@@ -24,20 +24,20 @@ public class DepartmentsController {
     @Secured(ROLE_PREFIX + DEPARTMENTS_READ)
     @GetMapping("/departments")
     public ModelAndView index() {
-        return new ModelAndView("departments", "departments", departmentsDao.findAll());
+        return new ModelAndView("departments1", "departments", departmentsDao.findAll());
     }
 
     @Secured(ROLE_PREFIX + DEPARTMENTS_CREATE)
     @GetMapping("/departments/create")
     public ModelAndView create() {
-        return new ModelAndView("department-create", "department", new Department());
+        return new ModelAndView("department-create1", "department", new Department());
     }
 
     @Secured(ROLE_PREFIX + DEPARTMENTS_CREATE)
     @PostMapping("/departments/create")
     public String create(@ModelAttribute @Valid Department department, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "department-create";
+            return "department-create1";
         } else {
             departmentsDao.save(department);
 
