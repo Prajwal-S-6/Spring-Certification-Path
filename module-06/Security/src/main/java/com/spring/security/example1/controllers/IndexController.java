@@ -10,4 +10,9 @@ public class IndexController {
     public String index() {
         return "home1";
     }
+
+    @GetMapping("/error")
+    public String error() {
+        return "error1";
+    }
 }
