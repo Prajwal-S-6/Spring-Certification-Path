@@ -29,7 +29,7 @@ public class WebSecurityConfig {
                 .requestMatchers(mvcBuilder.pattern("/"), mvcBuilder.pattern("/home")).permitAll()
                 .requestMatchers(mvcBuilder.pattern("/employee")).hasRole(EMPLOYEES_PAG_VIEW)
                 .requestMatchers(mvcBuilder.pattern("/department")).hasRole(DEPARTMENTS_PAG_VIEW)
-                .requestMatchers(mvcBuilder.pattern("/customer")).hasRole(CUSTOMERS_PAG_VIEW)
+                .requestMatchers(mvcBuilder.pattern("/customers")).hasRole(CUSTOMERS_PAG_VIEW)
                 .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
