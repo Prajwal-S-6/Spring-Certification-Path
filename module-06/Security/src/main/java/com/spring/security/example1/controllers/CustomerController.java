@@ -4,6 +4,7 @@ import com.spring.security.example1.dao.CustomerDao;
 import com.spring.security.example1.ds.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,7 +22,8 @@ public class CustomerController {
     @Autowired
     private CustomerDao customerDao;
 
-    @Secured(ROLE_PREFIX + CUSTOMERS_PAG_VIEW)
+    // @Secured(ROLE_PREFIX + CUSTOMERS_PAG_VIEW)
+    @PreAuthorize("hasAnyAuthority('CUSTOMERS_READ', 'CUSTOMERS_PAG_VIEW')")
     @GetMapping("/customers")
     public String customers(Model model) {
         model.addAttribute("customers", customerDao.findAll());

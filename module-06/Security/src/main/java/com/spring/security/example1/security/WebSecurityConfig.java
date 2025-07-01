@@ -27,10 +27,11 @@ public class WebSecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvcBuilder.pattern("/"), mvcBuilder.pattern("/home")).permitAll()
-                .requestMatchers(mvcBuilder.pattern("/employees")).hasRole(EMPLOYEES_PAG_VIEW)
-                .requestMatchers(mvcBuilder.pattern("/departments")).hasRole(DEPARTMENTS_PAG_VIEW)
-                .requestMatchers(mvcBuilder.pattern("/customers")).hasRole(CUSTOMERS_PAG_VIEW)
-                .anyRequest().authenticated()
+//                .requestMatchers(mvcBuilder.pattern("/employees")).hasRole(EMPLOYEES_PAG_VIEW)
+//                .requestMatchers(mvcBuilder.pattern("/departments")).hasRole(DEPARTMENTS_PAG_VIEW)
+//                .requestMatchers(mvcBuilder.pattern("/customers")).hasRole(CUSTOMERS_PAG_VIEW)
+//                .anyRequest().authenticated()
+                                .requestMatchers("/**").permitAll()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
@@ -71,7 +72,8 @@ public class WebSecurityConfig {
 
         UserDetails lucas = User.withUsername("lucas")
                 .password(encoder.encode("lucas"))
-                .roles("CUSTOMERS_READ")
+                .authorities("CUSTOMERS_READ", "CUSTOMERS_PAG_VIEW")
+                // .roles("CUSTOMERS_READ", "CUSTOMERS_PAG_VIEW")
                 .build();
 
         UserDetails tom = User.withUsername("tom")

@@ -20,8 +20,6 @@ public class RoleHierarchyConfiguration {
                         .append(CUSTOMERS_ADMIN, CUSTOMERS_READ)
                         .append(CUSTOMERS_ADMIN, CUSTOMERS_DELETE)
                         .append(CUSTOMERS_ADMIN, CUSTOMERS_PAG_VIEW)
-                        .append(CUSTOMERS_READ, CUSTOMERS_PAG_VIEW)
-                        .append(CUSTOMERS_CREATE, CUSTOMERS_PAG_VIEW)
 
                         .append(SUPER_ADMIN, EMPLOYEES_ADMIN)
                         .append(EMPLOYEES_ADMIN, EMPLOYEES_CREATE)
