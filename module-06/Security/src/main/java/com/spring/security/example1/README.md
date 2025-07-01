@@ -24,7 +24,7 @@
 
 ---
 * Authorization - Is a process of determining whether an authenticated user is allowed to access a particular resource or perform some action.
-* Authorization uses Access Control List to determine what is allowed and disallowed
+* Authorization uses Access Control List to determine what is allowed and disallowed.
 
 * In SpringSecurity authorization can be implemented at 2 levels:
   * Web level - using mvcMatchers("/*/").hasRole(ROLE_ADMIN)
