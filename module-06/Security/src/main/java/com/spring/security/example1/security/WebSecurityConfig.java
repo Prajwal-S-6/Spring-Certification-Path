@@ -27,8 +27,8 @@ public class WebSecurityConfig {
         httpSecurity
                 .authorizeHttpRequests(auth -> auth
                 .requestMatchers(mvcBuilder.pattern("/"), mvcBuilder.pattern("/home")).permitAll()
-                .requestMatchers(mvcBuilder.pattern("/employee")).hasRole(EMPLOYEES_PAG_VIEW)
-                .requestMatchers(mvcBuilder.pattern("/department")).hasRole(DEPARTMENTS_PAG_VIEW)
+                .requestMatchers(mvcBuilder.pattern("/employees")).hasRole(EMPLOYEES_PAG_VIEW)
+                .requestMatchers(mvcBuilder.pattern("/departments")).hasRole(DEPARTMENTS_PAG_VIEW)
                 .requestMatchers(mvcBuilder.pattern("/customers")).hasRole(CUSTOMERS_PAG_VIEW)
                 .anyRequest().authenticated()
                 )
@@ -71,7 +71,7 @@ public class WebSecurityConfig {
 
         UserDetails lucas = User.withUsername("lucas")
                 .password(encoder.encode("lucas"))
-                .roles("CUSTOMERS_PAG_VIEW", "CUSTOMERS_READ")
+                .roles("CUSTOMERS_READ")
                 .build();
 
         UserDetails tom = User.withUsername("tom")

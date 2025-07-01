@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AccountsController {
 
-    @GetMapping("/accounts")
+    @GetMapping("/account")
     public String accounts() {
         return "account1";
     }
