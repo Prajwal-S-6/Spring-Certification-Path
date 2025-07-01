@@ -5,6 +5,7 @@ import com.spring.security.example2.ds.Department;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,19 +22,19 @@ public class DepartmentsController {
     @Autowired
     private DepartmentDao departmentsDao;
 
-    @Secured(ROLE_PREFIX + DEPARTMENTS_READ)
+    @PreAuthorize("hasAnyAuthority('DEPARTMENTS_READ', 'DEPARTMENTS_PAG_VIEW')")
     @GetMapping("/departments")
     public ModelAndView index() {
         return new ModelAndView("departments1", "departments", departmentsDao.findAll());
     }
 
-    @Secured(ROLE_PREFIX + DEPARTMENTS_CREATE)
+    @PreAuthorize("hasAuthority('DEPARTMENTS_CREATE')")
     @GetMapping("/departments/create")
     public ModelAndView create() {
         return new ModelAndView("department-create1", "department", new Department());
     }
 
-    @Secured(ROLE_PREFIX + DEPARTMENTS_CREATE)
+    @PreAuthorize("hasAuthority('DEPARTMENTS_CREATE')")
     @PostMapping("/departments/create")
     public String create(@ModelAttribute @Valid Department department, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -45,7 +46,7 @@ public class DepartmentsController {
         }
     }
 
-    @Secured(ROLE_PREFIX + DEPARTMENTS_DELETE)
+    @PreAuthorize("hasAuthority('DEPARTMENTS_DELETE')")
     @GetMapping("/departments/delete/{id}")
     public String delete(@PathVariable Integer id) {
         departmentsDao.deleteById(id);
