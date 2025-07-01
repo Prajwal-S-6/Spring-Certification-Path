@@ -20,3 +20,24 @@
   * Custom data store with UserDetailsService
   
 * Password Encoders: sha256, scrypt, bcrypt ...
+
+
+---
+* Authorization - Is a process of determining whether an authenticated user is allowed to access a particular resource or perform some action.
+* Authorization uses Access Control List to determine what is allowed and disallowed
+
+* In SpringSecurity authorization can be implemented at 2 levels:
+  * Web level - using mvcMatchers("/*/").hasRole(ROLE_ADMIN)
+  * Method Security level using:
+    * @EnableGlobalMethodSecurity
+    * @Secured
+    * @PreAuthorize
+    * JSR 250 annotations @RolesAllowed, @PermitAll, @DenyAll
+
+
+* AccessControlRules:
+  * Roles: Represents highest privilege, used with hasRole()
+  * Eg ROLE_ADMIN, ROLE_USER
+  * Authority - READ_CUSTOMER, DELETE_EMPLOYEE used with hasAuthority
+  * Hierarchical roles - Specifies relation between roles
+  * Eg: ROLE_ADMIN > ROLE_USER means ROLE_ADMIN includes ROLE_USER
