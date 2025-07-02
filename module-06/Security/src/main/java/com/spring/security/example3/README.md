@@ -37,3 +37,13 @@
 * And FilterChainProxy will execute those filters in the same order
 * FilterChainProxy is registered in Spring Context and takes default name springSecurityFilterChain which is specified in AbstractWebApplicationInitializer
 * DelegatingFilterProxy is managed by Application container which fetches the FilterChainProxy based on name
+
+
+Some of the Spring SecurityFilters:
+1. WebAsyncManagerIntegrationFilter
+2. SecurityContextPersistenceFilter
+3. HeaderWriterFilter
+4. CsrfFilter
+5. LogoutFilter
+6. UsernamePasswordAuthenticationFilter etc
+
