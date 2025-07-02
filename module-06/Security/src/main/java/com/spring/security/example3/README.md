@@ -10,3 +10,7 @@
 * Servlet2 - using web.xml
 * Servlet3 - using AbstractSecurityWebApplicationInitializer >> insertSpringSecurityFilterChain will register DelegatingFilterProxy
 * SpringBoot - using specialized version of DelegatingFilterPRoxy called DelegatingFilterProxyRegistrationBean registered by SecurityAutoConfiguration
+
+
+* DelegatingFilterProxy delegates all the calls to FilterChainProxy based on the filter-name(springSecurityFilterChain)
+* FilterChainProxy contains list of SecurityFilterChains which handles authentication and authorization
