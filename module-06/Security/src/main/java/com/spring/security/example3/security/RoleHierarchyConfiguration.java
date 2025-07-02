@@ -10,6 +10,7 @@ import static com.spring.security.example3.security.SecurityRoles.*;
 @Configuration
 public class RoleHierarchyConfiguration {
 
+    @Bean
     public RoleHierarchy roleHierarchy() {
         return RoleHierarchyImpl.withDefaultRolePrefix()
                 .role(SUPER_ADMIN).implies(CUSTOMERS_ADMIN)
