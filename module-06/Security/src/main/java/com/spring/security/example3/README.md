@@ -29,3 +29,11 @@
   * MediaTypeRequestMatchers etc
 
 * Security Filters are implementation of Servlet filters managed by Spring context
+
+
+---
+* FilterChainProxy contains a list of SecurityFilterChains and upon request searches for the first SecurityFilterChain that matches the request
+* Once the request is matched the SecurityFilterChain is picked and list of SecurityFilters are collected from that
+* And FilterChainProxy will execute those filters in the same order
+* FilterChainProxy is registered in Spring Context and takes default name springSecurityFilterChain which is specified in AbstractWebApplicationInitializer
+* DelegatingFilterProxy is managed by Application container which fetches the FilterChainProxy based on name
