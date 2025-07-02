@@ -47,3 +47,5 @@ Some of the Spring SecurityFilters:
 5. LogoutFilter
 6. UsernamePasswordAuthenticationFilter etc
 
+* CustomSecurityFilter can be created by extending OncePerRequestFilter or GenericFilterBean
+* And can be added into SecurityFilterChain using addFilterBefore(), addFilterAfter(), addFilter() methods from HttpSecurity
