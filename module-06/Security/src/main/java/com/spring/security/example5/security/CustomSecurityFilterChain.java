@@ -10,14 +10,32 @@ import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.servlet.util.matcher.MvcRequestMatcher;
+import org.springframework.web.servlet.handler.HandlerMappingIntrospector;
+
+import static com.spring.security.example5.security.SecurityRoles.*;
 
 @Configuration
 public class CustomSecurityFilterChain {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
+        MvcRequestMatcher.Builder mvcRequestMatcher = new MvcRequestMatcher.Builder(new HandlerMappingIntrospector());
         httpSecurity.authorizeHttpRequests(authorizationManagerRequestMatcherRegistry -> authorizationManagerRequestMatcherRegistry
-                .anyRequest().authenticated())
+                        .requestMatchers(mvcRequestMatcher.pattern("/"), mvcRequestMatcher.pattern("/home")).permitAll()
+
+                        .requestMatchers("/em??oy??s").hasRole(EMPLOYEES_PAG_VIEW)
+                        .requestMatchers("/employees/delete/*").hasRole(EMPLOYEES_DELETE)
+                        .requestMatchers("/employees/**").hasRole(EMPLOYEES_DELETE)
+                        .requestMatchers("/employees/*/*").hasRole(EMPLOYEES_DELETE)
+
+
+                        .anyRequest().authenticated()
+
+                )
+
+
+
                 .formLogin(httpSecurityFormLoginConfigurer -> httpSecurityFormLoginConfigurer
                         .loginPage("/login")
                         .failureUrl("/login-error")

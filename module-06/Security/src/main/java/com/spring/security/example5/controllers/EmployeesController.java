@@ -1,7 +1,7 @@
 package com.spring.security.example5.controllers;
 
-import com.spring.security.example3.dao.EmployeeDao;
-import com.spring.security.example3.ds.Employee;
+import com.spring.security.example5.dao.EmployeeDao;
+import com.spring.security.example5.ds.Employee;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import static com.spring.security.example3.security.SecurityRoles.*;
+import static com.spring.security.example5.security.SecurityRoles.*;
 
 @Controller
 public class EmployeesController {

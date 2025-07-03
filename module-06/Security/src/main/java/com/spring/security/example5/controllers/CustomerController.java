@@ -1,7 +1,7 @@
 package com.spring.security.example5.controllers;
 
-import com.spring.security.example3.dao.CustomerDao;
-import com.spring.security.example3.ds.Customer;
+import com.spring.security.example5.dao.CustomerDao;
+import com.spring.security.example5.ds.Customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import static com.spring.security.example3.security.SecurityRoles.*;
+import static com.spring.security.example5.security.SecurityRoles.*;
 
 @Controller
 public class CustomerController {
@@ -22,8 +22,7 @@ public class CustomerController {
     @Autowired
     private CustomerDao customerDao;
 
-    // @Secured(ROLE_PREFIX + CUSTOMERS_PAG_VIEW)
-    @PreAuthorize("hasAnyAuthority('CUSTOMERS_READ', 'CUSTOMERS_PAG_VIEW')")
+    @Secured(ROLE_PREFIX + CUSTOMERS_PAG_VIEW)
     @GetMapping("/customers")
     public String customers(Model model) {
         model.addAttribute("customers", customerDao.findAll());

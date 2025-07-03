@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
 import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 
-import static com.spring.security.example2.security.SecurityRoles.*;
+import static com.spring.security.example5.security.SecurityRoles.*;
 
 @Configuration
 public class RoleHierarchyConfiguration {
@@ -30,6 +30,14 @@ public class RoleHierarchyConfiguration {
                 .role(EMPLOYEES_ADMIN).implies(EMPLOYEES_CREATE)
                 .role(EMPLOYEES_ADMIN).implies(EMPLOYEES_READ)
                 .role(EMPLOYEES_ADMIN).implies(EMPLOYEES_DELETE)
+
+                .role(ALL_VIEWS).implies(EMPLOYEES_PAG_VIEW)
+                .role(ALL_VIEWS).implies(DEPARTMENTS_PAG_VIEW)
+                .role(ALL_VIEWS).implies(CUSTOMERS_PAG_VIEW)
+
+                .role(ALL_DELETES).implies(CUSTOMERS_DELETE)
+                .role(ALL_DELETES).implies(DEPARTMENTS_DELETE)
+                .role(ALL_DELETES).implies(EMPLOYEES_DELETE)
                 .build();
 
     }
