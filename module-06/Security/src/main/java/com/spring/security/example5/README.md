@@ -13,5 +13,14 @@ MvcRequestMatcher, AntPathRequestMatcher
   * /employee/**
 
 * /*/5 doesn't match
+
+---
+AntPathMatcher and MvcMatcher works similarly, but
+AntPathMatcher doesnt support path variable and doesnt normalize the end slash(/)
+MvcMatcher supports path variable
+
+example when mvcMatcher is used /employee and /employee/ are matched
+but with antPathMatcher /employee/ is treated as different path 
+
   
   
