@@ -16,3 +16,10 @@
 
 * These annotations work if
   * @EnableMethodSecurity(securedEnabled=true, prePostEnabled=true, jsr250Enabled=true)
+
+---
+With method security annotations before method is executed user is authorized to check if he has the required roles/authorities
+
+* With @RolesAllowed and @Secured we can specify only the list of roles to be matched
+* With @RolesAllowed("ADMIN") we just specify the role name without prefix
+* With @Secured("ROLE_ADMIN") we need to prefix the rolename with ROLE_
