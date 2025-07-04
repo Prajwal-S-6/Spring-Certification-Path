@@ -7,11 +7,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12 py-4"
-                 th:with="httpStatus=${T(org.springframework.http.HttpStatus).valueOf(#response.status)}">
+                 th:with="httpStatus=${responseStatus}">
                 <h2>Error Page</h2>
 
                 <div class="alert alert-danger" role="alert">
-                    <h3 th:text="|${httpStatus} - ${httpStatus.reasonPhrase}|"></h3>
+                    <h3 th:text="|${httpStatus} - ${reasonPhrase}|"></h3>
                     <p th:utext="${errorMessage}"></p>
                     <a href="#" th:href="@{/home}">Back to Home Page</a>
                 </div>
