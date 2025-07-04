@@ -28,13 +28,13 @@ public class EmployeesController {
         return new ModelAndView("employees1", "employees", employeesDao.findAll());
     }
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE')")
+//    @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE')")
     @GetMapping("/employees/create")
     public ModelAndView create() {
         return new ModelAndView("employee-create", "employee", new Employee());
     }
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE')")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE') || 'TEST'.equals(#employee.getFirstName())")
     @PostMapping("/employees/create")
     public String create(@ModelAttribute @Valid Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -46,7 +46,7 @@ public class EmployeesController {
         }
     }
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEES_DELETE')")
+    @PreAuthorize("hasRole('ROLE_EMPLOYEES_DELETE') || #id == 3")
     @GetMapping("/employees/delete/{id}")
     public String delete(@PathVariable Integer id) {
         employeesDao.deleteById(id);
