@@ -22,7 +22,7 @@ public class EmployeesController {
     @Autowired
     private EmployeeDao employeesDao;
 
-    @PreAuthorize("hasRole('ROLE_EMPLOYEES_PAG_VIEW')")
+//    @PreAuthorize("hasRole('ROLE_EMPLOYEES_PAG_VIEW')")
     @GetMapping("/employees")
     public ModelAndView index() {
         return new ModelAndView("employees1", "employees", employeesDao.findAll());
@@ -31,14 +31,14 @@ public class EmployeesController {
 //    @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE')")
     @GetMapping("/employees/create")
     public ModelAndView create() {
-        return new ModelAndView("employee-create", "employee", new Employee());
+        return new ModelAndView("employee-create1", "employee", new Employee());
     }
 
     @PreAuthorize("hasRole('ROLE_EMPLOYEES_CREATE') || 'TEST'.equals(#employee.getFirstName())")
     @PostMapping("/employees/create")
     public String create(@ModelAttribute @Valid Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "employee-create";
+            return "employee-create1";
         } else {
             employeesDao.save(employee);
 

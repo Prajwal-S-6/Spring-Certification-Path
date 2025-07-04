@@ -7,12 +7,12 @@ import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 
-import static jakarta.persistence.GenerationType.IDENTITY;
+import static jakarta.persistence.GenerationType.*;
 
 @Entity
 public class Employee {
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = AUTO)
     private Integer id;
     @NotBlank(message = "First name cannot be empty")
     @Pattern(regexp = "[A-Za-z-']*", message = "First name contains illegal characters")
