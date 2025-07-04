@@ -22,18 +22,18 @@ public class DepartmentsController {
 
     @GetMapping("/departments")
     public ModelAndView index() {
-        return new ModelAndView("departments", "departments", departmentsDao.findAll());
+        return new ModelAndView("departments6", "departments", departmentsDao.findAll());
     }
 
     @GetMapping("/departments/create")
     public ModelAndView create() {
-        return new ModelAndView("department-create", "department", new Department());
+        return new ModelAndView("department-create6", "department", new Department());
     }
 
     @PostMapping("/departments/create")
     public String create(@ModelAttribute @Valid Department department, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "department-create";
+            return "department-create6";
         } else {
             departmentsDao.save(department);
 

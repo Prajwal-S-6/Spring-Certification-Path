@@ -23,18 +23,18 @@ public class EmployeesController {
 
     @GetMapping("/employees")
     public ModelAndView index() {
-        return new ModelAndView("employees", "employees", employeesDao.findAll());
+        return new ModelAndView("employees6", "employees", employeesDao.findAll());
     }
 
     @GetMapping("/employees/create")
     public ModelAndView create() {
-        return new ModelAndView("employee-create", "employee", new Employee());
+        return new ModelAndView("employee-create6", "employee", new Employee());
     }
 
     @PostMapping("/employees/create")
     public String create(@ModelAttribute @Valid Employee employee, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "employee-create";
+            return "employee-create6";
         } else {
             employeesDao.save(employee);
 

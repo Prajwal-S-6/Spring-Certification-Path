@@ -21,7 +21,7 @@ public class ErrorController {
         model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("httpStatus", HttpStatus.INTERNAL_SERVER_ERROR.toString());
         model.addAttribute("reasonPhrase", HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase());
-        return "error";
+        return "error6";
     }
 
 }
