@@ -65,13 +65,13 @@ public class WebSecurityConfig {
         return manager;
     }
 
-//    @Bean
-//    public PasswordEncoder passwordEncoder() {
-//        return new BCryptPasswordEncoder(12);
-//    }
-
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new SCryptPasswordEncoder(1024, 10, 1, 5, 25);
+        return new BCryptPasswordEncoder(12);
     }
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new SCryptPasswordEncoder(1024, 10, 1, 5, 25);
+//    }
 }
