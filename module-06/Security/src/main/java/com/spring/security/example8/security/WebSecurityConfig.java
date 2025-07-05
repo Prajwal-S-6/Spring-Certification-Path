@@ -46,7 +46,12 @@ public class WebSecurityConfig {
                 .roles(CUSTOMERS_QA)
                 .build();
 
-        return new InMemoryUserDetailsManager(lucas, tom);
+        UserDetails john = User.withUsername("john")
+                .password(encoder.encode("john"))
+                .roles()
+                .build();
+
+        return new InMemoryUserDetailsManager(lucas, tom, john);
     }
 
     @Bean

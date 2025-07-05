@@ -18,17 +18,17 @@ public interface CustomerDao extends JpaRepository<Customer, Integer> {
     List<Customer> findAll();
 
 
-    @PostAuthorize("hasRole('ROLE_CUSTOMERS_READ') || (hasRole('CUSTOMERS_QA') && returnObject.isPresent() && returnObject.getFirstName().equals('TEST'))")
+    @PostAuthorize("hasRole('ROLE_CUSTOMERS_READ') || (hasRole('ROLE_CUSTOMERS_QA') && returnObject.isPresent() && returnObject.get().getFirstName().equals('TEST'))")
     @Override
     Optional<Customer> findById(Integer id);
 
 
 
-    @PreFilter("hasRole('ROLE_CUSTOMERS_CREATE') || (hasRole('CUSTOMERS_QA') && filterObject.getFirstName().equals('TEST'))")
+    @PreFilter("hasRole('ROLE_CUSTOMERS_CREATE') || (hasRole('ROLE_CUSTOMERS_QA') && filterObject.getFirstName().equals('TEST'))")
     @Override
     <S extends Customer> List<S> saveAll(Iterable<S> entities);
 
-    @PreAuthorize("hasRole('ROLE_CUSTOMERS_DELETE') || (hasRole('CUSTOMERS_QA') && 'TEST'.equals(#entity.getFirstName()))")
+    @PreAuthorize("hasRole('ROLE_CUSTOMERS_DELETE') || (hasRole('ROLE_CUSTOMERS_QA') && 'TEST'.equals(#entity.getFirstName()))")
     @Override
     void delete(Customer entity);
 }

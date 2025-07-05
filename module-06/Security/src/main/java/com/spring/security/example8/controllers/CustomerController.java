@@ -31,26 +31,26 @@ public class CustomerController {
     @PreAuthorize("hasRole('ROLE_CUSTOMERS_READ') || hasRole('ROLE_CUSTOMERS_QA')")
     @GetMapping("/customers")
     public ModelAndView index() {
-        return new ModelAndView("customers", "customers", customersDao.findAll());
+        return new ModelAndView("customers8", "customers", customersDao.findAll());
     }
 
     @PreAuthorize("hasRole('ROLE_CUSTOMERS_READ') || hasRole('ROLE_CUSTOMERS_QA')")
     @GetMapping("/customers/view/{customerId}")
     public ModelAndView view(@PathVariable int customerId) {
-        return new ModelAndView("customer-view", "customer", customersDao.findById(customerId));
+        return new ModelAndView("customer-view8", "customer", customersDao.findById(customerId));
     }
 
     @PreAuthorize("hasRole('ROLE_CUSTOMERS_CREATE') || hasRole('ROLE_CUSTOMERS_QA')")
     @GetMapping("/customers/create")
     public ModelAndView create() {
-        return new ModelAndView("customer-create", "customer", new Customer());
+        return new ModelAndView("customer-create8", "customer", new Customer());
     }
 
     @PreAuthorize("hasRole('ROLE_CUSTOMERS_CREATE') || hasRole('ROLE_CUSTOMERS_QA')")
     @PostMapping("/customers/create")
     public String create(@ModelAttribute @Valid Customer customer, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return "customer-create";
+            return "customer-create8";
         } else {
             customersDao.saveAll(new LinkedList<>(Collections.singletonList(customer)));
 
@@ -61,11 +61,8 @@ public class CustomerController {
     @PreAuthorize("hasRole('ROLE_CUSTOMERS_DELETE') || hasRole('ROLE_CUSTOMERS_QA')")
     @GetMapping("/customers/delete/{id}")
     public String delete(@PathVariable Integer id) {
-        customersDao.deleteAll(
-                customersDao.findById(id)
-                        .stream()
-                        .collect(Collectors.toList())
-        );
+        customersDao.delete(
+                customersDao.findById(id).orElse(null));
 
         return "redirect:/customers";
     }
