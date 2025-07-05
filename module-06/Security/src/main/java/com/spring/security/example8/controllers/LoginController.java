@@ -9,11 +9,11 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login() {
-        return "login1";
+        return "login8";
     }
 
     @GetMapping("/login-error")
     public ModelAndView loginError() {
-        return new ModelAndView("login1", "loginError", true );
+        return new ModelAndView("login8", "loginError", true );
     }
 }

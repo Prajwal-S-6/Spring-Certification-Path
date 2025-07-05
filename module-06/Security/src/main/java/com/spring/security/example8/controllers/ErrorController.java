@@ -18,6 +18,6 @@ public class ErrorController {
         String errorMessage = (throwable != null ? throwable.getMessage() : "Unknown error");
         model.addAttribute("errorMessage", errorMessage);
         model.addAttribute("httpStatus", HttpStatus.INTERNAL_SERVER_ERROR);
-        return "error1";
+        return "error8";
     }
 }

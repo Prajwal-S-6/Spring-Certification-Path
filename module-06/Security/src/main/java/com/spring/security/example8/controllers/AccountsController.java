@@ -8,6 +8,6 @@ public class AccountsController {
 
     @GetMapping("/account")
     public String accounts() {
-        return "account1";
+        return "account8";
     }
 }

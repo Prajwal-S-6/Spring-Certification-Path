@@ -8,11 +8,11 @@ public class IndexController {
 
     @GetMapping({"/", "/home"})
     public String index() {
-        return "home1";
+        return "home8";
     }
 
     @GetMapping("/error")
     public String error() {
-        return "error1";
+        return "error8";
     }
 }
