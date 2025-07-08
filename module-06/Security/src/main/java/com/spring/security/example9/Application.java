@@ -19,7 +19,7 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        usersDao.save(new Users(1, "admin", passwordEncoder.encode("password")));
+        usersDao.save(new Users(1, "admin", passwordEncoder.encode("password1")));
     }
 
     public static void main(String[] args) {
