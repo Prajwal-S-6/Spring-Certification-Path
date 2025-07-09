@@ -18,8 +18,13 @@ public class LoginController {
 
     @PostMapping("/login")
     public String login(@RequestBody @Valid LoginRequest loginRequest) {
-        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
-        return "jwt token";
+
+        try {
+            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.username(), loginRequest.password()));
+            return "jwt token";
+        } catch (Exception e) {
+            throw e;
+        }
     }
 
     @GetMapping("/test")
