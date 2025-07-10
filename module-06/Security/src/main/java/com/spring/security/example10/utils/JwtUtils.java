@@ -17,9 +17,6 @@ import java.util.Date;
 @Component
 public class JwtUtils {
 
-    @Autowired
-    UserDetailsService userDetailsService;
-
     private final String secret = "my-very-long-secret-key-with-random-data-!##@#@#@#@#$";
     private final SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
 
@@ -34,7 +31,7 @@ public class JwtUtils {
 
     public boolean validateToken(String token, UserDetails userDetails) {
         Claims claim = getClaims(token);
-        return claim.getSubject().equals(userDetails.getUsername()) && claim.getExpiration().before(new Date());
+        return claim.getSubject().equals(userDetails.getUsername()) && !claim.getExpiration().before(new Date());
     }
 
     private Claims getClaims(String token) {
