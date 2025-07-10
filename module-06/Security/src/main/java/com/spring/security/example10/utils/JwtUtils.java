@@ -1,7 +1,11 @@
 package com.spring.security.example10.utils;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import org.bouncycastle.jcajce.provider.digest.Skein;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -12,6 +16,9 @@ import java.util.Date;
 
 @Component
 public class JwtUtils {
+
+    @Autowired
+    UserDetailsService userDetailsService;
 
     private final String secret = "my-very-long-secret-key-with-random-data-!##@#@#@#@#$";
     private final SecretKey secretKey = new SecretKeySpec(secret.getBytes(), "HmacSHA256");
@@ -25,10 +32,21 @@ public class JwtUtils {
                 .compact();
     }
 
-    public void validateToken(String token) {
-        Jwts.parser().verifyWith(secretKey)
+    public boolean validateToken(String token, String userName) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+        Claims claim = getClaims(token);
+        return claim.getSubject().equals(userDetails.getUsername()) && claim.getExpiration().before(new Date());
+    }
+
+    private Claims getClaims(String token) {
+        return Jwts.parser().verifyWith(secretKey)
                 .build()
                 .parseSignedClaims(token)
                 .getPayload();
+    }
+
+    public String extractUserName(String token) {
+        Claims claims = getClaims(token);
+        return claims.getSubject();
     }
 }
