@@ -24,4 +24,11 @@ public class JwtUtils {
                 .signWith(secretKey)
                 .compact();
     }
+
+    public void validateToken(String token) {
+        Jwts.parser().verifyWith(secretKey)
+                .build()
+                .parseSignedClaims(token)
+                .getPayload();
+    }
 }
