@@ -32,8 +32,7 @@ public class JwtUtils {
                 .compact();
     }
 
-    public boolean validateToken(String token, String userName) {
-        UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
+    public boolean validateToken(String token, UserDetails userDetails) {
         Claims claim = getClaims(token);
         return claim.getSubject().equals(userDetails.getUsername()) && claim.getExpiration().before(new Date());
     }
