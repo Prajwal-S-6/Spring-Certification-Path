@@ -70,6 +70,9 @@ public class WebSecurityConfig {
 
     @Bean
     public RoleHierarchy roleHierarchy() {
-        return RoleHierarchyImpl.withDefaultRolePrefix().role("ADMIN").implies("READ").build();
+        return RoleHierarchyImpl.withDefaultRolePrefix().role("ADMIN").implies("READ")
+                .role("ADMIN").implies("WRITE")
+                .role("ADMIN").implies("DELETE")
+                .build();
     }
 }
