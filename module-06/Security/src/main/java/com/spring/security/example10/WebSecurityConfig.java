@@ -35,7 +35,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/test").hasRole("ADMIN")
+                        .requestMatchers("/test").hasRole("READ")
                         .anyRequest().authenticated())
                         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                         .csrf(AbstractHttpConfigurer::disable)
@@ -70,7 +70,8 @@ public class WebSecurityConfig {
 
     @Bean
     public RoleHierarchy roleHierarchy() {
-        return RoleHierarchyImpl.withDefaultRolePrefix().role("ADMIN").implies("READ")
+        return RoleHierarchyImpl.withDefaultRolePrefix()
+                .role("ADMIN").implies("READ")
                 .role("ADMIN").implies("WRITE")
                 .role("ADMIN").implies("DELETE")
                 .build();
