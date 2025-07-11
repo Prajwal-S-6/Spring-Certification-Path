@@ -33,7 +33,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(auth -> auth
                 .requestMatchers("/login").permitAll()
-                .anyRequest().authenticated())
+                .anyRequest().hasRole("ADMIN"))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                 .csrf(AbstractHttpConfigurer::disable)
                 .headers(httpSecurityHeadersConfigurer -> httpSecurityHeadersConfigurer.frameOptions(HeadersConfigurer.FrameOptionsConfig::disable))
@@ -47,7 +47,7 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder)  {
-        UserDetails john = User.withUsername("john").password(passwordEncoder.encode("john")).build();
+        UserDetails john = User.withUsername("john").password(passwordEncoder.encode("john")).roles("ADMIN").build();
 
         return new InMemoryUserDetailsManager(john);
     }
