@@ -5,6 +5,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchy;
+import org.springframework.security.access.hierarchicalroles.RoleHierarchyImpl;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -48,7 +50,11 @@ public class WebSecurityConfig {
 
     @Bean
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder)  {
-        UserDetails john = User.withUsername("john").password(passwordEncoder.encode("john")).roles("ADMIN").build();
+        UserDetails john = User.withUsername("john")
+                .password(passwordEncoder.encode("john"))
+                .roles("ADMIN")
+                //.authorities("READ")
+                .build();
 
         return new InMemoryUserDetailsManager(john);
     }
@@ -60,5 +66,10 @@ public class WebSecurityConfig {
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
 
         return new ProviderManager(daoAuthenticationProvider);
+    }
+
+    @Bean
+    public RoleHierarchy roleHierarchy() {
+        return RoleHierarchyImpl.withDefaultRolePrefix().role("ADMIN").implies("READ").build();
     }
 }
