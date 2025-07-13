@@ -35,7 +35,7 @@ public class WebSecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity.authorizeHttpRequests(auth -> auth
                         .requestMatchers("/login").permitAll()
-                        .requestMatchers("/test").hasRole("READ")
+                        // .requestMatchers("/test").hasRole("READ")
                         .anyRequest().authenticated())
                         .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
                         .csrf(AbstractHttpConfigurer::disable)
@@ -52,7 +52,7 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder)  {
         UserDetails john = User.withUsername("john")
                 .password(passwordEncoder.encode("john"))
-                .roles("ADMIN")
+                //.roles("ADMIN")
                 //.authorities("READ")
                 .build();
 
