@@ -52,7 +52,7 @@ public class WebSecurityConfig {
     public UserDetailsService userDetailsService(PasswordEncoder passwordEncoder)  {
         UserDetails john = User.withUsername("john")
                 .password(passwordEncoder.encode("john"))
-                //.roles("ADMIN")
+                .roles("ADMIN")
                 //.authorities("READ")
                 .build();
 
@@ -68,12 +68,5 @@ public class WebSecurityConfig {
         return new ProviderManager(daoAuthenticationProvider);
     }
 
-    @Bean
-    public RoleHierarchy roleHierarchy() {
-        return RoleHierarchyImpl.withDefaultRolePrefix()
-                .role("ADMIN").implies("READ")
-                .role("ADMIN").implies("WRITE")
-                .role("ADMIN").implies("DELETE")
-                .build();
-    }
+
 }
