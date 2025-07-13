@@ -23,13 +23,13 @@ public class MethodSecurityConfig {
                 .build();
     }
 
-    @Bean
-    public MethodSecurityExpressionHandler methodSecurityExpressionHandler(RoleHierarchy roleHierarchy) {
-        DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler = new DefaultMethodSecurityExpressionHandler();
-        defaultMethodSecurityExpressionHandler.setRoleHierarchy(roleHierarchy);
-        defaultMethodSecurityExpressionHandler.setDefaultRolePrefix("MY_ROLE_");
-        return defaultMethodSecurityExpressionHandler;
-    }
+//    @Bean
+//    public MethodSecurityExpressionHandler methodSecurityExpressionHandler(RoleHierarchy roleHierarchy) {
+//        DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler = new DefaultMethodSecurityExpressionHandler();
+//        defaultMethodSecurityExpressionHandler.setRoleHierarchy(roleHierarchy);
+//        defaultMethodSecurityExpressionHandler.setDefaultRolePrefix("MY_ROLE_");
+//        return defaultMethodSecurityExpressionHandler;
+//    }
 
     @Bean
     public GrantedAuthorityDefaults grantedAuthorityDefaults() {
