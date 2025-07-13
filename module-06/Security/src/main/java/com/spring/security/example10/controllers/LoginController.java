@@ -33,7 +33,7 @@ public class LoginController {
     }
 
     @GetMapping("/test")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasRole('READ')")
     public String getTest() {
         return "Success";
     }
