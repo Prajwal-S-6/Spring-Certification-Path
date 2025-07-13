@@ -4,6 +4,7 @@ import com.spring.security.example10.dto.LoginRequest;
 import com.spring.security.example10.utils.JwtUtils;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,7 @@ public class LoginController {
     }
 
     @GetMapping("/test")
+    @PreAuthorize("hasRole('ADMIN')")
     public String getTest() {
         return "Success";
     }
