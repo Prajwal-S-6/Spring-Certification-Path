@@ -14,17 +14,17 @@ public class MethodSecurityConfig {
 
     @Bean
     public RoleHierarchy roleHierarchy() {
-        return RoleHierarchyImpl.withDefaultRolePrefix()
+        return RoleHierarchyImpl.withRolePrefix("MY_ROLE")
                 .role("ADMIN").implies("READ")
                 .role("ADMIN").implies("WRITE")
                 .role("ADMIN").implies("DELETE")
                 .build();
     }
 
-    @Bean
-    public MethodSecurityExpressionHandler methodSecurityExpressionHandler(RoleHierarchy roleHierarchy) {
-        DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler = new DefaultMethodSecurityExpressionHandler();
-        defaultMethodSecurityExpressionHandler.setRoleHierarchy(roleHierarchy);
-        return defaultMethodSecurityExpressionHandler;
-    }
+//    @Bean
+//    public MethodSecurityExpressionHandler methodSecurityExpressionHandler(RoleHierarchy roleHierarchy) {
+//        DefaultMethodSecurityExpressionHandler defaultMethodSecurityExpressionHandler = new DefaultMethodSecurityExpressionHandler();
+//        defaultMethodSecurityExpressionHandler.setRoleHierarchy(roleHierarchy);
+//        return defaultMethodSecurityExpressionHandler;
+//    }
 }
