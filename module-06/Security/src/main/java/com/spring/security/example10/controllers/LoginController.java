@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class LoginController {
@@ -37,4 +34,13 @@ public class LoginController {
     public String getTest() {
         return "Success";
     }
+
+    @GetMapping("/test/{id}")
+    @PreAuthorize("@myCustomSecurityComponent.isIdOne(#id)")
+    public String testWithId(@PathVariable int id) {
+        return "Success " +id;
+    }
+
+
+
 }
