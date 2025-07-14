@@ -41,6 +41,11 @@ public class LoginController {
         return "Success " +id;
     }
 
+    @GetMapping("/test2/{id}")
+    @PreAuthorize("isIdTwo(#id)")
+    public String testWithId2(@PathVariable int id) {
+        return "Success " +id;
+    }
 
 
 }
