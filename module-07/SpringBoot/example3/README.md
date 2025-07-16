@@ -6,3 +6,6 @@
 
 Examples:
 @ConditionalOnBean, @ConditionalOnMissingBean, @ConditionalOnClass, @ConditionalOnMissingClass, @ConditionalOnProperty etc
+
+* SpringBootStarter POM is a maven module hat represents empty jar with set of dependencies required to work with specific technologies like jpa, embedded database, embedded container
+* It also provides autoconfiguration to create beans required to integrate with technologies.
