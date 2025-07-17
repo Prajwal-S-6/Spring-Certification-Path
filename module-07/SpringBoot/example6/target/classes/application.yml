@@ -1,0 +1,16 @@
+server:
+  url: https://local.service.com/
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+server:
+  url: https://dev.service.com/
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+server:
+  url: https://prod.service.com/
