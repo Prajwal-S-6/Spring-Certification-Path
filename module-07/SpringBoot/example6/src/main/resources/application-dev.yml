@@ -1,1 +1,2 @@
-server.type: small
+server:
+  type: small

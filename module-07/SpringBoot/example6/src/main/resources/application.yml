@@ -2,11 +2,15 @@ server:
   url: https://local.service.com/
 ---
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
 server:
   url: https://dev.service.com/
 ---
 spring:
-  profiles: prod
+  config:
+    activate:
+      on-profile: prod
 server:
   url: https://prod.service.com/
