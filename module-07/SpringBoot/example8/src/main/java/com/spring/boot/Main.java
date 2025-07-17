@@ -18,7 +18,7 @@ public class Main implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        jdbcTemplate.queryForList("select email from employee", String.class)
+        jdbcTemplate.queryForList("select email from employer", String.class)
                 .forEach(System.out::println);
 
     }

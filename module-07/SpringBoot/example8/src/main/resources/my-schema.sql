@@ -1,6 +1,6 @@
-drop table if exists employee;
+drop table if exists employer;
 
-create table employee
+create table employer
 (
     employee_id  int,
     first_name   varchar(32),
