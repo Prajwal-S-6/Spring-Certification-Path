@@ -12,3 +12,7 @@
 Order:
 Outside jar in /config path for profile specific properties file > in current directory > non profile files in same order >
 /config path in class path for profile specific > i current root class path > for non profile files
+
+
+* We can change the config file name using: spring.config.name
+* We can also change the location pointed by spring using: spring.config.location
