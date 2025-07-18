@@ -14,6 +14,7 @@
     <modules>
         <module>application10</module>
         <module>auto-configuration10</module>
+        <module>spring-application</module>
     </modules>
 
     <properties>
