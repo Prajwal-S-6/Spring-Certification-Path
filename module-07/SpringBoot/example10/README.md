@@ -9,8 +9,10 @@
 
 ---
 
-* @EnableAutoConfiguration - turns on auto- configuration in spring boot, it tries to guess the spring beans to be configured based on dependencies and AutoConfiguration classes with @ConditionalOn... from starter modules
+* @EnableAutoConfiguration - turns on auto-configuration in spring boot, it tries to guess the spring beans to be configured based on dependencies and AutoConfiguration classes with @ConditionalOn... from starter modules
 * When using @SpringBootApplication @EnableAuoConfiguration is added by default
 
 * @SpringBootApplication = @SpringBootConfiguration + @ComponentScan + @EnableAutoConfiguration.
 * @SpringBootConfiguration = @Configuration
+* SpringBoot will perform component scan because due to @ComponentScan annotation, and it will search for @Component annotated class within same package
+* But this can be changed to scan other packages using scanBasePackages/scanBasePackagesClasses on @SpringBootApplication
