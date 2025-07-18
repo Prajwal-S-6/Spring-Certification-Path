@@ -1,6 +1,7 @@
 package com.spring.boot.config;
 
 import jakarta.persistence.EntityManagerFactory;
+import org.springframework.boot.autoconfigure.AutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Bean;
@@ -16,9 +17,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@Configuration
+@AutoConfiguration
 @EnableTransactionManagement
-@EnableJpaRepositories(basePackages = "com.spring.boot", entityManagerFactoryRef = "entityManagerFactoryBean", transactionManagerRef = "platformTransactionManager")
+@EnableJpaRepositories(basePackages = "com.spring.boot.dao", entityManagerFactoryRef = "entityManagerFactoryBean", transactionManagerRef = "platformTransactionManager")
 @ConditionalOnClass(name = "org.hsqldb.Database")
 @ConditionalOnProperty(value = "my.auto.config", havingValue = "true")
 public class DataSourceConfig {
