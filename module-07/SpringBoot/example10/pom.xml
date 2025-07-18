@@ -18,6 +18,8 @@
         <module>scan-other-package</module>
         <module>my-sql-app</module>
         <module>my-sql-auto-config</module>
+        <module>conditional-app</module>
+        <module>conditional-auto-config</module>
     </modules>
 
     <properties>
