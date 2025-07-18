@@ -1,0 +1,3 @@
+com.spring.boot.configuration.db.HsqlDbConfig
+com.spring.boot.configuration.fileStore.LocalFileStore
+com.spring.boot.configuration.fileStore.NetworkFileStore
