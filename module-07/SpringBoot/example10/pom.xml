@@ -16,6 +16,8 @@
         <module>auto-configuration10</module>
         <module>spring-application</module>
         <module>scan-other-package</module>
+        <module>my-sql-app</module>
+        <module>my-sql-auto-config</module>
     </modules>
 
     <properties>

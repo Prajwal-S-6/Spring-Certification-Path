@@ -16,3 +16,11 @@
 * @SpringBootConfiguration = @Configuration
 * SpringBoot will perform component scan because due to @ComponentScan annotation, and it will search for @Component annotated class within same package
 * But this can be changed to scan other packages using scanBasePackages/scanBasePackagesClasses on @SpringBootApplication
+
+---
+* In spring boot for example DataSource and JdbcTemplate are autoconfigured by AutoConfiguration classes present in spring-boot-autoconfigure module.
+* DataSourceAutoConfiguration, JdbcTemplateAutoConfiguration are the auto configuration classes we can directly inject them.
+
+---
+* We can customize the spring boot autoconfiguration by creating our own auto configuration module with @AutoConfiguration classes.
+* Declaring these AutoConfiguration classes in META-INF/spring/org.springframework.boot.autoconfigure.AutoConfiguration.imports or in META-INF/spring.factories for older spring versions.
