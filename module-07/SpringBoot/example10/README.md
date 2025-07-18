@@ -11,3 +11,6 @@
 
 * @EnableAutoConfiguration - turns on auto- configuration in spring boot, it tries to guess the spring beans to be configured based on dependencies and AutoConfiguration classes with @ConditionalOn... from starter modules
 * When using @SpringBootApplication @EnableAuoConfiguration is added by default
+
+* @SpringBootApplication = @SpringBootConfiguration + @ComponentScan + @EnableAutoConfiguration.
+* @SpringBootConfiguration = @Configuration
