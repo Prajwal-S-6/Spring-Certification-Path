@@ -58,3 +58,6 @@
   * management.endpoint.health.show-details
   * management.endpoint.health.show-components
 * Value can be never(default), always, when-authorized(based on management.endpoint.health.roles)
+
+
+* We can create a CustomHealthIndicator by implementing HealthIndicator, it has to provide the status and we can also set other details
