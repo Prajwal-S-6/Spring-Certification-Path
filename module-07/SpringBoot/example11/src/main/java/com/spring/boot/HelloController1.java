@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class HelloController {
+public class HelloController1 {
 
-    private final Logger logger = LoggerFactory.getLogger(HelloController.class);
+    private final Logger logger = LoggerFactory.getLogger(HelloController1.class);
 
-    @GetMapping("/hello")
+    @GetMapping("/hello1")
     public String hello() {
         logger.trace("TRACE");
         logger.debug("DEBUG");
@@ -19,6 +19,6 @@ public class HelloController {
         logger.warn("WARN");
         logger.error("ERROR");
 
-        return "Hello";
+        return "Hello1";
     }
 }

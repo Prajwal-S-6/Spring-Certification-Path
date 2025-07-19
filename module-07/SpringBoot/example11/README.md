@@ -31,4 +31,7 @@
 
 ---
 * /loggers will list all the currently configured loggers at package level and their levels
-* /loggers/${logger-name} - to get the log level at the package(logger-name is package name/Class name)
+* /loggers/${logger-name} - to get the log level at the package(logger-name is package name.Class name)
+* It provides the effective log level.
+* We can change the effective log level for package.className by doing POST request with body
+   {"configuredLevel": "DEBUG"} to /loggers/${logger-name}
