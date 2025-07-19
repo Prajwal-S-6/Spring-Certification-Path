@@ -8,6 +8,9 @@
 
 * Some of the endpoints provided out of the box are:
    auditevents, info, health, metrics, loggers, env, sessions, threaddump, shutdown etc
+* All are enabled by default except shutdown.
+* We can change the default enabled endpoint using:
+   **management.endpoints.enabled-by-default**=false
 
 ---
  * Actuator endpoints can be accessed via Http(Web) or JMX.
@@ -22,4 +25,6 @@
 ---
 * /info endpoint need to be exposed via web, and also need to be enabled using:
    management.info.env.enabled=true
-* It provides non sensitive information about the application
+* It provides non sensitive information about the application  like app name, description, version
+* These can be added via properties: info.app.name, info.app.version, info.app.description
+* Also these can be added implementing InfoContributor bean
