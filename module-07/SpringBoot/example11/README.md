@@ -80,4 +80,6 @@
 * We can change this default http status mapping using:
     * management.endpoint.health.status.http-mapping.DOWN=501
 
-* We can change the HealthIndicator status 
+* We can change the HealthIndicator status severity order:
+  * management.endpoint.health.status.order=OUT_OF_SERVICE,DOWN,UP,UNKNOWN
+* Default order - DOWN > OUT_OF_SERVICE > UP > UNKNOWN
