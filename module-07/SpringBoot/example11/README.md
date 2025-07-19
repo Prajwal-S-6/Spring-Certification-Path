@@ -60,4 +60,24 @@
 * Value can be never(default), always, when-authorized(based on management.endpoint.health.roles)
 
 
-* We can create a CustomHealthIndicator by implementing HealthIndicator, it has to provide the status and we can also set other details
+* We can create a CustomHealthIndicator by implementing HealthIndicator, it has to provide the status and we can also set other details.
+* Some of the out of box provided HealthIndicators are: DataSourceHealthIndicator, DiskSpaceHealthIndicator, ApplicationHealthIndicator etc
+
+
+
+* HealthIndicator should provide status of the component to inform spring actuator
+* It has to return one of these: DOWN, OUT_OF_SERVICE, UP, UNKNOWN, Custom Defined status
+* StatusAggregator takes status from all the HealthIndicators and provides the aggregate result
+* HealthIndicator provides following status in the below priority Order:
+  * DOWN > OUT_OF_SERVICE > UP > UNKNOWN
+* StatusAggregator sorts and takes first element which represents highest priority status and becomes final status of application.
+
+
+* Http Status Mapping for HealthIndicator status are:
+  * UP, UNKNOWN - 200
+  * DOWN, OUT_OF_SERVICE - 503
+
+* We can change this default http status mapping using:
+    * management.endpoint.health.status.http-mapping.DOWN=501
+
+* We can change the HealthIndicator status 
