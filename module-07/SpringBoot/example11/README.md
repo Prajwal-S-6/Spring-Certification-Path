@@ -35,3 +35,16 @@
 * It provides the effective log level.
 * We can change the effective log level for package.className by doing POST request with body
    {"configuredLevel": "DEBUG"} to /loggers/${logger-name}
+
+---
+* We can access specific metric endpoint using TAG=KEY:VALUE
+* Example: /metrics/http.server.requests?tag=status:200&tag=method:GET
+* It is used to filter the query results, mainly used with /metrics endpoint
+  http://localhost:8080/actuator/metrics/http.server.requests?tag=uri:/hello1&tag=status:200
+
+
+* Metrics are used to examine the metrics of application at runtime like: request count, Cpu usage,memory usage, thread info.
+* We can create a custom metrics with/without tag using MeterRegistry from Micrometer Application Metrics Facade
+* We can use the primitives provided by MeterRegistry like: Counter, Gauge,Timer etc
+* By injecting MeterRegistry at application start in constructor
+   meterRegistry.counter("metric-name", "tagKey", "tagValue")
