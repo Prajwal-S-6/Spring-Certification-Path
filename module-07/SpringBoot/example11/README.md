@@ -48,3 +48,13 @@
 * We can use the primitives provided by MeterRegistry like: Counter, Gauge,Timer etc
 * By injecting MeterRegistry at application start in constructor
    meterRegistry.counter("metric-name", "tagKey", "tagValue")
+
+---
+* HealthIndicator is a component used to indicate if the application can handle requests successfully.
+* It will check all the HealthIndicators registered and will return the aggregated result using StatusAggregator
+* Accessed using /actuator/health
+* Used to check health of the application, useful for building highly reliable and fault-tolerant, load balanced applications
+* To get the detailed health view we need to enable few properties:
+  * management.endpoint.health.show-details
+  * management.endpoint.health.show-components
+* Value can be never(default), always, when-authorized(based on management.endpoint.health.roles)
