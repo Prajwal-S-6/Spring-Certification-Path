@@ -28,3 +28,7 @@
 * It provides non sensitive information about the application  like app name, description, version
 * These can be added via properties: info.app.name, info.app.version, info.app.description
 * Also these can be added implementing InfoContributor bean
+
+---
+* /loggers will list all the currently configured loggers at package level and their levels
+* /loggers/${logger-name} - to get the log level at the package(logger-name is package name/Class name)
