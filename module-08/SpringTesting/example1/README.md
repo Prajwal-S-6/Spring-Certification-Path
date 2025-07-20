@@ -31,3 +31,7 @@
   * @JdbcTest
   * @RestTestClient
   * @JsonTest
+
+
+* spring-boot-starter-test dependency brings:
+  * Junit, Spring Test,SpringBoot Test, AssertJ, Mockito, JSONAssert etc
