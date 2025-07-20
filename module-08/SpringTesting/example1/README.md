@@ -5,7 +5,7 @@
 * @SpringBootTest enables some of spring boot specific features on top of spring test for testing like:
   * Automated context creation through SpringApplication class
   * Web environment for testing - Mocked or Embedded
-  * Mocked bean injection via @MockBean
+  * Mocked bean injection via @MockitoBean
   * Spy injection via @SpyBean
   * Auto configuration for mvc testing, jdbc testing , jpa testing
 
