@@ -12,7 +12,6 @@ import lombok.Data;
 @Data
 @Entity
 @Builder
-@AllArgsConstructor
 public class City {
     @Id
     @GeneratedValue
@@ -20,5 +19,10 @@ public class City {
     private String name;
 
     public City() {
+    }
+
+    public City(Integer id, String name) {
+        this.id = id;
+        this.name = name;
     }
 }
