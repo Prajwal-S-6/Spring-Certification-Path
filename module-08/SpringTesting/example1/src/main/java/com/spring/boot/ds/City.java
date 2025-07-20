@@ -25,4 +25,9 @@ public class City {
         this.id = id;
         this.name = name;
     }
+
+
+    public City(String a) {
+        this.name = a;
+    }
 }

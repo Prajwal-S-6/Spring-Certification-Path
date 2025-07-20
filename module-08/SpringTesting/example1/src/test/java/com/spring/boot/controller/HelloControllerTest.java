@@ -21,10 +21,16 @@ class HelloControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
+    @MockitoBean
+    private NameService nameService;
+
     @Test
     void shouldSayHello() throws Exception {
 
+        when(nameService.getName()).thenReturn("TEST");
+
         MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/")).andReturn();
+
         assertEquals("Hello TEST", mvcResult.getResponse().getContentAsString());
     }
 }
