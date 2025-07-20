@@ -3,6 +3,8 @@
 * @Mock is from mockito framework,it is used to create mock for the classes
 * This is used by MockitoJUnitRunner,each field annotated with @Mock will have mock created for that class.
 * This will only create mock,to inject the mock to the specified class we need to add @InjectMocks on the target class
+* @RunWith(MockitoJUnitRunner.class) JUnit4
+* @ExtendWith(MockitoExtension.class) JUit5
 
 
 * @MockitoBean is from spring-boot-test it also creates Mockito mock and injects into ApplicationContext created by @SpringBootTest
