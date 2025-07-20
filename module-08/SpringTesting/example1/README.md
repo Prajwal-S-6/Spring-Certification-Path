@@ -35,3 +35,10 @@
 
 * spring-boot-starter-test dependency brings:
   * Junit, Spring Test,SpringBoot Test, AssertJ, Mockito, JSONAssert etc
+
+
+---
+* @SpringBootApplication scans for components in its package and in its subpackages.
+* If components are in other package, we need to tell spring boot to scan other packages using - @SpringBootApplication(scanBasePackages/scanBasePackagesClass)
+* However, this doesn't work for @Entity and Data Repository classes
+* For this along with @SpringBootApplication we need to use - @EnableJpaRepositories(basePackages=) + @EntityScan("com.package.Entities")
