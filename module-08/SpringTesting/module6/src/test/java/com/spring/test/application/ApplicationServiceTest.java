@@ -78,4 +78,29 @@ public class ApplicationServiceTest {
         assertThat(bookingResult.getReservation()).isEmpty();
     }
 
+    @Test
+    public void shouldBookAnyRoomForRegisteredGuests() {
+
+        when(bookingService.findAvailableRoom(date)).thenReturn(Optional.of(new Room(1, "A", "A")));
+        when(bookingService.bookRoom(new Room(1, "A","A"), new Guest("P","S"), date)).thenReturn(Optional.of(new Reservation(new Room(1, "A", "A"), new Guest("P", "S"), date)));
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(new Guest("P", "S"),date);
+
+
+        verify(bookingService).bookRoom(new Room(1, "A","A"), new Guest("P","S"), date);
+        assertEquals(BookingResult.BookingState.ROOM_BOOKED, bookingResult.getBookingState());
+        assertEquals(new Reservation(new Room(1, "A", "A"), new Guest("P", "S"), date), bookingResult.getReservation().get());
+
+    }
+
+    @Test
+    public void shouldRegisterGuest() {
+        Guest guest = new Guest("P","S");
+        when(guestRegistrationService.registerGuest(guest)).thenReturn(new Guest(1,"P","S"));
+        Guest registeredGuest = applicationService.registerGuest("P","S");
+
+        verify(guestRegistrationService).registerGuest(guest);
+        assertEquals(new Guest(1, "P","S"), registeredGuest);
+    }
+
 }
