@@ -1,0 +1,64 @@
+package com.spring.test.service;
+
+import com.spring.test.ds.Guest;
+import com.spring.test.ds.Reservation;
+import com.spring.test.ds.Room;
+import com.spring.test.repository.ReservationRepository;
+import com.spring.test.repository.RoomRepository;
+import junit.framework.TestCase;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.MockitoJUnitRunner;
+
+import java.time.LocalDate;
+import java.util.Optional;
+import java.util.Set;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
+public class BookingServiceTest  {
+
+    @InjectMocks
+    private BookingService bookingService;
+
+    @Mock
+    private ReservationRepository reservationRepository;
+
+    @Mock
+    private RoomRepository roomRepository;
+
+    private static final LocalDate date = LocalDate.of(2025,7, 21);
+
+    @Test
+    public void shouldFindAvailableRoomsAtDateWithAllRoomsAvailable() {
+        Room room1 = new Room("A","A");
+        Room room2 = new Room("B","B");
+        when(roomRepository.findAll()).thenReturn(Set.of(room1, room2));
+        when(reservationRepository.findAllByReservationDate(date)).thenReturn(Set.of());
+
+        Optional<Room> roomAvailable = bookingService.findAvailableRoom(date);
+
+        assertThat(roomAvailable).isPresent();
+        assertThat(roomAvailable.get()).isIn(room1,room2);
+    }
+
+    @Test
+    public void shouldFindRoomWhichIsNotReserved() {
+        Room room1 = new Room("A","A");
+        Room room2 = new Room("B","B");
+        when(roomRepository.findAll()).thenReturn(Set.of(room1, room2));
+        when(reservationRepository.findAllByReservationDate(date)).thenReturn(Set.of(new Reservation(room1, new Guest("P","S"),date)));
+
+        Optional<Room> availableRoom = bookingService.findAvailableRoom(date);
+
+        assertEquals(room2, availableRoom.get());
+        assertThat(availableRoom.get()).isEqualTo(room2);
+
+    }
+
+}
