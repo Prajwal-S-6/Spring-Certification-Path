@@ -44,6 +44,7 @@ public class GuestRegistrationServiceTest {
         assertThrows(IllegalArgumentException.class, ()-> {
             guestRegistrationService.registerGuest(guest1);
         });
+        verify(guestRepository,  never()).save(guest1);
 
     }
 
