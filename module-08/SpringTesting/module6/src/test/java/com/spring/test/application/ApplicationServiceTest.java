@@ -19,6 +19,7 @@ import java.time.LocalDate;
 import java.util.Optional;
 
 import static com.spring.test.ds.BookingResult.BookingState.NO_ROOM_AVAILABLE;
+import static org.assertj.core.api.Assertions.anyOf;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.*;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -102,5 +103,33 @@ public class ApplicationServiceTest {
         verify(guestRegistrationService).registerGuest(guest);
         assertEquals(new Guest(1, "P","S"), registeredGuest);
     }
+
+    @Test
+    public void shouldNotBookRoomWhenNoRoomIsAvailableForRegisterGuest() {
+        when(bookingService.findAvailableRoom(date)).thenReturn(Optional.empty());
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(new Guest(1, "P","S"), date);
+
+        verify(bookingService,never()).bookRoom(new Room(), new Guest("P","S"),date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+
+    @Test
+    public void shouldBookSpecificRoomForRegisteredGuest() {
+
+        when(bookingService.bookRoom("A", new Guest("P","S"), date)).thenReturn(Optional.of(new Reservation(new Room(1, "A", "A"), new Guest("P", "S"), date)));
+
+        BookingResult bookingResult = applicationService.bookSpecificRoomForRegisteredGuest(new Guest("P", "S"), "A", date);
+
+        verify(bookingService).bookRoom("A", new Guest("P","S"), date);
+
+        assertEquals(BookingResult.BookingState.ROOM_BOOKED, bookingResult.getBookingState());
+        assertEquals(new Reservation(new Room(1, "A", "A"), new Guest("P", "S"), date), bookingResult.getReservation().get());
+    }
+
+
 
 }

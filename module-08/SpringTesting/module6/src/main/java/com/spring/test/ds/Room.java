@@ -19,7 +19,7 @@ public class Room {
     private String section;
 
     @SuppressWarnings("unused")
-    Room() {
+    public Room() {
     }
 
     public Room(String name, String section) {
