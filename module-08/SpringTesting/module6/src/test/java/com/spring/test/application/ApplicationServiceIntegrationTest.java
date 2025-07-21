@@ -120,6 +120,33 @@ public class ApplicationServiceIntegrationTest {
     }
 
 
+    @Test
+    @DirtiesContext
+    public void shouldRejectWhenAllRoomsAreBooked() {
+        applicationService.bookAnyRoomForNewGuest("P", "S", date);
+        applicationService.bookAnyRoomForNewGuest("H", "S", date);
+        applicationService.bookAnyRoomForNewGuest("R", "S", date);
+
+        Guest guest = applicationService.registerGuest("K","S");
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(guest, date);
+        BookingResult bookingResult1 = applicationService.bookSpecificRoomForRegisteredGuest(guest, "Green Room", date);
+        BookingResult bookingResult2 = applicationService.bookAnyRoomForRegisteredGuest(guest, LocalDate.of(2025, 7, 10));
+
+        assertEquals(NO_ROOM_AVAILABLE,bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+
+        assertEquals(NO_ROOM_AVAILABLE,bookingResult1.getBookingState());
+        assertThat(bookingResult1.getReservation()).isEmpty();
+
+        assertEquals(ROOM_BOOKED, bookingResult2.getBookingState());
+        assertThat(bookingResult2.getReservation()).isNotEmpty();
+        assertEquals(LocalDate.of(2025, 7, 10), bookingResult2.getReservation().get().getReservationDate());
+        assertEquals("K", bookingResult2.getReservation().get().getGuest().getFirstName());
+
+
+
+    }
 
 
 
