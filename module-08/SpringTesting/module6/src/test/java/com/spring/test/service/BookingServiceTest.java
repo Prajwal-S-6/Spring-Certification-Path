@@ -5,7 +5,6 @@ import com.spring.test.ds.Reservation;
 import com.spring.test.ds.Room;
 import com.spring.test.repository.ReservationRepository;
 import com.spring.test.repository.RoomRepository;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -60,5 +59,30 @@ public class BookingServiceTest  {
         assertThat(availableRoom.get()).isEqualTo(room2);
 
     }
+
+    @Test
+    public void shouldNotFindRoomWhenAllAreReserved() {
+        Room room1 = new Room("A","A");
+        Room room2 = new Room("B","B");
+        when(roomRepository.findAll()).thenReturn(Set.of(room1, room2));
+        when(reservationRepository.findAllByReservationDate(date)).thenReturn(Set.of(new Reservation(room1, new Guest("P","S"),date), new Reservation(room2, new Guest("A", "Z"),date)));
+
+        Optional<Room> room = bookingService.findAvailableRoom(date);
+
+        assertThat(room).isEmpty();
+
+    }
+
+    @Test
+    public void shouldNotFindRoomWhenRoomsAreNotAvailable() {
+        when(roomRepository.findAll()).thenReturn(Set.of());
+        when(reservationRepository.findAllByReservationDate(date)).thenReturn(Set.of());
+
+        Optional<Room> room = bookingService.findAvailableRoom(date);
+
+        assertThat(room).isEmpty();
+
+    }
+
 
 }
