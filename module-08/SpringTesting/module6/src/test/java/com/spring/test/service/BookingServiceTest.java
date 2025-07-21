@@ -18,9 +18,8 @@ import java.util.Set;
 
 import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.junit.Assert.*;
+import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BookingServiceTest  {
@@ -106,5 +105,41 @@ public class BookingServiceTest  {
         assertThrows(NoSuchElementException.class, () -> bookingService.bookRoom("A", new Guest("P","S"),date));
     }
 
+    @Test
+    public void shouldNotBookRoomByNameIfNotAvailableByDate() {
+        when(roomRepository.findByName("A")).thenReturn(Optional.of(new Room("A", "A")));
+        when(reservationRepository.existsByRoomAndReservationDate(new Room("A", "A"),date)).thenReturn(true);
+
+        Optional<Reservation> reservation = bookingService.bookRoom("A", new Guest("P","S"), date);
+
+        verify(reservationRepository, never()).save(new Reservation());
+        assertTrue(reservation.isEmpty());
+
+    }
+
+
+    @Test
+    public void shouldBookRoomByNameReservationExistsForDifferentDate() {
+        when(roomRepository.findByName("A")).thenReturn(Optional.of(new Room("A", "A")));
+        when(reservationRepository.existsByRoomAndReservationDate(new Room("A", "A"),LocalDate.of(2025, 7, 22))).thenReturn(false);
+        when(reservationRepository.save(new Reservation(new Room("A","A"), new Guest("P", "S"),LocalDate.of(2025, 7, 22)))).thenReturn(new Reservation(new Room("A","A"), new Guest("P", "S"),LocalDate.of(2025, 7, 22)));
+
+        Optional<Reservation> reservation = bookingService.bookRoom("A", new Guest("P","S"), LocalDate.of(2025, 7, 22));
+        verify(reservationRepository).save(new Reservation(new Room("A","A"), new Guest("P", "S"),LocalDate.of(2025, 7, 22)));
+        assertThat(reservation).isNotEmpty();
+        assertEquals(LocalDate.of(2025,7,22), reservation.get().getReservationDate());
+
+    }
+
+    @Test
+    public void shouldNotBookRoomIfNotAvailableByDate() {
+        when(reservationRepository.existsByRoomAndReservationDate(new Room("A", "A"),date)).thenReturn(true);
+
+        Optional<Reservation> reservation = bookingService.bookRoom(new Room("A","A"), new Guest("P","S"), date);
+
+        verify(reservationRepository, never()).save(new Reservation());
+        assertTrue(reservation.isEmpty());
+
+    }
 
 }

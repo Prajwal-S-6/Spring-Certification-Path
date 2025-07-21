@@ -20,7 +20,7 @@ public class Reservation {
     private LocalDate reservationDate;
 
     @SuppressWarnings("unused")
-    Reservation() {
+    public Reservation() {
     }
 
     public Reservation(Room room, Guest guest, LocalDate reservationDate) {
