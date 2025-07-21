@@ -12,11 +12,14 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.time.LocalDate;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.Set;
 
+import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -82,6 +85,25 @@ public class BookingServiceTest  {
 
         assertThat(room).isEmpty();
 
+    }
+
+    @Test
+    public void shouldBookByRoomName() {
+        when(roomRepository.findByName("A")).thenReturn(Optional.of(new Room("A", "A")));
+        when(reservationRepository.existsByRoomAndReservationDate(new Room("A","A"), date)).thenReturn(false);
+        when(reservationRepository.save(new Reservation(new Room("A","A"),new Guest("P","S"),date))).thenReturn(new Reservation(new Room("A","A"),new Guest("P","S"),date));
+
+        Optional<Reservation> reservation = bookingService.bookRoom("A", new Guest("P","S"),date);
+
+        assertThat(reservation).isPresent();
+        assertEquals(date, reservation.get().getReservationDate());
+
+    }
+
+    @Test()
+    public void shouldNotBookIfRoomIsNotAvailableByName() {
+        when(roomRepository.findByName("A")).thenThrow(NoSuchElementException.class);
+        assertThrows(NoSuchElementException.class, () -> bookingService.bookRoom("A", new Guest("P","S"),date));
     }
 
 
