@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.Set;
 import java.util.UUID;
 
-public interface ReservationRepository extends CrudRepository<Reservation, UUID> {
+public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
 
     Set<Reservation> findAllByReservationDate(LocalDate reservationDate);
 

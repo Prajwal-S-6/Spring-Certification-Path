@@ -131,5 +131,17 @@ public class ApplicationServiceTest {
     }
 
 
+    @Test
+    public void shouldNotBookSpecificRoomForRegisteredGuestIfRoomIsNotAvailable() {
+        when(bookingService.bookRoom("A", new Guest("P", "S"), date)).thenReturn(Optional.empty());
+
+        BookingResult bookingResult = applicationService.bookSpecificRoomForRegisteredGuest(new Guest("P","S"),"A", date);
+
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+
+    }
+
 
 }
