@@ -1,4 +1,4 @@
-package com.spring.test.application;
+package com.spring.test.configuration;
 
 import com.spring.test.ds.Room;
 import com.spring.test.service.HotelManagementService;
@@ -19,9 +19,9 @@ public class TestDataConfiguration {
 
     @PostConstruct
     private void registerRooms() {
-        hotelManagementService.registerRoom(new Room(ROOM_A, "A"));
-        hotelManagementService.registerRoom(new Room(ROOM_B, "B"));
-        hotelManagementService.registerRoom(new Room(ROOM_B, "B"));
+        hotelManagementService.registerRoom(new Room( ROOM_A, "A"));
+        hotelManagementService.registerRoom(new Room( ROOM_B, "B"));
+        hotelManagementService.registerRoom(new Room( ROOM_C, "C"));
     }
 
 }

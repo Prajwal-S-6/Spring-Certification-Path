@@ -13,7 +13,7 @@ import java.util.UUID;
 public class Room {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Integer id;
     @Column(unique = true)
     private String name;
     private String section;
@@ -22,16 +22,22 @@ public class Room {
     Room() {
     }
 
+    public Room(Integer id, String name, String section) {
+        this.id = id;
+        this.name = name;
+        this.section = section;
+    }
+
     public Room(String name, String section) {
         this.name = name;
         this.section = section;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(UUID id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
