@@ -9,5 +9,5 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationConfiguration.class)
 @ActiveProfiles("test")
-public class IntegrationTestBase {
+public class IntegrationTestBase1 {
 }
