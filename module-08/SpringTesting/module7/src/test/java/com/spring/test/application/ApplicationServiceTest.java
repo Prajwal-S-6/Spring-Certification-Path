@@ -25,6 +25,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.spring.test.configuration.TestDataConfiguration.*;
+import static com.spring.test.ds.BookingResult.BookingState.NO_ROOM_AVAILABLE;
 import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.*;
@@ -45,6 +46,10 @@ public class ApplicationServiceTest  {
     private BookingService bookingService;
     @Autowired
     private HotelManagementService hotelManagementService;
+
+    @Autowired
+    private RoomRepository roomRepository;
+
     @Autowired
     private GuestSharableDataService guestSharableDataServiceMock;
 
@@ -95,6 +100,19 @@ public class ApplicationServiceTest  {
         assertEquals("S", bookingResult.getReservation().get().getGuest().getLastName());
 
     }
+
+    @Test
+    @DirtiesContext
+    public void shouldRejectWhenNoRoomIsAvailable() {
+        roomRepository.deleteAll();
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+
 
 
 
