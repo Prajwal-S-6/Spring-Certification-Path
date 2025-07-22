@@ -1,17 +1,21 @@
 package com.spring.test.application;
 
 import com.spring.test.context.aproach1.IntegrationTestBase1;
+import com.spring.test.ds.Guest;
 import com.spring.test.ds.Room;
 import com.spring.test.service.GuestSharableDataService;
 import com.spring.test.service.HotelManagementService;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.jdbc.Sql;
 
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import static com.spring.test.configuration.TestDataConfiguration.*;
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -35,4 +39,21 @@ public class ApplicationServiceIntegrationTest1 extends IntegrationTestBase1 {
     }
 
 
+    @Test
+    public void shouldFetchGuestSharableData() {
+        when(guestSharableDataServiceMock.getGuestSharableData()).thenReturn("PS, HS");
+
+        String data = applicationService.getGuestSharableData();
+
+        assertEquals("PS, HS", data);
+    }
+
+    @Test
+    public void shouldGetListOfGuests() {
+        List<Guest> guests = applicationService.listGuests();
+
+        assertThat(guests).containsExactlyInAnyOrder(new Guest(1, "P","S"),
+                new Guest(2, "H","S"),
+                new Guest(3, "G", "K"));
+    }
 }
