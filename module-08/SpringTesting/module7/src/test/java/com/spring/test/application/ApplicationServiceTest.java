@@ -65,6 +65,7 @@ public class ApplicationServiceTest  {
 
     @Test
     @Sql("/test-data-guests.sql")
+    @DirtiesContext
     public void shouldRegisterGuestFromScript() {
         List<Guest> guests = guestRegistrationService.listGuests();
         assertThat(guests).containsOnly(new Guest(1,"P","S"), new Guest(2,"H", "S"), new Guest(3, "G", "K"));
@@ -90,6 +91,7 @@ public class ApplicationServiceTest  {
     }
 
     @Test
+    @DirtiesContext
     public void shouldBookAnyRoomForNewGuest() {
         BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
 
@@ -127,6 +129,47 @@ public class ApplicationServiceTest  {
         assertEquals(guest.getLastName(), bookingResult.getReservation().get().getGuest().getLastName());
         assertThat(hotelManagementService.listRooms()).contains(bookingResult.getReservation().get().getRoom());
     }
+
+    @Test
+    @DirtiesContext
+    public void shouldRejectWhenAllRoomsAreBooked() {
+        Guest guest1 = applicationService.registerGuest("P", "S");
+        Guest guest2 = applicationService.registerGuest("H", "S");
+        Guest guest3 = applicationService.registerGuest("G", "K");
+
+        BookingResult bookingResult1 = applicationService.bookSpecificRoomForRegisteredGuest(guest1, ROOM_C, date);
+        BookingResult bookingResult2 = applicationService.bookSpecificRoomForRegisteredGuest(guest2, ROOM_B, date);
+        BookingResult bookingResult3 = applicationService.bookSpecificRoomForRegisteredGuest(guest3, ROOM_A, date);
+
+        assertEquals(ROOM_BOOKED, bookingResult1.getBookingState());
+        assertThat(bookingResult1.getReservation()).isPresent();
+        assertEquals(ROOM_C, bookingResult1.getReservation().get().getRoom().getName());
+        assertEquals(guest1.getFirstName(), bookingResult1.getReservation().get().getGuest().getFirstName());
+        assertEquals(guest1.getLastName(), bookingResult1.getReservation().get().getGuest().getLastName());
+
+        assertEquals(ROOM_BOOKED, bookingResult2.getBookingState());
+        assertThat(bookingResult2.getReservation()).isPresent();
+        assertEquals(ROOM_B, bookingResult2.getReservation().get().getRoom().getName());
+        assertEquals(guest2.getFirstName(), bookingResult2.getReservation().get().getGuest().getFirstName());
+        assertEquals(guest2.getLastName(), bookingResult2.getReservation().get().getGuest().getLastName());
+
+        assertEquals(ROOM_BOOKED, bookingResult3.getBookingState());
+        assertThat(bookingResult3.getReservation()).isPresent();
+        assertEquals(ROOM_A, bookingResult3.getReservation().get().getRoom().getName());
+        assertEquals(guest3.getFirstName(), bookingResult3.getReservation().get().getGuest().getFirstName());
+        assertEquals(guest3.getLastName(), bookingResult3.getReservation().get().getGuest().getLastName());
+
+
+        BookingResult bookingResult4 = applicationService.bookAnyRoomForRegisteredGuest(guest1, date);
+        BookingResult bookingResult5 = applicationService.bookAnyRoomForNewGuest("P", "S", date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult4.getBookingState());
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult5.getBookingState());
+        assertThat(bookingResult4.getReservation()).isEmpty();
+        assertThat(bookingResult5.getReservation()).isEmpty();
+    }
+
+
 
 
 
