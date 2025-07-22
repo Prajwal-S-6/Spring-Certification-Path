@@ -113,6 +113,20 @@ public class ApplicationServiceTest  {
     }
 
 
+    @Test
+    @DirtiesContext
+    public void shouldBookAnyRoomForRegisteredGuest() {
+        Guest guest = applicationService.registerGuest("P", "S");
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(guest, date);
+
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+        assertNotNull(bookingResult.getReservation().get().getGuest().getId());
+        assertEquals(guest.getFirstName(), bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals(guest.getLastName(), bookingResult.getReservation().get().getGuest().getLastName());
+        assertThat(hotelManagementService.listRooms()).contains(bookingResult.getReservation().get().getRoom());
+    }
 
 
 
