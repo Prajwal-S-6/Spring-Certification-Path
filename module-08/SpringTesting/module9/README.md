@@ -9,4 +9,4 @@
 * @Rollback
 * @Commit
 * @BeforeTransaction - annotated method is executed before transaction is started
-* @AfterTransaction - annotated method is executed after transaction is started
+* @AfterTransaction - annotated method is executed after transaction is completed

@@ -14,6 +14,8 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.transaction.AfterTransaction;
+import org.springframework.test.context.transaction.BeforeTransaction;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
@@ -52,7 +54,21 @@ public class ApplicationServiceIntegrationTest  {
 
         assertThat(applicationService.listRooms().stream().map(Room::getName).collect(Collectors.toSet())).containsAll(Arrays.asList("A","B"));
 
+    }
 
+    @Test
+    public void test() {
+        System.out.println("TEST");
+    }
+
+    @BeforeTransaction
+    public void beforeTransaction() {
+        System.out.println("BEFORE TRANSACTION");
+    }
+
+    @AfterTransaction
+    public void afterTransaction() {
+        System.out.println("AFTER TRANSACTION");
     }
 
 
