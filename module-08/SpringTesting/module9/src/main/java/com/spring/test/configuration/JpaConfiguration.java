@@ -15,14 +15,14 @@ import javax.sql.DataSource;
 import java.util.Collections;
 
 @Configuration
-@EnableJpaRepositories(basePackages = {"com.spring.repository"})
+@EnableJpaRepositories(basePackages = {"com.spring.test.repository"})
 public class JpaConfiguration {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
         em.setJpaPropertyMap(Collections.singletonMap("hibernate.dialect", "org.hibernate.dialect.MySQLDialect"));
         em.setDataSource(dataSource);
-        em.setPackagesToScan("com.spring.ds");
+        em.setPackagesToScan("com.spring.test.ds");
         em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
         return em;
     }

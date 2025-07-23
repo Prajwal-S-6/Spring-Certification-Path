@@ -15,10 +15,10 @@ public class DataSourceConfiguration {
     public DataSource dataSource() {
         MysqlDataSource dataSource = new MysqlDataSource();
         dataSource.setServerName("localhost");
-        dataSource.setPort(3306);
-        dataSource.setDatabaseName("spring-tutorial");
-        dataSource.setUser("spring-tutorial");
-        dataSource.setPassword("spring-tutorial");
+        dataSource.setPort(3307);
+        dataSource.setDatabaseName("spring-db");
+        dataSource.setUser("spring");
+        dataSource.setPassword("spring");
         return dataSource;
     }
 }

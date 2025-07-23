@@ -24,18 +24,14 @@ public class Guest implements Identifiable {
     }
 
     public Guest(String firstName, String lastName) {
-        this(null, firstName, lastName);
-    }
-
-    public Guest(Integer id, String firstName, String lastName) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
+
     @Override
     public Integer getId() {
-        return 0;
+        return id;
     }
 
     public void setId(Integer id) {
