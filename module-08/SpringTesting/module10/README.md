@@ -19,3 +19,9 @@
   * Use this mocks by directly @Autowired into test
   * In the application context there will be 2 beans(NoUniqueBeanDefinition), use @ActiveProfile to resolve conflict.
   * In SpringBoot we can use @ConditionalOn.. or @TestConfiguration
+
+
+* In SpringBoot during integration test we use @MockBean/@MockitoBean to mock the original beans.
+* @Mock is from mock framework, it creates mock, but injects it only if we add @InjectMocks and will be injected only on to the class.
+* @MockitoBean(@MockBean) also creates and injects mock, it injects mock into Application context.
+* So any beans which refers to this mocked class via @Autowired gets this mock injected instead of original class
