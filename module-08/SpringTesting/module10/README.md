@@ -17,7 +17,7 @@
   * RunWith(MockitoJUnitRunner.class) or @ExtendWith(MockitoExtension.class), @ContextConfiguration
   * Create a @Configuration class and Beans  return the mock of original dependency objects.
   * Use this mocks by directly @Autowired into test
-  * In the application context there will be 2 beans(NoUniqueBeanDefinition), use @ActiveProfile to resolve conflict.
+  * In the application context there will be 2 beans(Original & mocked - NoUniqueBeanDefinition), use @ActiveProfile to resolve conflict.
   * In SpringBoot we can use @ConditionalOn.. or @TestConfiguration
 
 
