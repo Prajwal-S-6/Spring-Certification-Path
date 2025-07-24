@@ -1,7 +1,10 @@
 package com.spring.test.application;
 
 import com.spring.test.configuration.ApplicationConfiguration;
+import com.spring.test.ds.BookingResult;
 import com.spring.test.ds.Guest;
+import com.spring.test.ds.Room;
+import com.spring.test.repository.RoomRepository;
 import com.spring.test.service.BookingService;
 import com.spring.test.service.GuestRegistrationService;
 import com.spring.test.service.GuestSharableDataService;
@@ -13,9 +16,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
+import java.util.stream.Collectors;
+
+import static com.spring.test.configuration.TestDataCofiguration.*;
+import static com.spring.test.ds.BookingResult.BookingState.NO_ROOM_AVAILABLE;
+import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
@@ -37,6 +47,11 @@ public class ApplicationServiceIntegrationTest {
     @Autowired
     private GuestSharableDataService guestSharableDataServiceMock;
 
+    @Autowired
+    private RoomRepository roomRepository;
+
+    private static final LocalDate date = LocalDate.of(2025, 7, 24);
+
     @Test
     public void shouldGetSharableData() {
         applicationService.registerGuest("P","S");
@@ -53,15 +68,60 @@ public class ApplicationServiceIntegrationTest {
 
 
     @Test
+    @DirtiesContext
     public void shouldRegisterGuest() {
-        Guest registereduest = applicationService.registerGuest("P","S");
+        Guest registered = applicationService.registerGuest("P","S");
 
         assertThat(guestRegistrationService.listGuests().stream().map(Guest::getId).toList()).isNotEmpty();
-        assertNotNull(registereduest.getId());
-        assertEquals("P",registereduest.getFirstName());
-        assertEquals("S", registereduest.getLastName());
+        assertNotNull(registered.getId());
+        assertEquals("P",registered.getFirstName());
+        assertEquals("S", registered.getLastName());
     }
 
+
+    @Test
+    @DirtiesContext
+    public void shouldBookAnyRoomForNewGuest() {
+        BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
+
+
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isPresent();
+        assertThat(bookingResult.getReservation().get().getGuest().getId()).isNotNull();
+        assertThat(guestRegistrationService.listGuests().stream().map(Guest::getFirstName)).contains("P");
+        assertEquals("P",bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals("S",bookingResult.getReservation().get().getGuest().getLastName());
+        assertThat(roomRepository.findAll().stream().map(Room::getName).collect(Collectors.toSet())).contains(bookingResult.getReservation().get().getRoom().getName());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldBookAnyRoomForRegisteredGuest() {
+        Guest registered = applicationService.registerGuest("P","S");
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(registered, date);
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isPresent();
+        assertEquals(registered.getFirstName(),bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals(registered.getLastName(),bookingResult.getReservation().get().getGuest().getLastName());
+        assertThat(roomRepository.findAll().stream().map(Room::getName).collect(Collectors.toSet())).contains(bookingResult.getReservation().get().getRoom().getName());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldBookSpecificRoomForRegisteredGuest() {
+        Guest registered = applicationService.registerGuest("P","S");
+
+        BookingResult bookingResult = applicationService.bookSpecificRoomForRegisteredGuest(registered, ROOM_A, date);
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isPresent();
+        assertEquals(registered.getFirstName(),bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals(registered.getLastName(),bookingResult.getReservation().get().getGuest().getLastName());
+        assertEquals(ROOM_A, bookingResult.getReservation().get().getRoom().getName());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
 
 
 }
