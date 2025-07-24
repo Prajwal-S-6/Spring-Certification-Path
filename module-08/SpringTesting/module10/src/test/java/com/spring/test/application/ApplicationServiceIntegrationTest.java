@@ -123,5 +123,31 @@ public class ApplicationServiceIntegrationTest {
         assertEquals(date, bookingResult.getReservation().get().getReservationDate());
     }
 
+    @Test
+    @DirtiesContext
+    public void shouldNotBookRoomAndNotRegisterNewGuestWhenNoRoomIsAvailable() {
+        roomRepository.deleteAll();
 
+        BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldNotBookRoomWhenAllRoomsAreBooked() {
+        Guest guest1 = applicationService.registerGuest("P","S");
+        Guest guest2 = applicationService.registerGuest("H","S");
+        Guest guest3 = applicationService.registerGuest("G","K");
+
+
+        applicationService.bookSpecificRoomForRegisteredGuest(guest1, ROOM_A, date);
+        applicationService.bookSpecificRoomForRegisteredGuest(guest2, ROOM_B, date);
+        applicationService.bookSpecificRoomForRegisteredGuest(guest3, ROOM_C, date);
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(guest1, date);
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
 }
