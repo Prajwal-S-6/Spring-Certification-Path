@@ -105,4 +105,30 @@ public class ApplicationServiceUnitTest {
     }
 
 
+    @Test
+    public void shouldRejectRoomForNewGuestWheNoRoomIsAvailable() {
+
+        when(bookingService.findAvailableRoom(date)).thenReturn(Optional.empty());
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P", "S", date);
+
+        verify(guestRegistrationService, never()).registerGuest(new Guest("P","S"));
+        verify(bookingService, never()).bookRoom(anyString(), any(), any());
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+    @Test
+    public void shouldRejectRoomForRegisteredGuestWheNoRoomIsAvailable() {
+
+        when(bookingService.findAvailableRoom(date)).thenReturn(Optional.empty());
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(new Guest("P", "S"), date);
+
+        verify(bookingService, never()).bookRoom(anyString(), any(), any());
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+
 }
