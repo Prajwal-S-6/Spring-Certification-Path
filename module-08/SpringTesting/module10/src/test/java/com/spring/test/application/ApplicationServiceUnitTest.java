@@ -130,5 +130,14 @@ public class ApplicationServiceUnitTest {
         assertThat(bookingResult.getReservation()).isEmpty();
     }
 
+    @Test
+    public void shouldRejectSpecificRoomForRegisteredGuestWheNoRoomIsAvailable() {
+        Guest guest = new Guest("P", "S");
+        when(bookingService.bookRoom("A", guest, date)).thenReturn(Optional.empty());
 
+        BookingResult bookingResult = applicationService.bookSpecificRoomForRegisteredGuest(guest, "A", date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
 }
