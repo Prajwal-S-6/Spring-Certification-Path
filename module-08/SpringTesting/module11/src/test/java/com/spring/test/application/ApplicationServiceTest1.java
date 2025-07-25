@@ -7,7 +7,6 @@ import com.spring.test.ds.Room;
 import com.spring.test.repository.RoomRepository;
 import com.spring.test.service.BookingService;
 import com.spring.test.service.GuestRegistrationService;
-import junit.framework.TestCase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @ContextConfiguration(classes = ApplicationConfiguration.class)
-public class ApplicationServiceTest {
+public class ApplicationServiceTest1 {
 
     @Autowired
     private ApplicationService applicationService;
