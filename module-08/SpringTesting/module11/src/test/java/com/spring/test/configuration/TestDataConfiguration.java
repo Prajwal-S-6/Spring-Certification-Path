@@ -19,7 +19,7 @@ public class TestDataConfiguration {
     @PostConstruct
     public void registerRoomsInit() {
         roomRepository.save(new Room(ROOM_A, "A"));
-        roomRepository.save(new Room(ROOM_B, "A"));
-        roomRepository.save(new Room(ROOM_C, "A"));
+        roomRepository.save(new Room(ROOM_B, "B"));
+        roomRepository.save(new Room(ROOM_C, "C"));
     }
 }
