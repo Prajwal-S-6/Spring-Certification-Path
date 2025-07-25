@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.stream.Collectors;
 
+import static com.spring.test.configuration.TestDataConfiguration.ROOM_A;
 import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -65,6 +66,34 @@ public class ApplicationServiceTest {
         assertEquals("P",bookingResult.getReservation().get().getGuest().getFirstName());
         assertEquals("S",bookingResult.getReservation().get().getGuest().getLastName());
         assertThat(roomRepository.findAll().stream().map(Room::getName).collect(Collectors.toSet())).contains(bookingResult.getReservation().get().getRoom().getName());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldBookAnyRoomForRegisteredGuest() {
+        Guest registered = applicationService.registerGuest("P","S");
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(registered, date);
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isPresent();
+        assertEquals(registered.getFirstName(),bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals(registered.getLastName(),bookingResult.getReservation().get().getGuest().getLastName());
+        assertThat(roomRepository.findAll().stream().map(Room::getName).collect(Collectors.toSet())).contains(bookingResult.getReservation().get().getRoom().getName());
+        assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldBookSpecificRoomForRegisteredGuest() {
+        Guest registered = applicationService.registerGuest("P","S");
+
+        BookingResult bookingResult = applicationService.bookSpecificRoomForRegisteredGuest(registered, ROOM_A, date);
+        assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isPresent();
+        assertEquals(registered.getFirstName(),bookingResult.getReservation().get().getGuest().getFirstName());
+        assertEquals(registered.getLastName(),bookingResult.getReservation().get().getGuest().getLastName());
+        assertEquals(ROOM_A, bookingResult.getReservation().get().getRoom().getName());
         assertEquals(date, bookingResult.getReservation().get().getReservationDate());
     }
 
