@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Guest {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Integer id;
     private String firstName;
     private String lastName;
 
@@ -24,13 +24,13 @@ public class Guest {
         this.lastName = lastName;
     }
 
-    public Guest(UUID id, String firstName, String lastName) {
+    public Guest(Integer id, String firstName, String lastName) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
