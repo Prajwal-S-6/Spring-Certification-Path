@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
@@ -31,6 +32,9 @@ class ApplicationServiceControllerTest1 {
     private ApplicationService applicationService;
 
     @Autowired
+    private JacksonTester<Guest> guestJson;
+
+    @Autowired
     private JacksonTester<List<Guest>> listOfGuest;
 
 
@@ -46,5 +50,19 @@ class ApplicationServiceControllerTest1 {
     }
 
 
+    @Test
+    public void shouldRegisterGuest() throws Exception {
+        Guest guest = new Guest("P", "S");
+        when(applicationService.registerGuest(guest)).thenReturn(new Guest(1, "P", "S"));
+
+        MvcResult result = mvc.perform(MockMvcRequestBuilders.put("/api/guests")
+                .contentType("application/json")
+                .content(guestJson.write(guest).getJson()))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        Guest registeredGuest = guestJson.parseObject(result.getResponse().getContentAsString());
+        assertEquals(new Guest(1,"P", "S"), registeredGuest);
+    }
 
 }
