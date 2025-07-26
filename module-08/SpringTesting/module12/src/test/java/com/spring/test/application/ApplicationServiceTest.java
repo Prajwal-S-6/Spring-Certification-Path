@@ -10,13 +10,15 @@ import com.spring.test.service.GuestSharableDataService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 
 import java.time.LocalDate;
 import java.util.function.BiFunction;
 import java.util.stream.Collectors;
 
-import static com.spring.test.configuration.SampleDataConfiguration.GREEN_ROOM;
+import static com.spring.test.configuration.SampleDataConfiguration.*;
+import static com.spring.test.ds.BookingResult.BookingState.NO_ROOM_AVAILABLE;
 import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -43,6 +45,7 @@ class ApplicationServiceTest {
     private static final LocalDate date = LocalDate.of(2025, 7, 26);
 
     @Test
+    @DirtiesContext
     public void shouldRegisterGuest() {
         Guest registeredGuest = applicationService.registerGuest("P", "S");
         assertThat(registeredGuest.getId()).isNotNull();
@@ -52,6 +55,7 @@ class ApplicationServiceTest {
     }
 
     @Test
+    @DirtiesContext
     public void shouldGetGuestSharableData() {
         when(guestSharableDataService.getGuestSharableData()).thenReturn("PS, HS, GK");
 
@@ -61,6 +65,7 @@ class ApplicationServiceTest {
     }
 
     @Test
+    @DirtiesContext
     public void shouldBookAnyRoomForNewGuest() {
         BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
 
@@ -76,6 +81,7 @@ class ApplicationServiceTest {
     }
 
     @Test
+    @DirtiesContext
     public void shouldBookAnyRoomForRegisteredGuest() {
         Guest registered = applicationService.registerGuest("P","S");
 
@@ -89,6 +95,7 @@ class ApplicationServiceTest {
     }
 
     @Test
+    @DirtiesContext
     public void shouldBookSpecificRoomForRegisteredGuest() {
         Guest registered = applicationService.registerGuest("P","S");
 
@@ -99,6 +106,34 @@ class ApplicationServiceTest {
         assertEquals(registered.getLastName(),bookingResult.getReservation().get().getGuest().getLastName());
         assertEquals(GREEN_ROOM, bookingResult.getReservation().get().getRoom().getName());
         assertEquals(date, bookingResult.getReservation().get().getReservationDate());
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldNotBookRoomAndNotRegisterNewGuestWhenNoRoomIsAvailable() {
+        roomRepository.deleteAll();
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForNewGuest("P","S", date);
+
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
+    }
+
+    @Test
+    @DirtiesContext
+    public void shouldNotBookRoomWhenAllRoomsAreBooked() {
+        Guest guest1 = applicationService.registerGuest("P","S");
+        Guest guest2 = applicationService.registerGuest("H","S");
+        Guest guest3 = applicationService.registerGuest("G","K");
+
+
+        applicationService.bookSpecificRoomForRegisteredGuest(guest1, GREEN_ROOM, date);
+        applicationService.bookSpecificRoomForRegisteredGuest(guest2, YELLOW_ROOM, date);
+        applicationService.bookSpecificRoomForRegisteredGuest(guest3, BLUE_ROOM, date);
+
+        BookingResult bookingResult = applicationService.bookAnyRoomForRegisteredGuest(guest1, date);
+        assertEquals(NO_ROOM_AVAILABLE, bookingResult.getBookingState());
+        assertThat(bookingResult.getReservation()).isEmpty();
     }
 
 }
