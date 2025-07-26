@@ -51,7 +51,7 @@ class ApplicationServiceTest {
         assertThat(registeredGuest.getId()).isNotNull();
         assertEquals("P", registeredGuest.getFirstName());
         assertEquals("S", registeredGuest.getLastName());
-        assertThat(guestRegistrationService.listGuests().stream().map(g -> g.getFirstName() + " " + g.getLastName()).toList()).contains("P S");
+        assertThat(applicationService.listGuests().stream().map(g -> g.getFirstName() + " " + g.getLastName()).toList()).contains("P S");
     }
 
     @Test
@@ -73,7 +73,7 @@ class ApplicationServiceTest {
         assertEquals(ROOM_BOOKED, bookingResult.getBookingState());
         assertThat(bookingResult.getReservation()).isPresent();
         assertThat(bookingResult.getReservation().get().getGuest().getId()).isNotNull();
-        assertThat(guestRegistrationService.listGuests().stream().map(Guest::getFirstName)).contains("P");
+        assertThat(applicationService.listGuests().stream().map(Guest::getFirstName)).contains("P");
         assertEquals("P",bookingResult.getReservation().get().getGuest().getFirstName());
         assertEquals("S",bookingResult.getReservation().get().getGuest().getLastName());
         assertThat(roomRepository.findAll().stream().map(Room::getName).collect(Collectors.toSet())).contains(bookingResult.getReservation().get().getRoom().getName());
