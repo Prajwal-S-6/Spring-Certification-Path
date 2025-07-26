@@ -12,6 +12,7 @@ import java.util.UUID;
 
 public interface ReservationRepository extends CrudRepository<Reservation, UUID> {
 
+
     List<Reservation> findAll();
 
     Set<Reservation> findAllByReservationDate(LocalDate reservationDate);

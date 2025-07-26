@@ -18,7 +18,7 @@ public class Room {
     private String name;
     private String section;
 
-    @SuppressWarnings("unused")
+
     Room() {
     }
 

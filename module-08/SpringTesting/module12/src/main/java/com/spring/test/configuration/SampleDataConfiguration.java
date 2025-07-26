@@ -18,6 +18,7 @@ public class SampleDataConfiguration {
     @Autowired
     private RoomRepository roomRepository;
 
+
     @PostConstruct
     private void registerHotelRooms() {
         registerRoom(new Room(GREEN_ROOM, "A01"));

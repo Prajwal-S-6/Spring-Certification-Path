@@ -18,6 +18,7 @@ public class BookingResult {
         return new BookingResult(BookingState.NO_ROOM_AVAILABLE, null);
     }
 
+
     private BookingResult(BookingState bookingState, Reservation reservation) {
         this.bookingState = bookingState;
         this.reservation = reservation;

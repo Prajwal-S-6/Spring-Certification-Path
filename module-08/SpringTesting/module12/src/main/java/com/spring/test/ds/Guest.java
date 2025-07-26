@@ -16,7 +16,6 @@ public class Guest {
     private String firstName;
     private String lastName;
 
-    @SuppressWarnings("unused")
     Guest() {
     }
 

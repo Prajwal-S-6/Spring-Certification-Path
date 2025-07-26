@@ -8,3 +8,15 @@ SpringBoot simplifies unit testing providing:
 * Based on dependencies added provides beans required for test
 * Provides @TestConfiguration to define beans used only in tests
 * Provides @ConditionalOn... annotations to enable beans -- @ConditionalOnBean, @ConditionalOnProperty
+
+
+
+* spring-boot-starter-test module provides:
+  * JUnit
+  * Mockito
+  * AssertJ
+  * SpringBootTest
+  * Hamcrest - library of matcher objects
+  * SpringTest
+  * JSONAssert- An assertion library for JSON
+  * JSONPath- XPath for JSON, easy way to access json properties

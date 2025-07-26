@@ -10,7 +10,7 @@ public class BookingRequest {
     private Guest guest;
     private LocalDate bookingDate;
 
-    @SuppressWarnings("unused")
+
     BookingRequest() {
     }
 

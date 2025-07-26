@@ -9,5 +9,6 @@ import java.util.UUID;
 
 public interface GuestRepository extends CrudRepository<Guest, UUID> {
 
+
     List<Guest> findAll();
 }

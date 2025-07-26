@@ -10,6 +10,7 @@ import java.util.UUID;
 
 public interface RoomRepository extends CrudRepository<Room, UUID> {
 
+
     Set<Room> findAll();
 
     Optional<Room> findByName(String name);

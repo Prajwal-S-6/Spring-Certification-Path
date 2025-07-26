@@ -22,6 +22,7 @@ public class ApplicationServiceController {
         return applicationService.registerGuest(guest);
     }
 
+
     @GetMapping("guests")
     public List<Guest> listGuests() {
         return applicationService.listGuests();

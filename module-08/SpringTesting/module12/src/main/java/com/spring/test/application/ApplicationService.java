@@ -53,7 +53,8 @@ public class ApplicationService {
             return BookingResult.createRoomBookedResult(
                     bookingService.bookRoom(availableRoom.get(), guest, date).orElseThrow()
             );
-        } else
+        }
+        else
             return BookingResult.createNoRoomAvailableResult();
     }
 

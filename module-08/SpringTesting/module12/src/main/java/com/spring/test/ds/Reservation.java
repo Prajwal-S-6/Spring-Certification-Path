@@ -20,7 +20,7 @@ public class Reservation {
     private Guest guest;
     private LocalDate reservationDate;
 
-    @SuppressWarnings("unused")
+
     Reservation() {
     }
 
