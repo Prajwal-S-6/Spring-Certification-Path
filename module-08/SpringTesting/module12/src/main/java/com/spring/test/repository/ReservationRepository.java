@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-public interface ReservationRepository extends CrudRepository<Reservation, UUID> {
+public interface ReservationRepository extends CrudRepository<Reservation, Integer> {
 
 
     List<Reservation> findAll();

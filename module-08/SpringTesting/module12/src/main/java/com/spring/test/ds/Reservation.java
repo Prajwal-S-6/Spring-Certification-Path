@@ -12,7 +12,7 @@ import java.util.UUID;
 public class Reservation {
     @Id
     @GeneratedValue
-    private UUID id;
+    private Integer id;
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
@@ -30,14 +30,14 @@ public class Reservation {
         this.reservationDate = reservationDate;
     }
 
-    public Reservation(UUID id, Room room, Guest guest, LocalDate reservationDate) {
+    public Reservation(Integer id, Room room, Guest guest, LocalDate reservationDate) {
         this.id = id;
         this.room = room;
         this.guest = guest;
         this.reservationDate = reservationDate;
     }
 
-    public UUID getId() {
+    public Integer getId() {
         return id;
     }
 
