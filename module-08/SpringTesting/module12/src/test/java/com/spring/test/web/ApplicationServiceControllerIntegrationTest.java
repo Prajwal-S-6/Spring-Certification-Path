@@ -99,6 +99,8 @@ class ApplicationServiceControllerIntegrationTest {
 
 
         assertThat(reservationList).isNotEmpty();
+        assertEquals(LocalDate.of(2025, 7,27), reservationList.get(0).getReservationDate());
+        assertEquals(guest, reservationList.get(0).getGuest());
 
     }
 
