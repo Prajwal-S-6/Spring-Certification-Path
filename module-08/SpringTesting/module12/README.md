@@ -28,4 +28,9 @@ SpringBoot simplifies unit testing providing:
 * @SpringBootConfiguration is alternative to @Configuration, advantage of using @SpringBootConfiguration is spring auto scans it in tests
 * We can override default behavior of scanning, by specifying @SpringBootTest(classes=) or nesting of configuration class inside test class
 * We can define web environment with MOCK, RANDOM_PORT, DEFINED_PORT, NONE
-* We can define environment properties - @SpringBootTest(properties=)
+* We can define environment properties - @SpringBootTest(properties=) to set environments KEY=VALUE pair before test is executed
+
+
+* @SpringBootTest(classes=, webEnvironment=, properties=)
+* SpringBootTestContextBootStrapper will locate the classes annotated with @SpringBootConfiguration and it will pass it to SpringBootContextLoader which will load the Application context.
+* It will search for @SpringBootConfiguration annotated classes from package where Test class is located and will scan this package and all parent package
