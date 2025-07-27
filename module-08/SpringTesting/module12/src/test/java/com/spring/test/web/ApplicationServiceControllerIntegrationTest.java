@@ -52,6 +52,22 @@ class ApplicationServiceControllerIntegrationTest {
         assertEquals("S", guest.getLastName());
     }
 
+    @Test
+    public void shouldGetlistofGuests() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/guests").contentType(MediaType.APPLICATION_JSON)
+                        .content(guestJson.write(new Guest("H","S")).getJson()))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        List<Guest> guests = guestsJson.parseObject(mockMvc.perform(MockMvcRequestBuilders.get("/api/guests").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andReturn().getResponse().getContentAsString());
+
+        assertThat(guests).contains(new Guest(1, "H", "S"));
+    }
+
+
+
+
 
 
 }
