@@ -20,3 +20,9 @@ SpringBoot simplifies unit testing providing:
   * SpringTest
   * JSONAssert- An assertion library for JSON
   * JSONPath- XPath for JSON, easy way to access json properties
+
+---
+@SpringBootTest
+* It automatically searches for @SpringBootConfiguration annotated classes, unless @Configuration class is detected or explicitly specified in @SpringBootTest(classes=)
+* In most cases we use @SpringBootApplication which is meta annotation fo @SpringBootConfiguration
+* @SpringBootConfiguration is alternative to @Configuration, advantage of using @SpringBootConfiguration is spring auto scans it in tests
