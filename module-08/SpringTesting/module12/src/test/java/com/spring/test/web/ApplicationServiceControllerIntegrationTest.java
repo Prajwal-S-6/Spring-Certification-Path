@@ -1,5 +1,6 @@
 package com.spring.test.web;
 
+import com.spring.test.ds.BookingRequest;
 import com.spring.test.ds.Guest;
 import com.spring.test.ds.Reservation;
 import com.spring.test.ds.Room;
@@ -17,6 +18,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,7 +42,10 @@ class ApplicationServiceControllerIntegrationTest {
     JacksonTester<Guest> guestJson;
 
     @Autowired
-    JacksonTester<Reservation> reservationJson;
+    JacksonTester<BookingRequest> reservationJson;
+
+    @Autowired
+    JacksonTester<List<Reservation>> listJacksonTester;
 
 
     @Test
@@ -75,12 +80,26 @@ class ApplicationServiceControllerIntegrationTest {
 
     @Test
     public void shouldBookAnyRoomForRegisteredGuest() throws Exception {
-        Guest guest = new Guest("P","S");
-        Room room = new Room("A", "A");
-        mockMvc.perform(MockMvcRequestBuilders.put("/api/bookings").contentType(MediaType.APPLICATION_JSON)
-                .content(reservationJson.write(new Reservation(room, guest, LocalDate.of(2025,7,27))).getJson()))
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.put("/api/guests").contentType(MediaType.APPLICATION_JSON)
+                        .content(guestJson.write(new Guest("H","S")).getJson()))
                 .andExpect(status().isOk())
                 .andReturn();
+
+        Guest guest = guestJson.parseObject(mvcResult.getResponse().getContentAsString());
+
+        Room room = new Room(UUID.randomUUID(),"A", "A");
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/bookings").contentType(MediaType.APPLICATION_JSON)
+                .content(reservationJson.write(new BookingRequest(guest, LocalDate.of(2025,7,27))).getJson()))
+                .andExpect(status().isOk())
+                .andReturn();
+
+        List<Reservation> reservationList = listJacksonTester.parseObject(mockMvc.perform(MockMvcRequestBuilders.get("/api/bookings").contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andReturn().getResponse().getContentAsString());
+
+
+        assertThat(reservationList).isNotEmpty();
+
     }
 
 
