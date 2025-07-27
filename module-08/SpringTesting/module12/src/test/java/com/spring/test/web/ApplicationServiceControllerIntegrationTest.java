@@ -1,6 +1,8 @@
 package com.spring.test.web;
 
 import com.spring.test.ds.Guest;
+import com.spring.test.ds.Reservation;
+import com.spring.test.ds.Room;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.json.AutoConfigureJsonTesters;
@@ -13,6 +15,7 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.io.IOException;
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -35,6 +38,9 @@ class ApplicationServiceControllerIntegrationTest {
 
     @Autowired
     JacksonTester<Guest> guestJson;
+
+    @Autowired
+    JacksonTester<Reservation> reservationJson;
 
 
     @Test
@@ -67,7 +73,15 @@ class ApplicationServiceControllerIntegrationTest {
 
 
 
-
+    @Test
+    public void shouldBookAnyRoomForRegisteredGuest() throws Exception {
+        Guest guest = new Guest("P","S");
+        Room room = new Room("A", "A");
+        mockMvc.perform(MockMvcRequestBuilders.put("/api/bookings").contentType(MediaType.APPLICATION_JSON)
+                .content(reservationJson.write(new Reservation(room, guest, LocalDate.of(2025,7,27))).getJson()))
+                .andExpect(status().isOk())
+                .andReturn();
+    }
 
 
 }
