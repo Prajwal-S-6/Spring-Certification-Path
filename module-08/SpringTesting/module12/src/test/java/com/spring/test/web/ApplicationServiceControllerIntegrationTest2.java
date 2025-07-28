@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.spring.test.configuration.SampleDataConfiguration.*;
 import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
@@ -66,6 +67,7 @@ class ApplicationServiceControllerIntegrationTest2 {
         assertThat(reservations.getBody().stream().findFirst()).isNotEmpty();
         assertEquals(date, reservations.getBody().stream().findFirst().get().getReservationDate());
         assertThat(reservations.getBody().get(0).getGuest()).isEqualTo(registeredGGuest);
+        assertThat(reservations.getBody().get(0).getRoom().getName()).isIn(GREEN_ROOM, BLUE_ROOM, YELLOW_ROOM);
 
 
     }
