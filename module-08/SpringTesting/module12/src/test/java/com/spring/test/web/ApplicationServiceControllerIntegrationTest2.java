@@ -1,6 +1,8 @@
 package com.spring.test.web;
 
+import com.spring.test.ds.BookingRequest;
 import com.spring.test.ds.Guest;
+import com.spring.test.ds.Reservation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +14,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -34,7 +37,7 @@ class ApplicationServiceControllerIntegrationTest2 {
     }
 
     @Test
-    public void shouldRegisterGuest() {
+    public void shouldRegisterAndListGuest() {
 
         Guest guest = new Guest("P", "S");
         Guest guest1 = new Guest("H", "S");
@@ -47,6 +50,13 @@ class ApplicationServiceControllerIntegrationTest2 {
         assertThat(responseEntity.getBody().stream().map(Guest::getId).toList()).isNotEmpty();
     }
 
+    @Test
+    public void shouldBookAnyRoomForRegisteredGuest() {
+        Guest guest = new Guest("G","K");
+        testRestTemplate.put(url+"/api/guests", guest);
+
+
+    }
 
 
 }
