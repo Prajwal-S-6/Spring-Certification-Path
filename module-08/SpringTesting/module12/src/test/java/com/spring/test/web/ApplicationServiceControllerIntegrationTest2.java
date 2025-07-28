@@ -62,7 +62,10 @@ class ApplicationServiceControllerIntegrationTest2 {
         testRestTemplate.put(url+"/api/bookings", new BookingRequest(registeredGGuest, date));
         ResponseEntity<List<Reservation>> reservations = testRestTemplate.exchange(url + "/api/bookings", HttpMethod.GET, null, new ParameterizedTypeReference<List<Reservation>>() {});
 
+        assertThat(reservations.getBody()).isNotEmpty();
+        assertThat(reservations.getBody().stream().findFirst()).isNotEmpty();
         assertEquals(date, reservations.getBody().stream().findFirst().get().getReservationDate());
+
 
     }
 
