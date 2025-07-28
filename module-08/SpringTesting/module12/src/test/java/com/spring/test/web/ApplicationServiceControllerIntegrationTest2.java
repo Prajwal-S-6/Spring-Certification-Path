@@ -1,6 +1,7 @@
 package com.spring.test.web;
 
 import com.spring.test.ds.Guest;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,9 +26,16 @@ class ApplicationServiceControllerIntegrationTest2 {
     @Autowired
     private TestRestTemplate testRestTemplate;
 
+    private String url;
+
+    @BeforeEach
+    void setUp() {
+        url = String.format("http://localhost:%d",port);
+    }
+
     @Test
     public void shouldRegisterGuest() {
-        String url = String.format("http://localhost:%d",port);
+
         Guest guest = new Guest("P", "S");
         Guest guest1 = new Guest("H", "S");
         testRestTemplate.put(url+"/api/guests", guest);
