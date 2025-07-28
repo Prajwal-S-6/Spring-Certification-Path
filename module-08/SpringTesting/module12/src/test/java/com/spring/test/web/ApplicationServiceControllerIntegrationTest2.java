@@ -58,10 +58,11 @@ class ApplicationServiceControllerIntegrationTest2 {
         ResponseEntity<List<Guest>> responseEntity = testRestTemplate.exchange(url+"/api/guests", HttpMethod.GET, null, new ParameterizedTypeReference<List<Guest>>() {});
         Guest registeredGGuest = responseEntity.getBody().stream().findFirst().get();
 
-        testRestTemplate.put(url+"/api/bookings", new BookingRequest(registeredGGuest, LocalDate.of(2025,7,28)));
+        LocalDate date = LocalDate.of(2025, 7, 28);
+        testRestTemplate.put(url+"/api/bookings", new BookingRequest(registeredGGuest, date));
         ResponseEntity<List<Reservation>> reservations = testRestTemplate.exchange(url + "/api/bookings", HttpMethod.GET, null, new ParameterizedTypeReference<List<Reservation>>() {});
 
-        assertEquals(LocalDate.of(2025,7,28), reservations.getBody().stream().findFirst().get().getReservationDate());
+        assertEquals(date, reservations.getBody().stream().findFirst().get().getReservationDate());
 
     }
 
