@@ -17,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import java.time.LocalDate;
 import java.util.List;
 
+import static com.spring.test.ds.BookingResult.BookingState.ROOM_BOOKED;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -54,7 +55,13 @@ class ApplicationServiceControllerIntegrationTest2 {
     public void shouldBookAnyRoomForRegisteredGuest() {
         Guest guest = new Guest("G","K");
         testRestTemplate.put(url+"/api/guests", guest);
+        ResponseEntity<List<Guest>> responseEntity = testRestTemplate.exchange(url+"/api/guests", HttpMethod.GET, null, new ParameterizedTypeReference<List<Guest>>() {});
+        Guest registeredGGuest = responseEntity.getBody().stream().findFirst().get();
 
+        testRestTemplate.put(url+"/api/bookings", new BookingRequest(registeredGGuest, LocalDate.of(2025,7,28)));
+        ResponseEntity<List<Reservation>> reservations = testRestTemplate.exchange(url + "/api/bookings", HttpMethod.GET, null, new ParameterizedTypeReference<List<Reservation>>() {});
+
+        assertEquals(LocalDate.of(2025,7,28), reservations.getBody().stream().findFirst().get().getReservationDate());
 
     }
 
