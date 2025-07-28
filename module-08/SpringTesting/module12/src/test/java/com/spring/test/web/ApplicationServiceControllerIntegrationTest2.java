@@ -44,6 +44,7 @@ class ApplicationServiceControllerIntegrationTest2 {
         ResponseEntity<List<Guest>> responseEntity = testRestTemplate.exchange(url+"/api/guests", HttpMethod.GET, null, new ParameterizedTypeReference<List<Guest>>() {});
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody().stream().map(Guest::getId).toList()).isNotEmpty();
     }
 
 
