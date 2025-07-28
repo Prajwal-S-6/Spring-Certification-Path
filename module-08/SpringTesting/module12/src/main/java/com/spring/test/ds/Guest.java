@@ -16,7 +16,7 @@ public class Guest {
     private String firstName;
     private String lastName;
 
-    Guest() {
+    public Guest() {
     }
 
     public Guest(String firstName, String lastName) {
