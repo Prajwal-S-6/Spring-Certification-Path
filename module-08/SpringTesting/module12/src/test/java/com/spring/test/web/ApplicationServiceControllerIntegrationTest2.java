@@ -65,6 +65,7 @@ class ApplicationServiceControllerIntegrationTest2 {
         assertThat(reservations.getBody()).isNotEmpty();
         assertThat(reservations.getBody().stream().findFirst()).isNotEmpty();
         assertEquals(date, reservations.getBody().stream().findFirst().get().getReservationDate());
+        assertThat(reservations.getBody().get(0).getGuest()).isEqualTo(registeredGGuest);
 
 
     }
