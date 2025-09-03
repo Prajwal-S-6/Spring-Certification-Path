@@ -47,6 +47,8 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
         assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
         assertThat(logMessage).contains("After - currencyServiceThisPointcut");
+        assertThat(logMessage).doesNotContain("After - validatedArgumentPointcut");
+        assertThat(logMessage).doesNotContain("After - stringsAndIntegerArgumentsMethodPointcut");
 
     }
 
