@@ -34,7 +34,14 @@ class AlternativeCurrenciesRepositoryAspectTest {
     @Test
     void shouldLogAlternativeCurrenciesRepositoryTwice(CapturedOutput capturedOutput) {
         alternativeCurrenciesRepositoryAspect.beforeThisCurrenciesRepository();
+        alternativeCurrenciesRepositoryAspect.afterBeanCurrenciesRepository();
+        alternativeCurrenciesRepositoryAspect.beforeTargetCurrenciesRepository();
+        alternativeCurrenciesRepositoryAspect.beforeBeanCurrenciesRepository();
 
+        assertThat(capturedOutput.getOut()).contains("Before - this(AlternativeCurrenciesRepository)");
+        assertThat(capturedOutput.getOut()).contains("After - bean(AlternativeCurrenciesRepository)");
+        assertThat(capturedOutput.getOut()).contains("Before - target(AlternativeCurrenciesRepository)");
+        assertThat(capturedOutput.getOut()).contains("Before - bean(AlternativeCurrenciesRepository)");
         assertThat(capturedOutput.getOut()).contains("Before - this(AlternativeCurrenciesRepository)");
     }
 
