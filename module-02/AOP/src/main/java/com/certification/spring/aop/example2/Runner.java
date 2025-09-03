@@ -13,16 +13,16 @@ public class Runner {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ApplicationConfig.class);
         context.registerShutdownHook();
 
-//        CurrencyService currencyService = context.getBean(CurrencyService.class);
+        CurrencyService currencyService = context.getBean(CurrencyService.class);
 //        currencyService.getCurrencyCountryName(CurrencyId.USD);
 //        currencyService.getCurrencyLongName(CurrencyId.USD);
-//        currencyService.getExchangeRate("USD", "EUR");
-//        currencyService.getExchangeRate("USD", "EUR", 1);
+        currencyService.getExchangeRate("USD", "EUR");
+        //currencyService.getExchangeRate("USD", "EUR", 1);
 
 //        AlternativeCurrenciesRepository alternativeCurrenciesRepository = context.getBean(AlternativeCurrenciesRepository.class);
 //        alternativeCurrenciesRepository.getCurrenciesCount();
-
-        CurrenciesRepository currenciesRepository = context.getBean(CurrenciesRepository.class);
-        currenciesRepository.getCurrenciesCount();
+//
+//        CurrenciesRepository currenciesRepository = context.getBean(CurrenciesRepository.class);
+//        currenciesRepository.getCurrenciesCount();
     }
 }
