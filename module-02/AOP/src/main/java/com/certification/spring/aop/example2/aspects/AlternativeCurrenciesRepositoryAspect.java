@@ -15,7 +15,7 @@ public class AlternativeCurrenciesRepositoryAspect {
     Logger LOG = LoggerFactory.getLogger(AlternativeCurrenciesRepositoryAspect.class);
 
     @Pointcut("this(com.certification.spring.aop.example2.bls.AlternativeCurrenciesRepository)")
-    public void thisAlternativeCurrencyRepositoryPointcut() {}
+    private void thisAlternativeCurrencyRepositoryPointcut() {}
 
     @Before("thisAlternativeCurrencyRepositoryPointcut()")
     public void beforeThisCurrenciesRepository() {
