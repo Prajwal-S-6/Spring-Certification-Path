@@ -8,48 +8,48 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class CurrencyServiceAspect {
     @Pointcut("@annotation(com.certification.spring.aop.example2.annotations.InTransaction)")
-    public void transactionAnnotationPointcut() {
+    private void transactionAnnotationPointcut() {
     }
 
     @Pointcut("within(com.certification.spring.aop.example2.bls.*)")
-    public void blsPackagePointcut() {
+    private void blsPackagePointcut() {
     }
 
     @Pointcut("@within(com.certification.spring.aop.example2.annotations.Secured)")
-    public void securedClassPointcut() {
+    private void securedClassPointcut() {
     }
 
     // execution(returnType com.some.package.SomeClass.someMethod(...))
     @Pointcut("execution(float com.certification.spring.aop.example2.bls.CurrencyService.getExchangeRate(..))")
-    public void getExchangeRateMethodPointcut() {
+    private void getExchangeRateMethodPointcut() {
     }
 
     @Pointcut("bean(currency_service)")
-    public void namedBeanPointcut() {
+    private void namedBeanPointcut() {
     }
 
     @Pointcut("args(String, String, int)")
-    public void stringsAndIntegerArgumentsMethodPointcut() {
+    private void stringsAndIntegerArgumentsMethodPointcut() {
     }
 
     @Pointcut("@args(com.certification.spring.aop.example2.annotations.Validated)")
-    public void validatedArgumentPointcut() {
+    private void validatedArgumentPointcut() {
     }
 
     @Pointcut("target(com.certification.spring.aop.example2.bls.CurrencyService)")
-    public void currencyServiceTargetPointcut() {
+    private void currencyServiceTargetPointcut() {
     }
 
     @Pointcut("@target(com.certification.spring.aop.example2.annotations.Secured)")
-    public void currencyServiceSecuredTargetPointcut() {
+    private void currencyServiceSecuredTargetPointcut() {
     }
 
     @Pointcut("this(com.certification.spring.aop.example2.bls.CurrencyService)")
-    public void currencyServiceThisPointcut() {
+    private void currencyServiceThisPointcut() {
     }
 
     @Pointcut("blsPackagePointcut() && transactionAnnotationPointcut()")
-    public void blsPackageAndInTransactionPointcut() {
+    private void blsPackageAndInTransactionPointcut() {
     }
 
     @Before("transactionAnnotationPointcut()")
