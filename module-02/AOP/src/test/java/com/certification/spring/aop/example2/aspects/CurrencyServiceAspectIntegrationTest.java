@@ -39,6 +39,9 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("Before - securedClassPointcut");
         assertThat(logMessage).contains("Before - getExchangeRateMethodPointcut");
         assertThat(logMessage).contains("After - getExchangeRateMethodPointcut");
+        assertThat(logMessage).contains("After - namedBeanPointcut");
+        assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
+        assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
 
 
 
