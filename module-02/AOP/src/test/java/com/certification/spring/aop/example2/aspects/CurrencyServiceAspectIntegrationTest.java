@@ -2,6 +2,7 @@ package com.certification.spring.aop.example2.aspects;
 
 import com.certification.spring.aop.example2.ApplicationConfig;
 import com.certification.spring.aop.example2.bls.CurrencyService;
+import com.certification.spring.aop.example2.ds.CurrencyId;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,33 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
         assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
         assertThat(logMessage).contains("After - currencyServiceThisPointcut");
+
+    }
+
+    @Test
+    public void shouldLogForGetCurrencyCountryName() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream originalSystemOut = System.out;
+        System.setOut(new PrintStream(byteArrayOutputStream));
+
+        currencyService.getCurrencyCountryName(CurrencyId.USD);
+
+        System.setOut(originalSystemOut);
+        String logMessage = byteArrayOutputStream.toString();
+
+        assertThat(logMessage).doesNotContain("Before - transactionAnnotationPointcut");
+        assertThat(logMessage).contains("Before - blsPackagePointcut");
+        assertThat(logMessage).contains("After - blsPackagePointcut");
+        assertThat(logMessage).doesNotContain("After - blsPackageAndInTransactionPointcut");
+        assertThat(logMessage).contains("Before - securedClassPointcut");
+        assertThat(logMessage).doesNotContain("Before - getExchangeRateMethodPointcut");
+        assertThat(logMessage).doesNotContain("After - getExchangeRateMethodPointcut");
+        assertThat(logMessage).contains("After - namedBeanPointcut");
+        assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
+        assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
+        assertThat(logMessage).contains("After - currencyServiceThisPointcut");
+        assertThat(logMessage).contains("After - validatedArgumentPointcut");
+        assertThat(logMessage).doesNotContain("After - stringsAndIntegerArgumentsMethodPointcut");
 
     }
 }
