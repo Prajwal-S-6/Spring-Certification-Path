@@ -7,14 +7,17 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@ExtendWith(SpringExtension.class)
-@ContextConfiguration(classes = {ApplicationConfig.class})
+//@ExtendWith(SpringExtension.class)
+//@ContextConfiguration(classes = {ApplicationConfig.class})
+
+@SpringJUnitConfig(classes = ApplicationConfig.class)
 class CurrencyServiceAspectIntegrationTest {
 
     @Autowired
@@ -42,9 +45,7 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("After - namedBeanPointcut");
         assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
         assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
-
-
-
+        assertThat(logMessage).contains("After - currencyServiceThisPointcut");
 
     }
 }
