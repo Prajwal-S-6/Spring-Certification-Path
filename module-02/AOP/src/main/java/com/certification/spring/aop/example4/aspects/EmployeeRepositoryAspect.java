@@ -21,11 +21,11 @@ public class EmployeeRepositoryAspect {
 
     @Before("withinServicesOrSamePackagePointcut()")
     public void before(JoinPoint joinPoint){
-        LOG.info("Before - " + joinPoint.getSignature());
+        LOG.info("Before - " + joinPoint.getSignature().getName());
     }
 
     @After("withinServicesOrSamePackagePointcut()")
     public void after(JoinPoint joinPoint){
-        LOG.info("After - " + joinPoint.getSignature());
+        LOG.info("After - " + joinPoint.getSignature().getName());
     }
 }
