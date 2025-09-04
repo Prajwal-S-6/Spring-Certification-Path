@@ -74,6 +74,7 @@ class EmployeeRepositoryAspectTest {
                 "After - findAndUpdateEmployeeById"));
 
         assertThat(logMessage).doesNotContain("Before - findEmployeeById",
-                "After - findEmployeeById");
+                "After - findEmployeeById", "Before - deleteByEmail", "After - deleteByEmail");
     }
+
 }
