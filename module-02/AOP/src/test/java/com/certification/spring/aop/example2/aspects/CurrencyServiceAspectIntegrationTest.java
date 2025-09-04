@@ -76,6 +76,7 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("After - currencyServiceThisPointcut");
         assertThat(logMessage).contains("After - validatedArgumentPointcut");
         assertThat(logMessage).doesNotContain("After - stringsAndIntegerArgumentsMethodPointcut");
+        assertThat(logMessage).contains("Value returned from getCurrencyCountryName: USA");
 
     }
 }
