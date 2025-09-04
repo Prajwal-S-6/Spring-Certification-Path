@@ -16,7 +16,7 @@ public /*final*/ class EmployeeRepositoryImpl implements EmployeeRepository {
     }
 
     @Override
-    public /*final*/ void deleteEmployee(Employee employee) {
+    public final void deleteEmployee(Employee employee) {
     }
 
     @Override
