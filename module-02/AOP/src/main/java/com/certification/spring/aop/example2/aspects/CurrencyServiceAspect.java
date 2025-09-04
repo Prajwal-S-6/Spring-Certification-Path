@@ -123,7 +123,7 @@ public class CurrencyServiceAspect {
     }
 
     @AfterReturning(value = "execution(* com.certification.spring.aop.example2.bls.CurrencyService.getCurrencyCountryName(..))", returning = "value")
-    public void afterThrowingException(String value) {
+    public void afterReturning(String value) {
         System.out.println("Value returned from getCurrencyCountryName: " + value);
     }
 }
