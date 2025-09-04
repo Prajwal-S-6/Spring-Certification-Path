@@ -48,7 +48,7 @@ class EmployeeRepositoryAspectTest {
         System.setOut(originalOutput);
         String logMessage = byteArrayOutputStream.toString();
 
-        assertThat(logMessage).isEmpty();
+        assertThat(logMessage).contains(List.of("Before - findAndUpdateEmployeeById", "After - findAndUpdateEmployeeById"));
 
     }
 
