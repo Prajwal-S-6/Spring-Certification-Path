@@ -16,7 +16,7 @@ public class AlternateEmployeeRepository {
     public final void deleteEmployee(Employee employee) {
     }
 
-    public final void findAndUpdateEmployeeById(long id, Employee employeeToMerge) {
+    public  void findAndUpdateEmployeeById(long id, Employee employeeToMerge) {
         Employee employeeById = findEmployeeById(id);
         saveEmployee(employeeById);
     }
