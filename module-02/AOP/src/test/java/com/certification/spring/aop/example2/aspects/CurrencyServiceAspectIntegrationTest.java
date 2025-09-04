@@ -79,4 +79,12 @@ class CurrencyServiceAspectIntegrationTest {
         assertThat(logMessage).contains("Value returned from getCurrencyCountryName: USA");
 
     }
+
+    @Test
+    public void shouldLogForGetCurrencyCountryNameAfterThrowing() {
+        catch(Exception e) {
+            System.setOut(originalSystemOut);
+            String logMessage = byteArrayOutputStream.toString();
+
+            assertThat(logMessage).doesNotContain("Before - transactionAnnotationPointcut");
 }
