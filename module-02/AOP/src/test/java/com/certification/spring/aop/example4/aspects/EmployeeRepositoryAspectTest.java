@@ -52,5 +52,18 @@ class EmployeeRepositoryAspectTest {
 
     }
 
+    @Test
+    void shouldNotLogForSelfInvokingMethods() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream originalOutput = System.out;
+        System.setOut(new PrintStream(byteArrayOutputStream));
+
+        employeeRepository.saveEmployee(new Employee());
+        employeeRepository.deleteEmployee(new Employee());
+        employeeRepository.findAndUpdateEmployeeById(1L , new Employee());
+
+
+        System.setOut(originalOutput);
+        String logMessage = byteArrayOutputStream.toString();
 
 }
