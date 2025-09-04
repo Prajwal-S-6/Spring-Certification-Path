@@ -82,9 +82,35 @@ class CurrencyServiceAspectIntegrationTest {
 
     @Test
     public void shouldLogForGetCurrencyCountryNameAfterThrowing() {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        PrintStream originalSystemOut = System.out;
+        System.setOut(new PrintStream(byteArrayOutputStream));
+
+        try {
+            currencyService.getCurrencyCountryName(CurrencyId.EUR);
+        }
         catch(Exception e) {
             System.setOut(originalSystemOut);
             String logMessage = byteArrayOutputStream.toString();
 
             assertThat(logMessage).doesNotContain("Before - transactionAnnotationPointcut");
+            assertThat(logMessage).contains("Before - blsPackagePointcut");
+            assertThat(logMessage).contains("After - blsPackagePointcut");
+            assertThat(logMessage).doesNotContain("After - blsPackageAndInTransactionPointcut");
+            assertThat(logMessage).contains("Before - securedClassPointcut");
+            assertThat(logMessage).doesNotContain("Before - getExchangeRateMethodPointcut");
+            assertThat(logMessage).doesNotContain("After - getExchangeRateMethodPointcut");
+            assertThat(logMessage).contains("After - namedBeanPointcut");
+            assertThat(logMessage).contains("After - currencyServiceTargetPointcut");
+            assertThat(logMessage).contains("After - currencyServiceSecuredTargetPointcut");
+            assertThat(logMessage).contains("After - currencyServiceThisPointcut");
+            assertThat(logMessage).contains("After - validatedArgumentPointcut");
+            assertThat(logMessage).doesNotContain("After - stringsAndIntegerArgumentsMethodPointcut");
+            assertThat(logMessage).doesNotContain("Value returned from getCurrencyCountryName: USA");
+            assertThat(logMessage).contains("Exception was thrown from getCurrencyCountryName: IllegalArgumentException");
+        }
+
+
+
+    }
 }
