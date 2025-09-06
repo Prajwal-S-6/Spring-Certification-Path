@@ -11,9 +11,10 @@ import org.springframework.stereotype.Component;
 public class HelloBeanAspect {
 
     @Around("within(com.certification.spring.aop.example6.beans.*)")
-    public void withinPackage(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
-        System.out.println("Before - Around" + proceedingJoinPoint.getSignature());
-        proceedingJoinPoint.proceed();
-        System.out.println("After - Around" + proceedingJoinPoint.getSignature());
+    public Object withinPackage(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        System.out.println("Before - Around " + proceedingJoinPoint.getSignature().getName());
+         Object result = proceedingJoinPoint.proceed();
+        System.out.println("After - Around " + proceedingJoinPoint.getSignature().getName());
+        return result;
     }
 }
