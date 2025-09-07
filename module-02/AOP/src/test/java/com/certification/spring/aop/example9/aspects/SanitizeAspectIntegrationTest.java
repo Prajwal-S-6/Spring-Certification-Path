@@ -29,7 +29,6 @@ class SanitizeAspectIntegrationTest {
 
 
     @Test
-    void shouldSanitizeTheArgs(CapturedOutput capturedOutput) {
     void shouldSanitizeTheArgs() {
         Logger logger = (Logger) LoggerFactory.getLogger(TransactionHistoryServiceClient.class);
         ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
@@ -39,5 +38,12 @@ class SanitizeAspectIntegrationTest {
         transactionHistoryServiceClient.saveTransactionData("123", "abc", "password");
         assertThat(capturedOutput.getOut())
                 .containsIgnoringNewLines("Sending data, identifier = [123], data = [***sanitized***], privateKey = [***sanitized***]");
+
+        List<ILoggingEvent> logs = listAppender.list;
+
+        assertEquals(1, logs.size());
+        assertThat(logs.get(0).getLevel().toString()).isEqualTo(Level.INFO.toString());
+        assertThat(logs.get(0).getFormattedMessage())
+                .isEqualTo("Sending data, identifier = [123], data = [***sanitized***], privateKey = [***sanitized***]");
     }
 }
