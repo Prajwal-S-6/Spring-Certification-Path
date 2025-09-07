@@ -11,11 +11,6 @@ public class TransactionHistoryServiceClient {
     Logger LOG = LoggerFactory.getLogger(TransactionHistoryServiceClient.class);
 
     public void saveTransactionData(String identifier, @Sanitize String data, @Sanitize String privateKey) {
-        System.out.println(
-                String.format(
-                        "Sending data, identifier = [%s], data = [%s], privateKey = [%s]",
-                        identifier, data, privateKey
-                )
-        );
+        LOG.info("Sending data, identifier = [{}], data = [{}], privateKey = [{}]", identifier, data, privateKey);
     }
 }
