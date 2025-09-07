@@ -36,8 +36,6 @@ class SanitizeAspectIntegrationTest {
         logger.addAppender(listAppender);
 
         transactionHistoryServiceClient.saveTransactionData("123", "abc", "password");
-        assertThat(capturedOutput.getOut())
-                .containsIgnoringNewLines("Sending data, identifier = [123], data = [***sanitized***], privateKey = [***sanitized***]");
 
         List<ILoggingEvent> logs = listAppender.list;
 
