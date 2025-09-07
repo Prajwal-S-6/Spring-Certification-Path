@@ -18,7 +18,6 @@ public class SanitizeAspect {
     @Around("execution(* com..*.*(*, ..))")
     public Object around(ProceedingJoinPoint proceedingJoinPoint) {
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
-
         try {
             proceedingJoinPoint.proceed(sanitizeArgumentsIfRequired(proceedingJoinPoint.getArgs(), methodSignature));
         } catch (Throwable e) {
