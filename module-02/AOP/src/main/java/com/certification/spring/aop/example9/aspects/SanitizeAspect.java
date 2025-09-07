@@ -19,7 +19,7 @@ public class SanitizeAspect {
     public Object around(ProceedingJoinPoint proceedingJoinPoint) {
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
         try {
-            proceedingJoinPoint.proceed(sanitizeArgumentsIfRequired(proceedingJoinPoint.getArgs(), methodSignature));
+            return proceedingJoinPoint.proceed(sanitizeArgumentsIfRequired(proceedingJoinPoint.getArgs(), methodSignature));
         } catch (Throwable e) {
             throw new RuntimeException(e);
         }
