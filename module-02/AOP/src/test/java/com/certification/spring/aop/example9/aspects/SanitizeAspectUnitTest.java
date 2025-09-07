@@ -56,5 +56,27 @@ class SanitizeAspectUnitTest {
         verify(proceedingJoinPoint).proceed(objects);
     }
 
-    
+    @Test
+    public void shouldProceedWithSanitizedArgs() throws Throwable {
+        ProceedingJoinPoint proceedingJoinPoint = mock(ProceedingJoinPoint.class);
+        MethodSignature signature = mock(MethodSignature.class);
+        when(signature.getMethod()).thenReturn(SanitizeAspectUnitTest.class.getDeclaredMethod("argsAnnotatedWithSanitize", String.class, String.class, String.class));
+        when(proceedingJoinPoint.getSignature()).thenReturn(signature);
+        Object[] objects = {"a", "b", "c"};
+        when(proceedingJoinPoint.getArgs()).thenReturn(objects);
+        when(proceedingJoinPoint.proceed(any())).thenReturn("Test");
+
+        assertEquals("Test", sanitizeAspect.around(proceedingJoinPoint));
+        Object[] expectedArgsTobeCalledWith = {"a", "***sanitized***", "***sanitized***"};
+        verify(proceedingJoinPoint).proceed(expectedArgsTobeCalledWith);
+    }
+
+
+
+    private void argsAnnotatedWithSanitize(String identifier, @Sanitize String data, @Sanitize String privateKey) {}
+
+    private void argsNotAnnotatedWithSanitize(String identifier, String data, String privateKey) {}
+
+    private void argsAreNotOfTypeString(String identifier, @Sanitize Integer data, @Sanitize Long privateKey) {}
+
 }
