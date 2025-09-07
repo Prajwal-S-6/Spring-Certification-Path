@@ -7,8 +7,6 @@ import com.certification.spring.aop.example9.ApplicationConfig;
 import com.certification.spring.aop.example9.beans.TransactionHistoryServiceClient;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.junit.jupiter.MockitoExtension;
-import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.slf4j.event.Level;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +30,12 @@ class SanitizeAspectIntegrationTest {
 
     @Test
     void shouldSanitizeTheArgs(CapturedOutput capturedOutput) {
+    void shouldSanitizeTheArgs() {
+        Logger logger = (Logger) LoggerFactory.getLogger(TransactionHistoryServiceClient.class);
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        listAppender.start();
+        logger.addAppender(listAppender);
+
         transactionHistoryServiceClient.saveTransactionData("123", "abc", "password");
         assertThat(capturedOutput.getOut())
                 .containsIgnoringNewLines("Sending data, identifier = [123], data = [***sanitized***], privateKey = [***sanitized***]");
