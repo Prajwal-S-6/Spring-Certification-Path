@@ -16,7 +16,7 @@ import java.util.Arrays;
 public class SanitizeAspect {
 
     @Around("execution(* com..*.*(*, ..))")
-    public void around(ProceedingJoinPoint proceedingJoinPoint) {
+    public Object around(ProceedingJoinPoint proceedingJoinPoint) {
         MethodSignature methodSignature = (MethodSignature) proceedingJoinPoint.getSignature();
 
         try {
