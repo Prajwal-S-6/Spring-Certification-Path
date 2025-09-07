@@ -32,6 +32,6 @@ class TransactionHistoryServiceClientUnitTest {
 
         List<ILoggingEvent> logs = listAppender.list;
         assertEquals(1, logs.size());
-        assertThat()
+        assertThat(logs.get(0).getFormattedMessage()).isEqualTo("Sending data, identifier = [123], data = [abc], privateKey = [password]");
     }
 }
