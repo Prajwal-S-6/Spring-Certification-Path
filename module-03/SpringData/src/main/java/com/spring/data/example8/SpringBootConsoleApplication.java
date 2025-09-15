@@ -24,14 +24,14 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
 //            System.out.println("Exception during saving employees: " + e.getMessage());
 //        }
 //        employeesService.printEmployees();
-//        employeesService.deleteAllEmployees();
-//
+        //employeesService.deleteAllEmployees();
+
 //        try {
 //            employeesService.saveEmployeesInTransaction();
 //        } catch (Exception e) {
 //            System.out.println("Exception during saving employees: " + e.getMessage());
 //        }
-//        employeesService.printEmployees();
-//        employeesService.deleteAllEmployees();
+        employeesService.printEmployees();
+        //employeesService.deleteAllEmployees();
     }
 }

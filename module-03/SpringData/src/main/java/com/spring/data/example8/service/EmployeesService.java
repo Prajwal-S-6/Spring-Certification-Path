@@ -7,6 +7,7 @@ import com.spring.data.example8.ds.Employee;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.sql.Date;
@@ -35,7 +36,8 @@ public class EmployeesService {
         saveEmployees();
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.NESTED)
+    // if not marked as REQUIRES_NEW then it will execute in same transaction created by Test class
     public void saveEmployeesInTransaction() {
         logger.info("Saving employees with transaction...");
         saveEmployees();
