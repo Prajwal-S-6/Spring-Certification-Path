@@ -18,6 +18,6 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        employeeReportService.printReport();
+        //employeeReportService.printReport();
     }
 }
