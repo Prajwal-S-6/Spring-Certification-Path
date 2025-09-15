@@ -58,9 +58,24 @@ class EmployeesServiceTest {
         employeesService.printEmployees();
 
         Approvals.verify(logs.stream().map(ILoggingEvent::getFormattedMessage).reduce((log1, log2) -> log1 + "\n" + log2).get());
-
     }
 
+    @Test
+    void shouldSaveThreeEmployeesWithoutTransaction() {
+        ListAppender<ILoggingEvent> listAppender = new ListAppender<>();
+        logger.addAppender(listAppender);
+        listAppender.start();
+
+        List<ILoggingEvent> logs = listAppender.list;
+        try {
+            employeesService.saveEmployeesWithoutTransaction();
+        } catch (Exception e) {
+
+        }
+        employeesService.printEmployees();
+
+        Approvals.verify(logs.stream().map(ILoggingEvent::getFormattedMessage).reduce((log1, log2) -> log1 + "\n" + log2).get());
+    }
 
 
 }

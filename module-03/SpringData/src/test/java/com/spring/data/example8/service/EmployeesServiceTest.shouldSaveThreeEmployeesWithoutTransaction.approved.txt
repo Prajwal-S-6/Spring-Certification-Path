@@ -1,0 +1,10 @@
+Saving employees without transaction...
+Printing list of employees
+Employee{id=1, firstName='John', lastName='Doe', email='John12.Doe@corp.com', phoneNumber='555-55-55', hireDate=2019-06-05, salary=70000.0}
+Employee{id=2, firstName='Willow', lastName='Zhang', email='Willow12.Zhang@corp.com', phoneNumber='555-55-56', hireDate=2019-07-12, salary=80000.0}
+Employee{id=3, firstName='Jayvon', lastName='Grant', email='Jayvon12.Grant@corp.com', phoneNumber='555-55-57', hireDate=2019-07-17, salary=90000.0}
+Employee{id=4, firstName='Shaylee', lastName='Mcclure', email='Shaylee12.Mcclure@corp.com', phoneNumber='555-55-58', hireDate=2019-07-19, salary=120000.0}
+Employee{id=5, firstName='Miley', lastName='Krueger', email='Miley12.Krueger@corp.com', phoneNumber='555-55-59', hireDate=2019-07-20, salary=110000.0}
+Employee{id=10, firstName='John', lastName='Doe', email='John.Doe@corp.com', phoneNumber='555-55-55', hireDate=2019-06-05, salary=70000.0}
+Employee{id=11, firstName='Willow', lastName='Zhang', email='Willow.Zhang@corp.com', phoneNumber='555-55-56', hireDate=2019-07-12, salary=80000.0}
+Employee{id=12, firstName='Jayvon', lastName='Grant', email='Jayvon.Grant@corp.com', phoneNumber='555-55-57', hireDate=2019-07-17, salary=90000.0}
