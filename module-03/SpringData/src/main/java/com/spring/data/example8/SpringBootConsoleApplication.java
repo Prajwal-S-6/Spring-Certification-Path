@@ -18,20 +18,20 @@ public class SpringBootConsoleApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        try {
-            employeesService.saveEmployeesWithoutTransaction();
-        } catch (Exception e) {
-            System.out.println("Exception during saving employees: " + e.getMessage());
-        }
-        employeesService.printEmployees();
-        employeesService.deleteAllEmployees();
-
-        try {
-            employeesService.saveEmployeesInTransaction();
-        } catch (Exception e) {
-            System.out.println("Exception during saving employees: " + e.getMessage());
-        }
-        employeesService.printEmployees();
-        employeesService.deleteAllEmployees();
+//        try {
+//            employeesService.saveEmployeesWithoutTransaction();
+//        } catch (Exception e) {
+//            System.out.println("Exception during saving employees: " + e.getMessage());
+//        }
+//        employeesService.printEmployees();
+//        employeesService.deleteAllEmployees();
+//
+//        try {
+//            employeesService.saveEmployeesInTransaction();
+//        } catch (Exception e) {
+//            System.out.println("Exception during saving employees: " + e.getMessage());
+//        }
+//        employeesService.printEmployees();
+//        employeesService.deleteAllEmployees();
     }
 }
