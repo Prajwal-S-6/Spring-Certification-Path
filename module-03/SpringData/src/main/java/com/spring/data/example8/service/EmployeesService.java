@@ -1,8 +1,10 @@
 package com.spring.data.example8.service;
 
 
+import ch.qos.logback.classic.Logger;
 import com.spring.data.example8.dao.EmployeeDao;
 import com.spring.data.example8.ds.Employee;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,27 +14,30 @@ import java.sql.Date;
 @Service
 public class EmployeesService {
 
+    private static final org.slf4j.Logger log = LoggerFactory.getLogger(EmployeesService.class);
     @Autowired
     private EmployeeDao employeeDao;
 
+    Logger logger = (Logger) LoggerFactory.getLogger(EmployeesService.class);
+
     public void printEmployees() {
-        System.out.println("Printing list of employees");
-        employeeDao.findAllEmployees().forEach(System.out::println);
+        logger.info("Printing list of employees");
+        employeeDao.findAllEmployees().forEach(employee -> logger.info(employee.toString()));
     }
 
     public void deleteAllEmployees() {
-        System.out.println("Deleting all employees...");
+        logger.info("Deleting all employees...");
         employeeDao.deleteAllEmployees();
     }
 
     public void saveEmployeesWithoutTransaction() {
-        System.out.println("Saving employees without transaction...");
+        logger.info("Saving employees without transaction...");
         saveEmployees();
     }
 
     @Transactional
     public void saveEmployeesInTransaction() {
-        System.out.println("Saving employees with transaction...");
+        logger.info("Saving employees with transaction...");
         saveEmployees();
     }
 
