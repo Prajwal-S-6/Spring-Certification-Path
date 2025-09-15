@@ -51,6 +51,12 @@
 			<groupId>org.assertj</groupId>
 			<artifactId>assertj-core</artifactId>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.approvaltests/approvaltests -->
+		<dependency>
+			<groupId>com.approvaltests</groupId>
+			<artifactId>approvaltests</artifactId>
+			<version>25.0.23</version>
+		</dependency>
 	</dependencies>
 
 	<build>
