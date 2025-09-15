@@ -8,4 +8,17 @@ public record Employee(int id,
         String phoneNumber,
         Date hireDate,
         float salary) {
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", hireDate=" + hireDate +
+                ", salary=" + salary +
+                '}';
+    }
 }

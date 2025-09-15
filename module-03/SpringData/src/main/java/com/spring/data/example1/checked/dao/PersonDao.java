@@ -18,15 +18,15 @@ public class PersonDao {
             throw new PersonStoreException();
     }
 
-    private boolean valid(Person person) {
+    boolean valid(Person person) {
         return false;
     }
 
-    private boolean store(Person person) {
+    boolean store(Person person) {
         return false;
     }
 
-    private boolean filesystemActive(Person person) {
+    boolean filesystemActive(Person person) {
         return false;
     }
 }
