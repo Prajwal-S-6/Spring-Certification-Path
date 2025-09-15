@@ -70,7 +70,7 @@ class EmployeesServiceTest {
 
         try {
             employeesService.saveEmployeesWithoutTransaction();
-        }catch (Exception e) {
+        }catch (Exception ignored) {
 
         }
         employeesService.printEmployees();
@@ -87,8 +87,7 @@ class EmployeesServiceTest {
         List<ILoggingEvent> logs = listAppender.list;
         try {
             employeesService.saveEmployeesInTransaction();
-        } catch (Exception e) {
-            System.out.println("Exception during saving employees: " + e.getMessage());
+        } catch (Exception ignored) {
         }
         employeesService.printEmployees();
 
