@@ -11,9 +11,10 @@ public class TestDataSourceConfig {
 
     @Bean
     @Profile("test")
+    @Primary
     public DataSource dataSource() {
         return new EmbeddedDatabaseBuilder()
-                .setName("testdb")
+                .setName("myyytestdb")
                 .setScriptEncoding("UTF-8")
                 .build();
     }
