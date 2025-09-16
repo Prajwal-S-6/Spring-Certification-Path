@@ -73,6 +73,15 @@ class EmployeeServiceTest {
         assertThat(index2).isLessThan(index1);
     }
 
+    // testing by checking that it reuses existing transaction when exists
+    @Test
+    void shouldThrowExceptionWhenCalledWithTransactionalMandatoryAndNoTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callMandatoryWithoutCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        assertThat(output).contains("Exception thrown from callMandatoryWithoutCurrentTransaction: No existing transaction found for transaction marked with propagation 'mandatory'");
+        assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+    }
+
 
 
 }
