@@ -118,6 +118,14 @@ class EmployeeServiceTest {
         assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
     }
 
+    // testing by checking that it doesnt creates new connection/transaction when no transaction exists
+    @Test
+    void shouldNotCreateConnectionWhenCalledWithTransactionalNeverAndNoTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callNeverWithoutCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+    }
+
 
 
 
