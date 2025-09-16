@@ -110,13 +110,6 @@ class EmployeeServiceTest {
         assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
     }
 
-    // testing by checking that it doesnt creates new connection/transaction and suspends existing when transaction exists
-    @Test
-    void shouldNotCreateConnectionWhenCalledWithTransactionalNotSupportedAndTransactionExists(CapturedOutput capturedOutput) {
-        employeeService.callNotSupportedWithoutCurrentTransaction();
-        List<String> output= capturedOutput.getOut().lines().toList();
-        assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
-    }
 
     // testing by checking that it doesnt creates new connection/transaction when no transaction exists
     @Test
@@ -124,6 +117,14 @@ class EmployeeServiceTest {
         employeeService.callNeverWithoutCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
         assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+    }
+
+    // testing by checking that it throws excpetion when transaction exists
+    @Test
+    void shouldNotCreateConnectionWhenCalledWithTransactionalNeverAndTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callNeverWithCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        assertThat(output).contains("Exception thrown from callNeverWithCurrentTransaction: Existing transaction found for transaction marked with propagation 'never'");
     }
 
 
