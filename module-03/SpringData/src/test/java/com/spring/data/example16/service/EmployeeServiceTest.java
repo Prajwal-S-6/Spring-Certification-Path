@@ -34,12 +34,22 @@ class EmployeeServiceTest {
     }
 
 
-    // testing by checking that transaction/connection is created after
+    // testing by checking that transaction/connection is not created after; instead resused
     @Test
     void shouldUseConnectionWhenCalledWithTransactionalRequiredAndTransactionExists(CapturedOutput capturedOutput) {
         employeeService.callRequiredWithCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
         int index1 = output.indexOf("Starting callRequiredWithCurrentTransaction");
+        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index2).isLessThan(index1);
+    }
+
+    // testing by checking that existing transaction/connection is supported
+    @Test
+    void shouldUseConnectionWhenCalledWithTransactionalSupportsAndTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callSupportsWithCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.indexOf("Starting callSupportsWithCurrentTransaction");
         int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
         assertThat(index2).isLessThan(index1);
     }
