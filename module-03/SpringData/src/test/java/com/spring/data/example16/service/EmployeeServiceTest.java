@@ -92,5 +92,15 @@ class EmployeeServiceTest {
         assertThat(index1).isLessThan(index2);
     }
 
+    // testing by checking that it creates new connection/transaction when no transaction exists
+    @Test
+    void shouldCreateConnectionWhenCalledWithTransactionalRequiresNewAndNoTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callRequiresNewWithoutCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.lastIndexOf("Starting callRequiresNewWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index1).isLessThan(index2);
+    }
+
 
 }
