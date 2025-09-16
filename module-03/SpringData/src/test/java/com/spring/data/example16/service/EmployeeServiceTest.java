@@ -55,6 +55,13 @@ class EmployeeServiceTest {
     }
 
 
+    // testing by checking that it doesnt create connection/transaction
+    @Test
+    void shouldNotCreateConnectionWhenCalledWithTransactionalSupportsAndNoTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callSupportsWithoutCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+    }
 
 
 
