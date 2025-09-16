@@ -28,8 +28,8 @@ class EmployeeServiceTest {
     void shouldCreateOneNewConnectionWhenCalledWithTransactionalRequiredAndNoTransactionExists(CapturedOutput capturedOutput) {
         employeeService.callRequiredWithoutCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
-        int index1 = output.indexOf("Starting callRequiredWithoutCurrentTransaction");
-        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        int index1 = output.lastIndexOf("Starting callRequiredWithoutCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
         assertThat(index1).isLessThan(index2);
     }
 
@@ -39,8 +39,8 @@ class EmployeeServiceTest {
     void shouldUseConnectionWhenCalledWithTransactionalRequiredAndTransactionExists(CapturedOutput capturedOutput) {
         employeeService.callRequiredWithCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
-        int index1 = output.indexOf("Starting callRequiredWithCurrentTransaction");
-        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        int index1 = output.lastIndexOf("Starting callRequiredWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
         assertThat(index2).isLessThan(index1);
     }
 
@@ -49,8 +49,8 @@ class EmployeeServiceTest {
     void shouldUseConnectionWhenCalledWithTransactionalSupportsAndTransactionExists(CapturedOutput capturedOutput) {
         employeeService.callSupportsWithCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
-        int index1 = output.indexOf("Starting callSupportsWithCurrentTransaction");
-        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        int index1 = output.lastIndexOf("Starting callSupportsWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
         assertThat(index2).isLessThan(index1);
     }
 
@@ -68,8 +68,8 @@ class EmployeeServiceTest {
     void shouldUseConnectionWhenCalledWithTransactionalMandatoryAndTransactionExists(CapturedOutput capturedOutput) {
         employeeService.callMandatoryWithCurrentTransaction();
         List<String> output= capturedOutput.getOut().lines().toList();
-        int index1 = output.indexOf("Starting callMandatoryWithCurrentTransaction");
-        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        int index1 = output.lastIndexOf("Starting callMandatoryWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
         assertThat(index2).isLessThan(index1);
     }
 
@@ -82,6 +82,15 @@ class EmployeeServiceTest {
         assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
     }
 
+    // testing by checking that it creates new connection/transaction when transaction exists
+    @Test
+    void shouldCreateConnectionWhenCalledWithTransactionalRequiresNewAndTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callRequiresNewWithCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.lastIndexOf("Starting callRequiresNewWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index1).isLessThan(index2);
+    }
 
 
 }
