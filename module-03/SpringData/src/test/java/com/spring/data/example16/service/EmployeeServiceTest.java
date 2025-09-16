@@ -127,6 +127,26 @@ class EmployeeServiceTest {
         assertThat(output).contains("Exception thrown from callNeverWithCurrentTransaction: Existing transaction found for transaction marked with propagation 'never'");
     }
 
+    // testing by checking that it doesnt create new connection/transaction when transaction exists, only creates savepoint
+    @Test
+    void shouldCreateNestedSavePointWhenCalledWithTransactionalNestedAndTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callNestedWithCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.lastIndexOf("Starting callNestedWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index2).isLessThan(index1);
+    }
+
+    // testing by checking that it create new connection/transaction when transaction  not exists
+    @Test
+    void shouldCreateNewConnectionWhenCalledWithTransactionalNestedAndTransactionNotExists(CapturedOutput capturedOutput) {
+        employeeService.callNestedWithoutCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.lastIndexOf("Starting callNestedWithCurrentTransaction");
+        int index2 = output.lastIndexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index1).isLessThan(index2);
+    }
+
 
 
 
