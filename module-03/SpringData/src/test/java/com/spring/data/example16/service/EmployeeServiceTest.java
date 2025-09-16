@@ -63,6 +63,16 @@ class EmployeeServiceTest {
         assertThat(output).doesNotContain("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
     }
 
+    // testing by checking that it reuses existing transaction when exists
+    @Test
+    void shouldUseConnectionWhenCalledWithTransactionalMandatoryAndTransactionExists(CapturedOutput capturedOutput) {
+        employeeService.callMandatoryWithCurrentTransaction();
+        List<String> output= capturedOutput.getOut().lines().toList();
+        int index1 = output.indexOf("Starting callMandatoryWithCurrentTransaction");
+        int index2 = output.indexOf("Data Source Trace: Connection javax.sql.DataSource.getConnection()");
+        assertThat(index2).isLessThan(index1);
+    }
+
 
 
 }
