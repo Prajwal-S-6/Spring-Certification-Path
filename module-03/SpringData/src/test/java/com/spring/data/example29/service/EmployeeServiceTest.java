@@ -53,10 +53,11 @@ class EmployeeServiceTest {
     }
 
     @Test
-    void shouldQueryWillowZhangEmployee() {
+    void shouldQueryWillowZhangEmployee() throws JsonProcessingException {
         Employee employee = employeeService.queryEmployee();
 
         assertThat(employee.getFirstName()).isEqualTo("Willow");
         assertThat(employee.getLastName()).isEqualTo("Zhang");
+        Approvals.verify(writer.writeValueAsString(employee));
     }
 }
