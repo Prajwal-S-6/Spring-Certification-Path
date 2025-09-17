@@ -7,6 +7,7 @@ import com.spring.data.example29.dao.EmployeeDao;
 import com.spring.data.example29.ds.Employee;
 import org.approvaltests.Approvals;
 import org.json.JSONArray;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -30,15 +31,29 @@ class EmployeeServiceTest {
     @Autowired
     private EmployeeDao employeeDao;
 
+    ObjectMapper objectMapper;
+    ObjectWriter writer;
+
+    @BeforeEach
+    void setUp() {
+
+        objectMapper = new ObjectMapper();
+        writer = objectMapper.writerWithDefaultPrettyPrinter();
+    }
+
     @Test
     void shouldSaveAllEmployees() throws JsonProcessingException {
-        ObjectMapper objectMapper = new ObjectMapper();
-        ObjectWriter writer = objectMapper.writerWithDefaultPrettyPrinter();
+
         employeeService.saveAllEmployees();
 
         List<Employee> employeeList = employeeDao.findAll();
+
         assertThat(employeeList.size()).isEqualTo(5);
         Approvals.verify(writer.writeValueAsString(employeeList));
     }
 
+    @Test
+    void shouldQueryWillowZhangEmployee() {
+
+    }
 }
