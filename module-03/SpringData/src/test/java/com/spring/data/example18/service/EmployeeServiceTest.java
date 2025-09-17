@@ -33,4 +33,16 @@ class EmployeeServiceTest {
         }
     }
 
+    @Test
+    public void shouldNotCauseRollbackForCheckedException(CapturedOutput capturedOutput) {
+        try {
+            employeeService.methodWithCheckedExceptionNotCausingRollback();
+        } catch (Exception e) {
+
+        }
+        finally {
+            assertThat(capturedOutput.getOut()).doesNotContain("rollback");
+        }
+    }
+
 }
