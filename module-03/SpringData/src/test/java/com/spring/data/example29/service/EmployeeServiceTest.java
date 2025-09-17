@@ -54,6 +54,9 @@ class EmployeeServiceTest {
 
     @Test
     void shouldQueryWillowZhangEmployee() {
+        Employee employee = employeeService.queryEmployee();
 
+        assertThat(employee.getFirstName()).isEqualTo("Willow");
+        assertThat(employee.getLastName()).isEqualTo("Zhang");
     }
 }
