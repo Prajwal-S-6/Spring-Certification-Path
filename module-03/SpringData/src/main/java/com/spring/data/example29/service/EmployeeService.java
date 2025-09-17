@@ -24,10 +24,7 @@ public class EmployeeService {
         System.out.println("Saved all employees");
     }
 
-    public void queryEmployee() {
-        System.out.println("Searching for John Doe employee...");
-        System.out.println(
-                employeeDao.findByFirstNameAndLastName("Willow", "Zhang")
-        );
+    public Employee queryEmployee() {
+        return employeeDao.findByFirstNameAndLastName("Willow", "Zhang");
     }
 }
