@@ -1,6 +1,7 @@
 package com.spring.data.example18.configuration;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
@@ -13,6 +14,7 @@ import javax.sql.DataSource;
 @Configuration
 @EnableAspectJAutoProxy
 @EnableTransactionManagement
+@ComponentScan(basePackages = "com.spring.data.example18")
 public class DataSourceConfig {
 
     @Bean
