@@ -1,0 +1,41 @@
+[ {
+  "id" : 1,
+  "firstName" : "John",
+  "lastName" : "Doe",
+  "email" : "John.Doe@corp.com",
+  "phoneNumber" : "555-55-55",
+  "hireDate" : 1559673000000,
+  "salary" : 70000.0
+}, {
+  "id" : 2,
+  "firstName" : "Willow",
+  "lastName" : "Zhang",
+  "email" : "Willow.Zhang@corp.com",
+  "phoneNumber" : "555-55-56",
+  "hireDate" : 1562869800000,
+  "salary" : 80000.0
+}, {
+  "id" : 3,
+  "firstName" : "Jayvon",
+  "lastName" : "Krueger",
+  "email" : "Jayvon.Grant@corp.com",
+  "phoneNumber" : "555-55-57",
+  "hireDate" : 1563301800000,
+  "salary" : 90000.0
+}, {
+  "id" : 4,
+  "firstName" : "Shaylee",
+  "lastName" : "Mcclure",
+  "email" : "Shaylee.Mcclure@corp.com",
+  "phoneNumber" : "555-55-58",
+  "hireDate" : 1563474600000,
+  "salary" : 120000.0
+}, {
+  "id" : 5,
+  "firstName" : "Miley",
+  "lastName" : "Krueger",
+  "email" : "Miley.Krueger@corp.com",
+  "phoneNumber" : "555-55-59",
+  "hireDate" : 1563561000000,
+  "salary" : 110000.0
+} ]
