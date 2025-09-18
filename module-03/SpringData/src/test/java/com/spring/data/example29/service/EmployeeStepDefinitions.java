@@ -25,7 +25,7 @@ public class EmployeeStepDefinitions {
     private Employee employee;
 
     @Given("Employees are saved")
-    public void employees_are_saved() {
+    public void employeesAreSaved() {
         employeeService.saveAllEmployees();
     }
 
