@@ -5,12 +5,16 @@ import com.spring.data.example29.ds.Employee;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.cucumber.spring.CucumberContextConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class EmployeeStepDefinitions extends SpringIntegrationTest {
+@CucumberContextConfiguration
+@SpringBootTest()
+public class EmployeeStepDefinitions {
 
     @Autowired
     private EmployeeService employeeService;
