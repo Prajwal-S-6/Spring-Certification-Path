@@ -1,5 +1,6 @@
 package com.spring.data.example29.service;
 
+import com.spring.data.example29.dao.EmployeeDao;
 import com.spring.data.example29.ds.Employee;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -14,6 +15,9 @@ public class EmployeeStepDefinitions extends SpringIntegrationTest {
 
     @Autowired
     private EmployeeService employeeService;
+
+    @Autowired
+    private EmployeeDao employeeDao;
 
     private Employee employee;
 
@@ -32,5 +36,20 @@ public class EmployeeStepDefinitions extends SpringIntegrationTest {
         assertThat(employee.getFirstName()).isEqualTo("Willow");
         assertThat(employee.getLastName()).isEqualTo("Zhang");
         assertThat(employee.getSalary()).isEqualTo(80000);
+    }
+
+    @Given("All employees are deleted")
+    public void allEmployeesAreDeleted() {
+        employeeDao.deleteAll();
+    }
+
+    @When("No Employees are saved")
+    public void noEmployeesAreSaved() {
+        //do nothing
+    }
+
+    @Then("should have {int} employees saved")
+    public void shouldHaveEmployeesSaved(int employeesCount) {
+        assertThat(employeeDao.findAll().size()).isEqualTo(employeesCount);
     }
 }
